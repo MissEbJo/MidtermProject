@@ -33,7 +33,7 @@ public class Platform {
 	private String platformUrl;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "video_game",
+	@JoinTable(name = "platform_has_video_game",
 	joinColumns = @JoinColumn(name = "platform_id"), inverseJoinColumns = @JoinColumn(name = "video_game_id"))
 	private List<VideoGame> videoGames;
 	
