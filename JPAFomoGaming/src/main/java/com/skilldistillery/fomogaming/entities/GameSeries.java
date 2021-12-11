@@ -37,7 +37,10 @@ public class GameSeries {
 
 	@OneToMany(mappedBy = "gameSeriesId")
 	private List<Book> books;
-	
+
+	@OneToMany(mappedBy = "gameSeries")
+	private List<TvShow> tvShows;
+
 	public GameSeries() {
 		super();
 	}
@@ -88,6 +91,22 @@ public class GameSeries {
 
 	public void setVideoGames(List<VideoGame> videoGames) {
 		this.videoGames = videoGames;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
+	public List<TvShow> getTvShows() {
+		return tvShows;
+	}
+
+	public void setTvShows(List<TvShow> tvShows) {
+		this.tvShows = tvShows;
 	}
 
 	@Override
