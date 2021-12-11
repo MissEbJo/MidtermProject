@@ -22,7 +22,7 @@ public class VideoGame {
 	private String description;
 	
 	@Column(name = "release_year")
-	private int releaseYear;
+	private Integer releaseYear;
 	
 	private String mode;
 	
@@ -30,10 +30,10 @@ public class VideoGame {
 	private boolean crossPlatform;
 	
 	@Column(name = "developer_id")
-	private int developerId;
+	private Integer developerId;
 	
 	@Column(name = "series_id")
-	private int seriesId;
+	private Integer seriesId;
 	
 	@Column(name = "image_url")
 	private String imageUrl;
@@ -42,13 +42,13 @@ public class VideoGame {
 	private String trailerUrl;
 	
 	@Column(name = "number_in_series")
-	private int numberInSeries;
+	private Integer numberInSeries;
 
 	public VideoGame() {
 		super();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -72,7 +72,7 @@ public class VideoGame {
 		this.description = description;
 	}
 
-	public int getReleaseYear() {
+	public Integer getReleaseYear() {
 		return releaseYear;
 	}
 
@@ -96,7 +96,7 @@ public class VideoGame {
 		this.crossPlatform = crossPlatform;
 	}
 
-	public int getDeveloperId() {
+	public Integer getDeveloperId() {
 		return developerId;
 	}
 
@@ -104,7 +104,7 @@ public class VideoGame {
 		this.developerId = developerId;
 	}
 
-	public int getSeriesId() {
+	public Integer getSeriesId() {
 		return seriesId;
 	}
 
@@ -128,11 +128,11 @@ public class VideoGame {
 		this.trailerUrl = trailerUrl;
 	}
 
-	public int getNumberInSeries() {
+	public Integer getNumberInSeries() {
 		return numberInSeries;
 	}
 
-	public void setNumberInSeries(int numberInSeries) {
+	public void setNumberInSeries(Integer numberInSeries) {
 		this.numberInSeries = numberInSeries;
 	}
 
