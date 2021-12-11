@@ -2,12 +2,15 @@ package com.skilldistillery.fomogaming.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="game_series")
 public class GameSeries {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +18,7 @@ private int Id;
 
 private String name;
 
+@Column(name="image_url")
 private String imageUrl;
 
 private String Description;

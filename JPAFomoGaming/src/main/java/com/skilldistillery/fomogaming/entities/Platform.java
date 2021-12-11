@@ -22,7 +22,7 @@ public class Platform {
 	private String logoUrl;
 	
 	@Column(name= "release_year")
-	private int releaseYear;
+	private Integer releaseYear;
 	
 	@Column(name= "platform_url")
 	private String platformUrl;
@@ -57,11 +57,11 @@ public class Platform {
 		this.logoUrl = logoUrl;
 	}
 
-	public int getReleaseYear() {
+	public Integer getReleaseYear() {
 		return releaseYear;
 	}
 
-	public void setReleaseYear(int releaseYear) {
+	public void setReleaseYear(Integer releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 
