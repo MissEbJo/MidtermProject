@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "video_game")
+@Table (name = "video_game")
 public class VideoGame {
 	
 	@Id
