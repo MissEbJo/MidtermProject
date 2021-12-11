@@ -8,5 +8,8 @@
 </head>
 <body>
 <h1>Fear of Missing Out Gaming</h1>
+
+<h2>USER: ${DEBUG}</h2>
+
 </body>
 </html>
