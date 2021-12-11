@@ -51,7 +51,7 @@ class PlatformTest {
 	@Test
 	@DisplayName("test Platform Many to Many Video Game mapping")
 	void test2() {
-		platform = em.find(Platform.class, 1);
+		platform = em.find(Platform.class, 2);
 		assertNotNull(platform);
 		assertTrue(platform.getVideogames().size() > 0);
 	}
