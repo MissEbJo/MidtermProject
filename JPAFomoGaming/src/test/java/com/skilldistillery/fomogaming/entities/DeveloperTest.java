@@ -50,5 +50,13 @@ class DeveloperTest {
 		assertEquals(1979, develop.getFoundingYear());
 
 	}
+	
+	@Test
+	@DisplayName("test Developer to BoardGame: list of board games mappings")
+	void test2() {
+		assertNotNull(develop);
+		assertNotNull(develop.getBoardgames());
+		
+	}
 
 }

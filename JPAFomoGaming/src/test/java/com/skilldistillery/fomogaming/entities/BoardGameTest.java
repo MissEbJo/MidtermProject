@@ -52,10 +52,10 @@ class BoardGameTest {
 	}
 	
 	@Test
-	@DisplayName("test BoardGame to Developer mappings")
+	@DisplayName("test BoardGame to Developer (Many to One) mappings")
 	void test2() {
 		assertNotNull(bGame);
-//		assertEquals()
+		assertEquals(20, bGame.getDeveloperId().getId());
 		
 	}
 
