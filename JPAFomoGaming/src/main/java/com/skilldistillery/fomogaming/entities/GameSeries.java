@@ -41,6 +41,9 @@ public class GameSeries {
 	@OneToMany(mappedBy = "gameSeries")
 	private List<TvShow> tvShows;
 
+	@OneToMany(mappedBy = "gameSeries")
+	private List<Movie> movies;
+
 	public GameSeries() {
 		super();
 	}
@@ -107,6 +110,14 @@ public class GameSeries {
 
 	public void setTvShows(List<TvShow> tvShows) {
 		this.tvShows = tvShows;
+	}
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
 	}
 
 	@Override

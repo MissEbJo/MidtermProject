@@ -52,8 +52,14 @@ class MovieTest {
 	@DisplayName("test Movie Many to Many Streaming Service mapping")
 	void test1() {
 		assertNotNull(movie);
-		assertEquals("Netflix", movie.getSs().get(0).getName());
+		assertEquals("Prime Video", movie.getSs().get(0).getName());
 		
 	}
-
+	
+	@Test
+	@DisplayName("test Movie Many to One Game Series mapping")
+	void test2() {
+		assertNotNull(movie);
+		assertEquals("Warcraft", movie.getGameSeries().getName());
+	}
 }

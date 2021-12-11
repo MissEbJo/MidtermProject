@@ -50,6 +50,20 @@ public class StreamingService {
 	
 	
 	
+	public List<TvShow> getTvShows() {
+		return tvShows;
+	}
+
+
+
+
+	public void setTvShows(List<TvShow> tvShows) {
+		this.tvShows = tvShows;
+	}
+
+
+
+
 	public int getId() {
 		return id;
 	}
