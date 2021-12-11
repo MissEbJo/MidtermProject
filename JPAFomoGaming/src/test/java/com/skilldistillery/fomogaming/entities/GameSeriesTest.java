@@ -49,10 +49,11 @@ class GameSeriesTest {
 	}
 
 	@Test
-	@DisplayName("Test Many to Many Genre Mapping")
+	@DisplayName("Testing to TvShow mapping")
 	void test2() {
+		gameSeries = em.find(GameSeries.class, 8);
 		assertNotNull(gameSeries);
-		assertEquals(" ", gameSeries.getName());
-		
+		assertEquals("THE WITCHER", gameSeries.getTvShows().get(0).getTitle());
+	
 	}
 }
