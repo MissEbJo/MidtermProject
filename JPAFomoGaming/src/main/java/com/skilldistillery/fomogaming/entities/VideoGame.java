@@ -8,52 +8,55 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "video_game")
+@Table(name = "video_game")
 public class VideoGame {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	@Column(name = "release_year")
 	private Integer releaseYear;
-	
+
 	private String mode;
-	
+
 	@Column(name = "cross_platform")
 	private boolean crossPlatform;
-	
+
 	@Column(name = "developer_id")
 	private Integer developerId;
-	
-	@Column(name = "series_id")
-	private Integer seriesId;
-	
+
 	@Column(name = "image_url")
 	private String imageUrl;
-	
+
 	@Column(name = "trailer_url")
 	private String trailerUrl;
-	
+
 	@Column(name = "number_in_series")
 	private Integer numberInSeries;
-	
-	@ManyToMany(mappedBy="videoGames")
+
+	@ManyToMany(mappedBy = "videoGames")
 	private List<User> users;
+
+	@ManyToOne
+	@JoinColumn(name = "series_id")
+	private GameSeries gameSeries;
 
 	public VideoGame() {
 		super();
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -81,7 +84,7 @@ public class VideoGame {
 		return releaseYear;
 	}
 
-	public void setReleaseYear(int releaseYear) {
+	public void setReleaseYear(Integer releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 
@@ -105,16 +108,8 @@ public class VideoGame {
 		return developerId;
 	}
 
-	public void setDeveloperId(int developerId) {
+	public void setDeveloperId(Integer developerId) {
 		this.developerId = developerId;
-	}
-
-	public Integer getSeriesId() {
-		return seriesId;
-	}
-
-	public void setSeriesId(int seriesId) {
-		this.seriesId = seriesId;
 	}
 
 	public String getImageUrl() {
@@ -149,16 +144,12 @@ public class VideoGame {
 		this.users = users;
 	}
 
-	public void setReleaseYear(Integer releaseYear) {
-		this.releaseYear = releaseYear;
+	public GameSeries getGameSeries() {
+		return gameSeries;
 	}
 
-	public void setDeveloperId(Integer developerId) {
-		this.developerId = developerId;
-	}
-
-	public void setSeriesId(Integer seriesId) {
-		this.seriesId = seriesId;
+	public void setGameSeries(GameSeries gameSeries) {
+		this.gameSeries = gameSeries;
 	}
 
 	@Override
@@ -182,9 +173,10 @@ public class VideoGame {
 	public String toString() {
 		return "VideoGame [id=" + id + ", name=" + name + ", description=" + description + ", releaseYear="
 				+ releaseYear + ", mode=" + mode + ", crossPlatform=" + crossPlatform + ", developerId=" + developerId
-				+ ", seriesId=" + seriesId + ", imageUrl=" + imageUrl + ", trailerUrl=" + trailerUrl
-				+ ", numberInSeries=" + numberInSeries + "]";
+				+ ", imageUrl=" + imageUrl + ", trailerUrl=" + trailerUrl + ", numberInSeries=" + numberInSeries
+				+ ", users=" + users + ", gameSeries=" + gameSeries + "]";
 	}
+
 	
-	
+
 }
