@@ -1,6 +1,7 @@
 package com.skilldistillery.fomogaming.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class GameSeriesTest {
@@ -46,4 +48,11 @@ class GameSeriesTest {
 		assertEquals("The Legend of Zelda", gameSeries.getName());
 	}
 
+	@Test
+	@DisplayName("Test Many to Many Genre Mapping")
+	void test2() {
+		assertNotNull(gameSeries);
+		assertEquals(" ", gameSeries.getName());
+		
+	}
 }

@@ -31,6 +31,7 @@ public class Genre {
 					inverseJoinColumns=@JoinColumn(name="video_game_id"))
 	private List<VideoGame> videoGames;
 	
+	
 	Genre() {
 		super();
 	}

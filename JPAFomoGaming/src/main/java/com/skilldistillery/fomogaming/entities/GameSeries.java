@@ -35,6 +35,9 @@ public class GameSeries {
 	@OneToMany(mappedBy = "gameSeries")
 	private List<VideoGame> videoGames;
 
+	@OneToMany(mappedBy = "gameSeriesId")
+	private List<Book> books;
+	
 	public GameSeries() {
 		super();
 	}
