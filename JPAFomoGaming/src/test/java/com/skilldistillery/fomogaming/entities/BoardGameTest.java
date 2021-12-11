@@ -29,11 +29,11 @@ class BoardGameTest {
 		emf.close();
 	}
 
-//	@BeforeEach
-//	void setUp() throws Exception {
-//		em = emf.createEntityManager();
-//		bGame = em.find(.class, 1);
-//	}
+	@BeforeEach
+	void setUp() throws Exception {
+		em = emf.createEntityManager();
+		bGame = em.find(BoardGame.class, 1);
+	}
 
 	@AfterEach
 	void tearDown() throws Exception {
@@ -42,9 +42,9 @@ class BoardGameTest {
 	}
 
 	@Test
-	void test() {
+	void test1() {
 		assertNotNull(bGame);
-//		ssassertEquals("admin", bGame.getUsername());
+		
 	}
 
 }
