@@ -1,7 +1,6 @@
 package com.skilldistillery.fomogaming.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,14 +10,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BoardGameTest {
-	
+class MovieTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private BoardGame bGame;
+	private Movie movie;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,20 +31,19 @@ class BoardGameTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		bGame = em.find(BoardGame.class, 1);
+		movie = em.find(Movie.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		bGame = null;
+		movie = null;
 	}
 
 	@Test
-	@DisplayName("test BoardGame mappings")
-	void test1() {
-		assertNotNull(bGame);
-		assertEquals("Dark Souls: The Board Game", bGame.getName());
+	void test() {
+		assertNotNull(movie);
+		assertEquals("Warcraft", movie.getTitle());
 		
 	}
 
