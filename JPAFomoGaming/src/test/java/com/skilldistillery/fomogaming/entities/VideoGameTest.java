@@ -74,4 +74,20 @@ class VideoGameTest {
 		assertEquals("THE WITCHER", vg.getTvShows().get(0).getTitle());
 		assertTrue(vg.getTvShows().size() > 0);
 	}
+	
+	@Test
+	@DisplayName("Test Video Game to Developer mapping")
+	void test5() {
+		assertNotNull(vg);
+		assertEquals("Guerrilla Games", vg.getDeveloper().getName());
+	}
+	
+	@Test
+	@DisplayName("Test Video Game to Board Game mapping")
+	void test6() {
+		vg = null;
+		vg = em.find(VideoGame.class, 22);
+		assertNotNull(vg);
+		assertEquals("Dark Souls: The Board Game", vg.getBoardGames().get(0).getName());
+	}
 }

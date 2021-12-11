@@ -59,4 +59,11 @@ class BoardGameTest {
 		
 	}
 
+	@Test
+	@DisplayName("test BoardGame to Video Game (Many to One) mappings")
+	void test3() {
+		assertNotNull(bGame);
+		assertEquals(22, bGame.getVideoGame().getId());
+	}
+
 }

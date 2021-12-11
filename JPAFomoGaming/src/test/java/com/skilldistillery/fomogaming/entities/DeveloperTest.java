@@ -2,6 +2,7 @@ package com.skilldistillery.fomogaming.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -48,7 +49,6 @@ class DeveloperTest {
 		assertNotNull(develop);
 		assertEquals("Capcom", develop.getName());
 		assertEquals(1979, develop.getFoundingYear());
-
 	}
 	
 	@Test
@@ -56,7 +56,14 @@ class DeveloperTest {
 	void test2() {
 		assertNotNull(develop);
 		assertNotNull(develop.getBoardgames());
-		
+	}
+	
+	@Test
+	@DisplayName("test Developer to Video Game mappings")
+	void test3() {
+		assertNotNull(develop);
+		assertTrue(develop.getVideogames().size() > 0);
+		assertEquals(6, develop.getVideogames().get(0).getId());
 	}
 
 }

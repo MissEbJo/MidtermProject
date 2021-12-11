@@ -37,6 +37,10 @@ public class BoardGame {
 	@ManyToOne
 	@JoinColumn(name="developer_id")
 	private Developer developerId;
+	
+	@ManyToOne
+	@JoinColumn(name="video_game_id")
+	private VideoGame videoGame;
 
 	public BoardGame() {
 	}
@@ -103,6 +107,14 @@ public class BoardGame {
 
 	public void setWebsiteUrl(String websiteUrl) {
 		this.websiteUrl = websiteUrl;
+	}
+
+	public VideoGame getVideoGame() {
+		return videoGame;
+	}
+
+	public void setVideoGame(VideoGame videoGame) {
+		this.videoGame = videoGame;
 	}
 
 	@Override
