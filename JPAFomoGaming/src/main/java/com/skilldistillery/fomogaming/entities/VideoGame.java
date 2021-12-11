@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -43,6 +45,9 @@ public class VideoGame {
 	
 	@Column(name = "number_in_series")
 	private Integer numberInSeries;
+	
+	@ManyToMany(mappedBy="videoGames")
+	private List<User> users;
 
 	public VideoGame() {
 		super();
@@ -134,6 +139,26 @@ public class VideoGame {
 
 	public void setNumberInSeries(Integer numberInSeries) {
 		this.numberInSeries = numberInSeries;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public void setReleaseYear(Integer releaseYear) {
+		this.releaseYear = releaseYear;
+	}
+
+	public void setDeveloperId(Integer developerId) {
+		this.developerId = developerId;
+	}
+
+	public void setSeriesId(Integer seriesId) {
+		this.seriesId = seriesId;
 	}
 
 	@Override

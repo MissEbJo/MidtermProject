@@ -49,4 +49,11 @@ class UserTest {
 		assertEquals("admin", user.getUsername());
 	}
 
+	@Test
+	@DisplayName("Test User to Video Game mapping")
+	void test2() {
+		assertNotNull(user);
+		assertEquals(1, user.getVideoGames().size());
+	}
+
 }

@@ -2,6 +2,7 @@ package com.skilldistillery.fomogaming.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -48,5 +49,13 @@ class VideoGameTest {
 		assertEquals("Horizon Zero Dawn", vg.getName());
 		assertEquals(2017, vg.getReleaseYear());
 	}
+	
+//	@Test
+//	@DisplayName("Test Video Game to Genre mapping")
+//	void test2() {
+//		assertNotNull(vg);
+//		assertTrue(vg.getGenres().size() > 0);
+//		assertEquals(3, vg.getGenres().size());
+//	}
 
 }

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,11 +29,9 @@ public class TvShow {
 	
 	private String description;
 	
-	@Column(name="video_game_id")
-	private int videoGameId;
-	
-	@Column(name="series_id")
-	private Integer seriesId;
+	@ManyToOne
+	@JoinColumn(name="series_id")
+	private GameSeries gameSeries;
 	
 	@Column(name="imdb_url")
 	private String imdbUrl;
@@ -42,91 +42,114 @@ public class TvShow {
 	@Column(name="poster_image_url")
 	private String posterImageUrl;
 	
-	
+	@ManyToOne
+	@JoinColumn(name="video_game_id")
+	private VideoGame videoGame;
 
 	public TvShow() {
 		super();
 	}
 
+
 	public int getId() {
 		return id;
 	}
+
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
+
 	public String getTitle() {
 		return title;
 	}
+
 
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
+
 	public Integer getNumberOfSeasons() {
 		return numberOfSeasons;
 	}
+
 
 	public void setNumberOfSeasons(Integer numberOfSeasons) {
 		this.numberOfSeasons = numberOfSeasons;
 	}
 
+
 	public Integer getReleaseYear() {
 		return releaseYear;
 	}
+
 
 	public void setReleaseYear(Integer releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 
+
 	public String getDescription() {
 		return description;
 	}
+
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public int getVideoGameId() {
-		return videoGameId;
+
+	public GameSeries getGameSeries() {
+		return gameSeries;
 	}
 
-	public void setVideoGameId(int videoGameId) {
-		this.videoGameId = videoGameId;
+
+	public void setGameSeries(GameSeries gameSeries) {
+		this.gameSeries = gameSeries;
 	}
 
-	public Integer getSeriesId() {
-		return seriesId;
-	}
-
-	public void setSeriesId(Integer seriesId) {
-		this.seriesId = seriesId;
-	}
 
 	public String getImdbUrl() {
 		return imdbUrl;
 	}
 
+
 	public void setImdbUrl(String imdbUrl) {
 		this.imdbUrl = imdbUrl;
 	}
+
 
 	public String getTrailerUrl() {
 		return trailerUrl;
 	}
 
+
 	public void setTrailerUrl(String trailerUrl) {
 		this.trailerUrl = trailerUrl;
 	}
+
 
 	public String getPosterImageUrl() {
 		return posterImageUrl;
 	}
 
+
 	public void setPosterImageUrl(String posterImageUrl) {
 		this.posterImageUrl = posterImageUrl;
 	}
+
+
+	public VideoGame getVideoGame() {
+		return videoGame;
+	}
+
+
+	public void setVideoGame(VideoGame videoGame) {
+		this.videoGame = videoGame;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -145,13 +168,15 @@ public class TvShow {
 		return id == other.id;
 	}
 
+
 	@Override
 	public String toString() {
 		return "TvShow [id=" + id + ", title=" + title + ", numberOfSeasons=" + numberOfSeasons + ", releaseYear="
-				+ releaseYear + ", description=" + description + ", videoGameId=" + videoGameId + ", seriesId="
-				+ seriesId + ", imdbUrl=" + imdbUrl + ", trailerUrl=" + trailerUrl + ", posterImageUrl="
-				+ posterImageUrl + "]";
+				+ releaseYear + ", description=" + description + ", gameSeries=" + gameSeries + ", imdbUrl=" + imdbUrl
+				+ ", trailerUrl=" + trailerUrl + ", posterImageUrl=" + posterImageUrl + ", videoGame=" + videoGame
+				+ "]";
 	}
+
 	
 	
 	
