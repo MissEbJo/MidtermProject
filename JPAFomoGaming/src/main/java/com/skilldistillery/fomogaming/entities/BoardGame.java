@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +33,10 @@ public class BoardGame {
 
 	@Column(name = "website_url")
 	private String websiteUrl;
+	
+	@ManyToOne
+	@JoinColumn(name="developer_id")
+	private Developer developerId;
 
 	public BoardGame() {
 	}
@@ -73,6 +79,14 @@ public class BoardGame {
 
 	public void setGameplay(String gameplay) {
 		this.gameplay = gameplay;
+	}
+
+	public Developer getDeveloperId() {
+		return developerId;
+	}
+
+	public void setDeveloperId(Developer developerId) {
+		this.developerId = developerId;
 	}
 
 	public String getImageUrl() {

@@ -50,5 +50,13 @@ class BoardGameTest {
 		assertEquals(2017, bGame.getReleaseYear());
 		
 	}
+	
+	@Test
+	@DisplayName("test BoardGame to Developer mappings")
+	void test2() {
+		assertNotNull(bGame);
+//		assertEquals()
+		
+	}
 
 }

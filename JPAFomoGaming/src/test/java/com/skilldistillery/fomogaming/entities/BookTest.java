@@ -50,5 +50,13 @@ class BookTest {
 		assertEquals(1994, book.getReleaseYear());
 		
 	}
+	
+	@Test
+	@DisplayName("test Book to Game Series mappings")
+	void test2() {
+		assertNotNull(book);
+		assertEquals("The Witcher", book.getGameSeriesId().getName());
+		
+	}
 
 }

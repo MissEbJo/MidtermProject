@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Developer {
@@ -29,6 +31,9 @@ public class Developer {
 
 	@Column(name = "website_url")
 	private String websiteUrl;
+	
+	@OneToMany(mappedBy="developerId")
+	private List<BoardGame> boardgames;
 
 	public Developer() {
 	}
@@ -79,6 +84,22 @@ public class Developer {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getWebsiteUrl() {
+		return websiteUrl;
+	}
+
+	public void setWebsiteUrl(String websiteUrl) {
+		this.websiteUrl = websiteUrl;
+	}
+
+	public List<BoardGame> getBoardgames() {
+		return boardgames;
+	}
+
+	public void setBoardgames(List<BoardGame> boardgames) {
+		this.boardgames = boardgames;
 	}
 
 	@Override

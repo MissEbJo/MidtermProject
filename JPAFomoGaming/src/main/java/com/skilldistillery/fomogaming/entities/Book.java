@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -23,6 +25,10 @@ public class Book {
 	private int releaseYear;
 
 	private String author;
+	
+	@ManyToOne
+	@JoinColumn(name="game_series_id")
+	private GameSeries gameSeriesId;
 
 	public Book() {
 	}
@@ -65,6 +71,14 @@ public class Book {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public GameSeries getGameSeriesId() {
+		return gameSeriesId;
+	}
+
+	public void setGameSeriesId(GameSeries gameSeriesId) {
+		this.gameSeriesId = gameSeriesId;
 	}
 
 	@Override
