@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PlatformTest {
@@ -45,6 +46,14 @@ class PlatformTest {
 		assertNotNull(platform);
 		assertEquals("Nintendo", platform.getSystemName());
 		
+	}
+	
+	@Test
+	@DisplayName("test Platform Many to Many Video Game mapping")
+	void test2() {
+		platform = em.find(Platform.class, 2);
+		assertNotNull(platform);
+		assertTrue(platform.getVideoGames().size() > 0);
 	}
 
 }

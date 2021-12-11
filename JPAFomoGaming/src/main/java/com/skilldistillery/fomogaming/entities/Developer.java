@@ -34,6 +34,9 @@ public class Developer {
 	
 	@OneToMany(mappedBy="developerId")
 	private List<BoardGame> boardgames;
+	
+	@OneToMany(mappedBy="developer")
+	private List <VideoGame> videogames;
 
 	public Developer() {
 	}
@@ -100,6 +103,14 @@ public class Developer {
 
 	public void setBoardgames(List<BoardGame> boardgames) {
 		this.boardgames = boardgames;
+	}
+
+	public List<VideoGame> getVideogames() {
+		return videogames;
+	}
+
+	public void setVideogames(List<VideoGame> videogames) {
+		this.videogames = videogames;
 	}
 
 	@Override

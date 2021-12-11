@@ -34,9 +34,6 @@ public class VideoGame {
 	@Column(name = "cross_platform")
 	private boolean crossPlatform;
 
-	@Column(name = "developer_id")
-	private Integer developerId;
-
 	@Column(name = "image_url")
 	private String imageUrl;
 
@@ -58,6 +55,16 @@ public class VideoGame {
 	
 	@OneToMany(mappedBy="videoGame")
 	private List<TvShow> tvShows;
+	
+	@OneToMany(mappedBy="videoGame")
+	private List<BoardGame> boardGames;
+	
+	@ManyToOne
+	@JoinColumn(name = "developer_id")
+	private Developer developer;
+	
+	@ManyToMany(mappedBy = "videoGames")
+	private List<Platform> platforms;
 
 	public VideoGame() {
 		super();
@@ -109,14 +116,6 @@ public class VideoGame {
 
 	public void setCrossPlatform(boolean crossPlatform) {
 		this.crossPlatform = crossPlatform;
-	}
-
-	public Integer getDeveloperId() {
-		return developerId;
-	}
-
-	public void setDeveloperId(Integer developerId) {
-		this.developerId = developerId;
 	}
 
 	public String getImageUrl() {
@@ -175,6 +174,30 @@ public class VideoGame {
 		this.tvShows = tvShows;
 	}
 
+	public List<BoardGame> getBoardGames() {
+		return boardGames;
+	}
+
+	public void setBoardGames(List<BoardGame> boardGames) {
+		this.boardGames = boardGames;
+	}
+
+	public Developer getDeveloper() {
+		return developer;
+	}
+
+	public void setDeveloper(Developer developer) {
+		this.developer = developer;
+	}
+
+	public List<Platform> getPlatforms() {
+		return platforms;
+	}
+
+	public void setPlatforms(List<Platform> platforms) {
+		this.platforms = platforms;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -195,9 +218,10 @@ public class VideoGame {
 	@Override
 	public String toString() {
 		return "VideoGame [id=" + id + ", name=" + name + ", description=" + description + ", releaseYear="
-				+ releaseYear + ", mode=" + mode + ", crossPlatform=" + crossPlatform + ", developerId=" + developerId
-				+ ", imageUrl=" + imageUrl + ", trailerUrl=" + trailerUrl + ", numberInSeries=" + numberInSeries
-				+ ", users=" + users + ", gameSeries=" + gameSeries + "]";
+				+ releaseYear + ", mode=" + mode + ", crossPlatform=" + crossPlatform + ", imageUrl=" + imageUrl
+				+ ", trailerUrl=" + trailerUrl + ", numberInSeries=" + numberInSeries + ", users=" + users + ", genres="
+				+ genres + ", gameSeries=" + gameSeries + ", tvShows=" + tvShows + ", boardGames=" + boardGames
+				+ ", developer=" + developer + "]";
 	}
 
 	

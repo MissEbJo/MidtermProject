@@ -1,12 +1,17 @@
 package com.skilldistillery.fomogaming.entities;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Platform {
@@ -27,11 +32,42 @@ public class Platform {
 	@Column(name= "platform_url")
 	private String platformUrl;
 	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "platform_has_video_game",
+	joinColumns = @JoinColumn(name = "platform_id"), inverseJoinColumns = @JoinColumn(name = "video_game_id"))
+	private List<VideoGame> videoGames;
+	
 	
 
 	public Platform() {
 		super();
 			}
+	
+	
+
+	
+
+
+
+	public List<VideoGame> getVideoGames() {
+		return videoGames;
+	}
+
+
+
+
+
+
+
+	public void setVideoGames(List<VideoGame> videoGames) {
+		this.videoGames = videoGames;
+	}
+
+
+
+
+
+
 
 	public int getId() {
 		return id;
