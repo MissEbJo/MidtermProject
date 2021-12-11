@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -41,8 +42,8 @@ public class Movie {
 	private List<StreamingService> ss;
 	
 	@ManyToOne
-	@JoinColumn("game_series")
-	private String gameSeries;
+	@JoinColumn(name="series_id")
+	private GameSeries gameSeries;
 	
 	public Movie() {
 		super();
@@ -51,15 +52,24 @@ public class Movie {
 	
 	
 
-	public String getGameSeries() {
+	
+
+
+	public GameSeries getGameSeries() {
 		return gameSeries;
 	}
 
 
 
-	public void setGameSeries(String gameSeries) {
+
+
+
+	public void setGameSeries(GameSeries gameSeries) {
 		this.gameSeries = gameSeries;
 	}
+
+
+
 
 
 
