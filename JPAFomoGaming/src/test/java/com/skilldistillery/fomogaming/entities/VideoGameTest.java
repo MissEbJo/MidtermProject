@@ -90,12 +90,14 @@ class VideoGameTest {
 		assertNotNull(vg);
 		assertEquals("Dark Souls: The Board Game", vg.getBoardGames().get(0).getName());
 	}
+	
 	@Test
 	@DisplayName("Test Video Game to Platform mapping")
 	void test7() {
 		assertNotNull(vg);
 		assertEquals(2, vg.getPlatforms().size());
 	}
+	
 	@Test
 	@DisplayName("Test Video Game to User mapping")
 	void test8() {

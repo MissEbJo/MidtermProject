@@ -1,6 +1,8 @@
 package com.skilldistillery.fomogaming.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class GenreTest {
@@ -41,9 +44,17 @@ class GenreTest {
 	}
 
 	@Test
+	@DisplayName("Test basic mapping")
 	void test_GameSeries_Mapping() {
 		assertNotNull(genre);
 		assertEquals("role playing", genre.getName());
+	}
+
+	@Test
+	@DisplayName("Test mapping to Videogame")
+	void test1() {
+		assertNotNull(genre);
+		assertTrue(0< genre.getVideoGames().size());
 	}
 
 }

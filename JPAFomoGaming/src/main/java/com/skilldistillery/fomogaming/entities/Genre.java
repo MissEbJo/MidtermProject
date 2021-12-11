@@ -17,24 +17,22 @@ public class Genre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private String description;
 
-	@ManyToMany(mappedBy="genres")
+	@ManyToMany(mappedBy = "genres")
 	private List<GameSeries> seriesList;
-	
+
 	@ManyToMany
-	@JoinTable(name="video_game_has_genre",
-					joinColumns=@JoinColumn(name="genre_id"),
-					inverseJoinColumns=@JoinColumn(name="video_game_id"))
+	@JoinTable(name = "video_game_has_genre", joinColumns = @JoinColumn(name = "genre_id"), inverseJoinColumns = @JoinColumn(name = "video_game_id"))
 	private List<VideoGame> videoGames;
-	
-	
+
 	Genre() {
 		super();
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -58,10 +56,28 @@ public class Genre {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public List<GameSeries> getSeriesList() {
+		return seriesList;
+	}
+
+	public void setSeriesList(List<GameSeries> seriesList) {
+		this.seriesList = seriesList;
+	}
+
+	public List<VideoGame> getVideoGames() {
+		return videoGames;
+	}
+
+	public void setVideoGames(List<VideoGame> videoGames) {
+		this.videoGames = videoGames;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(description, id, name);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,11 +89,10 @@ public class Genre {
 		Genre other = (Genre) obj;
 		return Objects.equals(description, other.description) && id == other.id && Objects.equals(name, other.name);
 	}
+
 	@Override
 	public String toString() {
 		return "Genre [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
-	
-	
-	
+
 }
