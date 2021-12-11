@@ -26,9 +26,6 @@ public class Movie {
 	
 	private String description;
 	
-	@Column(name= "series_id")
-	private int seriesId;
-	
 	@Column(name= "imdb_url")
 	private String imdbUrl;
 	
@@ -105,13 +102,6 @@ public class Movie {
 		this.description = description;
 	}
 
-	public int getSeriesId() {
-		return seriesId;
-	}
-
-	public void setSeriesId(int seriesId) {
-		this.seriesId = seriesId;
-	}
 
 	public String getImdbUrl() {
 		return imdbUrl;
@@ -165,7 +155,7 @@ public class Movie {
 	@Override
 	public String toString() {
 		return "Movie [id=" + id + ", title=" + title + ", releaseYear=" + releaseYear + ", description=" + description
-				+ ", seriesId=" + seriesId + ", imdbUrl=" + imdbUrl + ", posterImageUrl=" + posterImageUrl
+				+ ", imdbUrl=" + imdbUrl + ", posterImageUrl=" + posterImageUrl
 				+ ", trailerUrl=" + trailerUrl + "]";
 	}
 	
