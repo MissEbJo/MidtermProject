@@ -49,11 +49,36 @@ class GameSeriesTest {
 	}
 
 	@Test
-	@DisplayName("Testing to TvShow mapping")
+	@DisplayName("Testing GameSeries to TvShow mapping")
 	void test2() {
 		gameSeries = em.find(GameSeries.class, 8);
 		assertNotNull(gameSeries);
 		assertEquals("THE WITCHER", gameSeries.getTvShows().get(0).getTitle());
-	
 	}
+	
+	@Test
+	@DisplayName("Testing GameSeries to VideoGame mapping")
+	void test3() {
+		gameSeries = em.find(GameSeries.class, 5);
+		assertNotNull(gameSeries);
+		assertEquals(1, gameSeries.getVideoGames().get(0).getId());
+	}
+	
+	@Test
+	@DisplayName("Testing GameSeries to book mapping")
+	void test4() {
+		gameSeries = em.find(GameSeries.class, 8);
+		assertNotNull(gameSeries);
+		assertEquals(1, gameSeries.getBooks().size());
+	}
+	
+	@Test
+	@DisplayName("Testing GameSeries to Movie mapping")
+	void test5() {
+		gameSeries = em.find(GameSeries.class, 9);
+		assertNotNull(gameSeries);
+		assertEquals(1, gameSeries.getMovies().size());
+	}
+	
+	
 }
