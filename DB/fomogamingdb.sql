@@ -212,10 +212,10 @@ CREATE TABLE IF NOT EXISTS `board_game` (
   `id` INT NOT NULL,
   `name` VARCHAR(100) NULL,
   `release_year` INT(4) NULL,
-  `description` VARCHAR(100) NULL,
+  `description` VARCHAR(2000) NULL,
   `gameplay` TEXT NULL,
   `video_game_id` INT NOT NULL,
-  `developer_id` INT NOT NULL,
+  `developer_id` INT NULL,
   `image_url` VARCHAR(3000) NULL,
   `website_url` VARCHAR(3000) NULL,
   PRIMARY KEY (`id`),
@@ -401,6 +401,7 @@ INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_u
 INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (16, 'Sora Ltd', 'Japan', 2005, NULL, NULL, NULL);
 INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (17, 'CD Projekt Red', 'Poland', 2002, NULL, NULL, NULL);
 INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (18, 'Pathea', 'China', 2010, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (19, 'FromSoftware', 'Japan', 1986, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -449,6 +450,7 @@ INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `
 INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (19, 'Need for Speed Underground', 'Need for Speed: Underground is a 2003 racing video game and the seventh installment in the Need for Speed series. It was developed by EA Black Box and published by Electronic Arts. Three different games were produced, one for consoles and Windows, and the other for the Game Boy Advance along with a version deveolped by Global VR for Arcades that was published by Konami.', 2003, 'Single player', 0, 15, NULL, NULL, NULL, NULL);
 INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (20, 'World of Warcraft', 'World of Warcraft (WoW) is a massively multiplayer online role-playing game (MMORPG) released in 2004 by Blizzard Entertainment. Similar to other MMORPGs, the game allows players to create a character avatar and explore an open game world in third- or first-person view, exploring the landscape, fighting various monsters, completing quests, and interacting with non-player characters (NPCs) or other players. The game encourages players to work together to complete quests, enter dungeons and engage in player versus player (PvP) combat, however the game can also be played solo without interacting with others.', 2004, 'Single player, Multiplayer', 0, 14, NULL, NULL, NULL, NULL);
 INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (21, 'The Witcher', 'Become The Witcher, Geralt of Rivia, a legendary monster slayer caught in a web of intrigue woven by forces vying for control of the world. Make difficult decisions and live with the consequences in a game that will immerse you in an extraordinary tale like no other.', 2007, 'Single player', 0, 17, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (22, 'Dark Souls', 'Dark Souls takes place in the fictional kingdom of Lordran, where players assume the role of a cursed undead character who begins a pilgrimage to discover the fate of their kind.', 2011, 'Single player, Multiplayer', 0, 19, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -527,6 +529,80 @@ COMMIT;
 START TRANSACTION;
 USE `fomogaming`;
 INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, NULL, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `board_game`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `board_game` (`id`, `name`, `release_year`, `description`, `gameplay`, `video_game_id`, `developer_id`, `image_url`, `website_url`) VALUES (1, 'Dark Souls: The Board Game', 2017, 'Players assume the game role of characters based on classes from the Dark Souls video game series and fight monsters and seek treasure.', NULL, 22, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `favorite_games`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `favorite_games` (`video_game_id`, `user_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `platform_has_video_game`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `platform_has_video_game` (`platform_id`, `video_game_id`) VALUES (2, 1);
+INSERT INTO `platform_has_video_game` (`platform_id`, `video_game_id`) VALUES (5, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `video_game_has_genre`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (1, 1);
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (1, 2);
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (1, 3);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `streaming_service`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `streaming_service` (`id`, `name`, `image_url`, `website_url`) VALUES (1, 'Netflix', NULL, NULL);
+INSERT INTO `streaming_service` (`id`, `name`, `image_url`, `website_url`) VALUES (2, 'Prime Video', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `tv_show_has_streaming_service`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `tv_show_has_streaming_service` (`tv_show_id`, `streaming_service_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `movie_has_streaming_service`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `movie_has_streaming_service` (`movie_id`, `streaming_service_id`) VALUES (1, 2);
 
 COMMIT;
 
