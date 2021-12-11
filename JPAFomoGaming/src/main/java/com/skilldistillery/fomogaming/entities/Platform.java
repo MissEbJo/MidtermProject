@@ -35,7 +35,7 @@ public class Platform {
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "video_game",
 	joinColumns = @JoinColumn(name = "platform_id"), inverseJoinColumns = @JoinColumn(name = "video_game_id"))
-	private List<VideoGame> videogames;
+	private List<VideoGame> videoGames;
 	
 	
 
@@ -45,15 +45,27 @@ public class Platform {
 	
 	
 
-	public List<VideoGame> getVideogames() {
-		return videogames;
+	
+
+
+
+	public List<VideoGame> getVideoGames() {
+		return videoGames;
 	}
 
 
 
-	public void setVideogames(List<VideoGame> videogames) {
-		this.videogames = videogames;
+
+
+
+
+	public void setVideoGames(List<VideoGame> videoGames) {
+		this.videoGames = videoGames;
 	}
+
+
+
+
 
 
 

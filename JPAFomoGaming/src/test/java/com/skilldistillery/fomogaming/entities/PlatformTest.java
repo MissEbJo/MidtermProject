@@ -53,7 +53,7 @@ class PlatformTest {
 	void test2() {
 		platform = em.find(Platform.class, 2);
 		assertNotNull(platform);
-		assertTrue(platform.getVideogames().size() > 0);
+		assertTrue(platform.getVideoGames().size() > 0);
 	}
 
 }
