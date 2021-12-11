@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class StreamingServiceTest {
@@ -46,4 +47,12 @@ class StreamingServiceTest {
 		assertEquals("Netflix", ss.getName());
 	}
 
+	@Test
+	@DisplayName("test Streaming Service Many to Many Movie mapping")
+	void test1() {
+		ss = em.find(StreamingService.class, 2);
+		assertNotNull(ss);
+		assertTrue(ss.getMovies().size() > 0);
+	}
+	
 }

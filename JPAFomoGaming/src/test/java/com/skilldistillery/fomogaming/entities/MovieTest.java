@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MovieTest {
@@ -44,6 +45,14 @@ class MovieTest {
 	void test() {
 		assertNotNull(movie);
 		assertEquals("Warcraft", movie.getTitle());
+		
+	}
+	
+	@Test
+	@DisplayName("test Movie Many to Many Streaming Service mapping")
+	void test1() {
+		assertNotNull(movie);
+		assertEquals("Netflix", movie.getSs().get(0).getName());
 		
 	}
 
