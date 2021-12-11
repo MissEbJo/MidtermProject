@@ -402,6 +402,7 @@ INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_u
 INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (17, 'CD Projekt Red', 'Poland', 2002, NULL, NULL, NULL);
 INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (18, 'Pathea', 'China', 2010, NULL, NULL, NULL);
 INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (19, 'FromSoftware', 'Japan', 1986, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (20, 'Steamforged Games', 'England', 2014, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -538,7 +539,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `board_game` (`id`, `name`, `release_year`, `description`, `gameplay`, `video_game_id`, `developer_id`, `image_url`, `website_url`) VALUES (1, 'Dark Souls: The Board Game', 2017, 'Players assume the game role of characters based on classes from the Dark Souls video game series and fight monsters and seek treasure.', NULL, 22, NULL, NULL, NULL);
+INSERT INTO `board_game` (`id`, `name`, `release_year`, `description`, `gameplay`, `video_game_id`, `developer_id`, `image_url`, `website_url`) VALUES (1, 'Dark Souls: The Board Game', 2017, 'Players assume the game role of characters based on classes from the Dark Souls video game series and fight monsters and seek treasure.', NULL, 22, 20, NULL, NULL);
 
 COMMIT;
 
