@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -45,6 +47,9 @@ public class TvShow {
 	@ManyToOne
 	@JoinColumn(name = "video_game_id")
 	private VideoGame videoGame;
+	
+	@ManyToMany(mappedBy = "tvShows")
+	private List<StreamingService> streamingService;
 
 	public TvShow() {
 		super();
@@ -128,6 +133,14 @@ public class TvShow {
 
 	public void setVideoGame(VideoGame videoGame) {
 		this.videoGame = videoGame;
+	}
+
+	public List<StreamingService> getStreamingService() {
+		return streamingService;
+	}
+
+	public void setStreamingService(List<StreamingService> streamingService) {
+		this.streamingService = streamingService;
 	}
 
 	@Override

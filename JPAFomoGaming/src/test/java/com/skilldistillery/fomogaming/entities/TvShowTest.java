@@ -2,6 +2,7 @@ package com.skilldistillery.fomogaming.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -63,6 +64,14 @@ class TvShowTest {
 		assertNotNull(tv);
 		assertEquals("The Witcher", tv.getVideoGame().getName());
 		assertEquals(21, tv.getVideoGame().getId());
+	}
+	
+	@Test
+	@DisplayName("Test TV Show to Streaming Service mapping")
+	void test4() {
+		assertNotNull(tv);
+		assertTrue(tv.getStreamingService().size() > 0);
+		assertEquals("Netflix", tv.getStreamingService().get(0).getName());
 	}
 
 }
