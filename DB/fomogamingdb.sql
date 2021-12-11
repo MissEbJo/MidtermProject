@@ -16,6 +16,37 @@ CREATE SCHEMA IF NOT EXISTS `fomogaming` DEFAULT CHARACTER SET utf8 ;
 USE `fomogaming` ;
 
 -- -----------------------------------------------------
+-- Table `developer`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `developer` ;
+
+CREATE TABLE IF NOT EXISTS `developer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  `country` VARCHAR(45) NULL,
+  `founding_year` INT(4) NULL,
+  `logo_image_url` VARCHAR(3000) NULL,
+  `description` TEXT NULL,
+  `website_url` VARCHAR(3000) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `game_series`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `game_series` ;
+
+CREATE TABLE IF NOT EXISTS `game_series` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(100) NULL,
+  `image_url` VARCHAR(3000) NULL,
+  `description` TEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `video_game`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `video_game` ;
@@ -24,11 +55,27 @@ CREATE TABLE IF NOT EXISTS `video_game` (
   `id` INT NOT NULL,
   `name` VARCHAR(100) NULL,
   `description` TEXT NULL,
-  `release_year` YEAR NULL,
-  `multi_platform` TINYINT NULL,
+  `release_year` INT(4) NULL,
   `mode` VARCHAR(45) NULL,
   `cross_platform` TINYINT NULL,
-  PRIMARY KEY (`id`))
+  `developer_id` INT NOT NULL,
+  `series_id` INT NULL,
+  `image_url` VARCHAR(3000) NULL,
+  `trailer_url` VARCHAR(3000) NULL,
+  `number_in_series` INT(2) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_video_game_developer1_idx` (`developer_id` ASC),
+  INDEX `fk_video_game_series1_idx` (`series_id` ASC),
+  CONSTRAINT `fk_video_game_developer1`
+    FOREIGN KEY (`developer_id`)
+    REFERENCES `developer` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_video_game_series1`
+    FOREIGN KEY (`series_id`)
+    REFERENCES `game_series` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -41,14 +88,14 @@ CREATE TABLE IF NOT EXISTS `book` (
   `id` INT NOT NULL,
   `title` VARCHAR(100) NOT NULL,
   `description` VARCHAR(500) NULL,
-  `release_year` YEAR NULL,
+  `release_year` INT(4) NULL,
   `author` VARCHAR(100) NULL,
-  `video_game_id` INT NOT NULL,
+  `game_series_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_book_video_game1_idx` (`video_game_id` ASC),
-  CONSTRAINT `fk_book_video_game1`
-    FOREIGN KEY (`video_game_id`)
-    REFERENCES `video_game` (`id`)
+  INDEX `fk_book_game_series1_idx` (`game_series_id` ASC),
+  CONSTRAINT `fk_book_game_series1`
+    FOREIGN KEY (`game_series_id`)
+    REFERENCES `game_series` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -62,98 +109,17 @@ DROP TABLE IF EXISTS `movie` ;
 CREATE TABLE IF NOT EXISTS `movie` (
   `id` INT NOT NULL,
   `title` VARCHAR(100) NULL,
-  `release_year` YEAR NULL,
+  `release_year` INT(4) NULL,
   `description` VARCHAR(500) NULL,
-  `video_game_id` INT NOT NULL,
+  `series_id` INT NOT NULL,
+  `imdb_url` VARCHAR(3000) NULL,
+  `poster_image_url` VARCHAR(3000) NULL,
+  `trailer_url` VARCHAR(3000) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_movie_video_game_idx` (`video_game_id` ASC),
-  CONSTRAINT `fk_movie_video_game`
-    FOREIGN KEY (`video_game_id`)
-    REFERENCES `video_game` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `series`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `series` ;
-
-CREATE TABLE IF NOT EXISTS `series` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(100) NULL,
-  `number_games` INT NULL,
-  `video_game_id` INT NOT NULL,
-  `movie_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_series_video_game1_idx` (`video_game_id` ASC),
-  INDEX `fk_series_movie1_idx` (`movie_id` ASC),
-  CONSTRAINT `fk_series_video_game1`
-    FOREIGN KEY (`video_game_id`)
-    REFERENCES `video_game` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_series_movie1`
-    FOREIGN KEY (`movie_id`)
-    REFERENCES `movie` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `tv_shows`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `tv_shows` ;
-
-CREATE TABLE IF NOT EXISTS `tv_shows` (
-  `id` INT NOT NULL,
-  `title` VARCHAR(100) NULL,
-  `number_seasons` INT NULL,
-  `stream_service` VARCHAR(45) NULL,
-  `release_year` YEAR NULL,
-  `description` VARCHAR(500) NULL,
-  `video_game_id` INT NOT NULL,
-  `series_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_tv_shows_video_game1_idx` (`video_game_id` ASC),
-  INDEX `fk_tv_shows_series1_idx` (`series_id` ASC),
-  CONSTRAINT `fk_tv_shows_video_game1`
-    FOREIGN KEY (`video_game_id`)
-    REFERENCES `video_game` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tv_shows_series1`
+  INDEX `fk_movie_series1_idx` (`series_id` ASC),
+  CONSTRAINT `fk_movie_series1`
     FOREIGN KEY (`series_id`)
-    REFERENCES `series` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `director`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `director` ;
-
-CREATE TABLE IF NOT EXISTS `director` (
-  `id` INT NOT NULL,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `tv_shows_id` INT NOT NULL,
-  `movie_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_director_tv_shows1_idx` (`tv_shows_id` ASC),
-  INDEX `fk_director_movie1_idx` (`movie_id` ASC),
-  CONSTRAINT `fk_director_tv_shows1`
-    FOREIGN KEY (`tv_shows_id`)
-    REFERENCES `tv_shows` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_director_movie1`
-    FOREIGN KEY (`movie_id`)
-    REFERENCES `movie` (`id`)
+    REFERENCES `game_series` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -178,13 +144,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `platforms`
+-- Table `platform`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `platforms` ;
+DROP TABLE IF EXISTS `platform` ;
 
-CREATE TABLE IF NOT EXISTS `platforms` (
+CREATE TABLE IF NOT EXISTS `platform` (
   `id` INT NOT NULL,
   `system_name` VARCHAR(100) NULL,
+  `logo_url` VARCHAR(45) NULL,
+  `release_year` INT(4) NULL,
+  `platform_url` VARCHAR(3000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -196,13 +165,39 @@ DROP TABLE IF EXISTS `genre` ;
 
 CREATE TABLE IF NOT EXISTS `genre` (
   `id` INT NOT NULL,
-  `genre_type` VARCHAR(45) NULL,
-  `video_game_id` INT NULL,
+  `name` VARCHAR(45) NULL,
+  `description` VARCHAR(300) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tv_show`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tv_show` ;
+
+CREATE TABLE IF NOT EXISTS `tv_show` (
+  `id` INT NOT NULL,
+  `title` VARCHAR(100) NULL,
+  `number_seasons` INT NULL,
+  `release_year` INT(4) NULL,
+  `description` VARCHAR(500) NULL,
+  `video_game_id` INT NOT NULL,
+  `series_id` INT NULL,
+  `imdb_url` VARCHAR(3000) NULL,
+  `trailer_url` VARCHAR(3000) NULL,
+  `poster_image_url` VARCHAR(3000) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_genre_video_game1_idx` (`video_game_id` ASC),
-  CONSTRAINT `fk_genre_video_game1`
+  INDEX `fk_tv_shows_video_game1_idx` (`video_game_id` ASC),
+  INDEX `fk_tv_shows_series1_idx` (`series_id` ASC),
+  CONSTRAINT `fk_tv_shows_video_game1`
     FOREIGN KEY (`video_game_id`)
     REFERENCES `video_game` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tv_shows_series1`
+    FOREIGN KEY (`series_id`)
+    REFERENCES `game_series` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -216,43 +211,24 @@ DROP TABLE IF EXISTS `board_game` ;
 CREATE TABLE IF NOT EXISTS `board_game` (
   `id` INT NOT NULL,
   `name` VARCHAR(100) NULL,
-  `release_year` YEAR NULL,
+  `release_year` INT(4) NULL,
   `description` VARCHAR(100) NULL,
   `gameplay` TEXT NULL,
   `video_game_id` INT NOT NULL,
+  `developer_id` INT NOT NULL,
+  `image_url` VARCHAR(3000) NULL,
+  `website_url` VARCHAR(3000) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_board_game_video_game1_idx` (`video_game_id` ASC),
+  INDEX `fk_board_game_developer1_idx` (`developer_id` ASC),
   CONSTRAINT `fk_board_game_video_game1`
     FOREIGN KEY (`video_game_id`)
     REFERENCES `video_game` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `developer`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `developer` ;
-
-CREATE TABLE IF NOT EXISTS `developer` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(100) NULL,
-  `country` VARCHAR(45) NULL,
-  `founding_year` YEAR NULL,
-  `video_game_id` INT NULL,
-  `board_game_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_developer_video_game1_idx` (`video_game_id` ASC),
-  INDEX `fk_developer_board_game1_idx` (`board_game_id` ASC),
-  CONSTRAINT `fk_developer_video_game1`
-    FOREIGN KEY (`video_game_id`)
-    REFERENCES `video_game` (`id`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_developer_board_game1`
-    FOREIGN KEY (`board_game_id`)
-    REFERENCES `board_game` (`id`)
+  CONSTRAINT `fk_board_game_developer1`
+    FOREIGN KEY (`developer_id`)
+    REFERENCES `developer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -283,24 +259,110 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `platforms_has_video_game`
+-- Table `platform_has_video_game`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `platforms_has_video_game` ;
+DROP TABLE IF EXISTS `platform_has_video_game` ;
 
-CREATE TABLE IF NOT EXISTS `platforms_has_video_game` (
-  `platforms_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `platform_has_video_game` (
+  `platform_id` INT NOT NULL,
   `video_game_id` INT NOT NULL,
-  PRIMARY KEY (`platforms_id`, `video_game_id`),
+  PRIMARY KEY (`platform_id`, `video_game_id`),
   INDEX `fk_platforms_has_video_game_video_game1_idx` (`video_game_id` ASC),
-  INDEX `fk_platforms_has_video_game_platforms1_idx` (`platforms_id` ASC),
+  INDEX `fk_platforms_has_video_game_platforms1_idx` (`platform_id` ASC),
   CONSTRAINT `fk_platforms_has_video_game_platforms1`
-    FOREIGN KEY (`platforms_id`)
-    REFERENCES `platforms` (`id`)
+    FOREIGN KEY (`platform_id`)
+    REFERENCES `platform` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_platforms_has_video_game_video_game1`
     FOREIGN KEY (`video_game_id`)
     REFERENCES `video_game` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `video_game_has_genre`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `video_game_has_genre` ;
+
+CREATE TABLE IF NOT EXISTS `video_game_has_genre` (
+  `video_game_id` INT NOT NULL,
+  `genre_id` INT NOT NULL,
+  PRIMARY KEY (`video_game_id`, `genre_id`),
+  INDEX `fk_video_game_has_genre_genre1_idx` (`genre_id` ASC),
+  INDEX `fk_video_game_has_genre_video_game1_idx` (`video_game_id` ASC),
+  CONSTRAINT `fk_video_game_has_genre_video_game1`
+    FOREIGN KEY (`video_game_id`)
+    REFERENCES `video_game` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_video_game_has_genre_genre1`
+    FOREIGN KEY (`genre_id`)
+    REFERENCES `genre` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `streaming_service`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `streaming_service` ;
+
+CREATE TABLE IF NOT EXISTS `streaming_service` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(200) NULL,
+  `image_url` VARCHAR(3000) NULL,
+  `website_url` VARCHAR(3000) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `tv_show_has_streaming_service`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `tv_show_has_streaming_service` ;
+
+CREATE TABLE IF NOT EXISTS `tv_show_has_streaming_service` (
+  `tv_show_id` INT NOT NULL,
+  `streaming_service_id` INT NOT NULL,
+  PRIMARY KEY (`tv_show_id`, `streaming_service_id`),
+  INDEX `fk_tv_show_has_streaming_service_streaming_service1_idx` (`streaming_service_id` ASC),
+  INDEX `fk_tv_show_has_streaming_service_tv_show1_idx` (`tv_show_id` ASC),
+  CONSTRAINT `fk_tv_show_has_streaming_service_tv_show1`
+    FOREIGN KEY (`tv_show_id`)
+    REFERENCES `tv_show` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tv_show_has_streaming_service_streaming_service1`
+    FOREIGN KEY (`streaming_service_id`)
+    REFERENCES `streaming_service` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `movie_has_streaming_service`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `movie_has_streaming_service` ;
+
+CREATE TABLE IF NOT EXISTS `movie_has_streaming_service` (
+  `movie_id` INT NOT NULL,
+  `streaming_service_id` INT NOT NULL,
+  PRIMARY KEY (`movie_id`, `streaming_service_id`),
+  INDEX `fk_movie_has_streaming_service_streaming_service1_idx` (`streaming_service_id` ASC),
+  INDEX `fk_movie_has_streaming_service_movie1_idx` (`movie_id` ASC),
+  CONSTRAINT `fk_movie_has_streaming_service_movie1`
+    FOREIGN KEY (`movie_id`)
+    REFERENCES `movie` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_movie_has_streaming_service_streaming_service1`
+    FOREIGN KEY (`streaming_service_id`)
+    REFERENCES `streaming_service` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -317,31 +379,76 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `developer`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (1, 'Capcom', 'Japan', 1979, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (2, 'Guerrilla Games', 'Netherlands', 2000, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (3, 'Nintendo Entertainment', 'Japan', 1889, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (4, 'Supergiant Games', 'United States', 2009, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (5, 'Square Enix', 'Japan', 2003, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (6, 'EA Sports', 'United States', 1991, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (7, 'Respawn Entertainment', 'United States', 2010, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (8, 'Concerned Ape', 'United States', 2012, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (9, 'Ubisoft', 'France', 1986, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (10, 'Atari', 'United States', 1976, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (11, 'Bungie', 'United States', 1991, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (12, 'ND Cube', 'Japan', 2000, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (13, 'PUBG Corp', 'South Korea', 2009, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (14, 'Blizzard Entertainment', 'United States', 1991, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (15, 'EA', 'United States', 1982, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (16, 'Sora Ltd', 'Japan', 2005, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (17, 'CD Projekt Red', 'Poland', 2002, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (18, 'Pathea', 'China', 2010, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `game_series`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `fomogaming`;
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (1, 'The Legend of Zelda', NULL, NULL);
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (2, 'Final Fantasy', NULL, NULL);
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (3, 'Mario Party', NULL, NULL);
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (4, 'Super Smash Brothers', NULL, NULL);
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (5, 'Horizon', NULL, NULL);
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (6, 'Destiny', NULL, NULL);
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (7, 'Ghost Recon', NULL, NULL);
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (8, 'The Witcher', NULL, NULL);
+INSERT INTO `game_series` (`id`, `name`, `image_url`, `description`) VALUES (9, 'Warcraft', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `video_game`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (1, 'Horizon Zero Dawn', 'Experience Aloy’s legendary quest to unravel the mysteries of a future Earth ruled by Machines. Use devastating tactical attacks against your prey and explore a majestic open world in this award-winning action RPG!', 2017, 1, 'Single player', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (2, 'Breath of the Wild', 'Breath of the Wild is an action-adventure game set in an open world where players are tasked with exploring the kingdom of Hyrule while controlling Link. ... Link can procure items from the environment, including weapons, food, and other resources. Unlike previous Zelda games, weapons and shields degrade through use.', 2017, 1, 'Single player', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (3, 'Hades', 'Defy the god of the dead as you hack and slash out of the Underworld in this rogue-like dungeon crawler from the creators of Bastion, Transistor, and Pyre.', 2018, 1, 'Single player', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (4, 'Apex Legends', 'Apex Legends is the award-winning, free-to-play Hero shooter from Respawn Entertainment. Master an ever-growing roster of legendary characters with powerful abilities and experience strategic squad play and innovative gameplay in the next evolution of Hero Shooter and Battle Royale.', 2019, 1, 'Multiplayer', 1);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (5, 'Destiny 2', 'Destiny 2 is an action MMO with a single evolving world that you and your friends can join anytime, anywhere, absolutely free.', 2017, 1, 'Single player, Multiplayer', 1);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (6, 'Mega Man', 'Mega Man, known as Rockman in Japan, is a Japanese science fiction video game franchise created by Capcom, starring a series of robot characters each known by the moniker \"Mega Man\".', 1987, 1, 'Single player', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (7, 'Ghost Recon', 'Eastern Europe, 2008. War has broken out on the borders of Russia and the fate of the world hangs in the balance. That\'s when the call goes out for the Ghostsan elite handful of specially trained Green Berets, armed with the latest technology and trained to use the deadliest weapons. Their mission: Spearhead the way for a NATO peacekeeping force, and keep the lid on the conflict before it mushrooms... literally.', 2001, 1, 'Single player, Multiplayer', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (8, 'Madden NFL Football', 'Madden NFL (known as John Madden Football until 1994) is an American Football video game series developed by EA Tiburon for EA Sports. It is named after Pro Football Hall Of Fame coach and commentator John Madden, and it has sold more than 250 million copies. It is also the only officially licensed (NFL) video game series, and it has influenced many players and coaches of the physical sport.', 1988, 1, 'Single player, Multiplayer', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (9, 'NCAA College Football', 'NCAA Football is an American Football video game series series developed by EA Sports in which players control and compete against current Division 1 FBS college football teams. It served as a college football counterpart to the  Madden NFL series. The series began in 1993 with the release of Bill Walsh College Football. EA eventually acquired the licensing rights to the NCAA name and officially rechristened the series with the release of NCAA Football 98', 1993, 1, 'Single player, Multiplayer', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (10, 'Paper Boy', 'Paperboy is an arcade action game developed and published by Atari Games and Midway Games, and released in 1985. The player takes the role of a paperboy who delivers a fictional newspaper called The Daily Sun along a suburban street on his bicycle. The arcade version of the game featured bike handlebars as the controller.The game was ported to many home systems beginning in 1986.', 1985, 1, 'Single player', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (11, 'Final Fantasy IX', 'Zidane and the Tantalus Theater Troupe have kidnapped Princess Garnet, the heir of Alexandria. To their surprise, however, the princess herself yearned to escape the castle.\nThrough a series of unusual circumstances, she and her personal guard, Steiner, fall in with Zidane and set out on an incredible journey. Meeting unforgettable characters like Vivi and Quina along the way, they learn about themselves, the secrets of the Crystal, and a malevolent force that threatens to destroy their world.', 2020, 1, 'Single player', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (12, 'My Time In Portia', 'Start a new life in the enchanting town of Portia! Restore your Pa\'s neglected workshop to its former glory by fulfilling commissions, growing crops, raising animals, and befriending the quirky inhabitants of this charming post-apocalyptic land!', 2019, 1, 'Single player', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (13, 'Stardew Valley', 'You\'ve inherited your grandfather\'s old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home?', 2016, 1, 'Single player, Multiplayer', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (14, 'Mario Party 10', 'Mario Party 10 continues the tradition of the Mario Party series, in which four players, controlled by either human or CPU, compete against each other on a game board by participating in various minigames.', 2015, 0, 'Single player, Multiplayer', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (15, 'Super Smash Bros Wii U', 'non-traditional fighting games where players use different attacks to weaken their opponents and knock them out of an arena. The games are crossover titles that feature characters, items, music, and stages from various Nintendo franchises, as well as from several third-party franchises.', 2014, 0, 'Single player, Multiplayer', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (16, 'Player Unknown Battle Grounds', 'Pubg // Battlegrounds is a player versus player shooter game in which up to one hundred players fight in a battle royale, a type of large-scale last man standing deathmatch where players fight to remain the last alive. Players can choose to enter the match solo, duo, or with a small team of up to four people. The last person or team alive wins the match', 2017, 1, 'Multiplayer', 1);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (17, 'Overwatch', 'Overwatch is a team-based multiplayer first-person shooter game developed and published by Blizzard Entertainment. Described as a “hero shooter”, Overwatch assigns players into two teams of six, with each player selecting from a large roster of characters, known as “heroes”, with unique abilities.', 2016, 1, 'Multiplayer', 1);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (18, 'Starcraft', 'Set in a fictitious future timeline during the 25th century AD in a distant part of the Milky Way galaxy known as the Koprulu Sector, the game revolves around three intelligent species fighting for dominance: the Terrans are humans exiled from Earth who are now skilled at adapting to any situation; the Zerg are a race of insectoid aliens in pursuit of genetic perfection and obsessed with assimilating other races; the Protoss are a humanoid species with advanced technology and psionic abilities who are attempting to preserve their civilization and strict philosophy about their way of life from the Zerg./', 1999, 0, 'Single player, Multiplayer', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (19, 'Need for Speed Underground', 'Need for Speed: Underground is a 2003 racing video game and the seventh installment in the Need for Speed series. It was developed by EA Black Box and published by Electronic Arts. Three different games were produced, one for consoles and Windows, and the other for the Game Boy Advance along with a version deveolped by Global VR for Arcades that was published by Konami.', 2003, 1, 'Single player', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (20, 'World of Warcraft', 'World of Warcraft (WoW) is a massively multiplayer online role-playing game (MMORPG) released in 2004 by Blizzard Entertainment. Similar to other MMORPGs, the game allows players to create a character avatar and explore an open game world in third- or first-person view, exploring the landscape, fighting various monsters, completing quests, and interacting with non-player characters (NPCs) or other players. The game encourages players to work together to complete quests, enter dungeons and engage in player versus player (PvP) combat, however the game can also be played solo without interacting with others.', 2004, 0, 'Single player, Multiplayer', 0);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `multi_platform`, `mode`, `cross_platform`) VALUES (21, 'The Witcher', 'Become The Witcher, Geralt of Rivia, a legendary monster slayer caught in a web of intrigue woven by forces vying for control of the world. Make difficult decisions and live with the consequences in a game that will immerse you in an extraordinary tale like no other.', 2007, 1, 'Single player', 0);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (1, 'Horizon Zero Dawn', 'Experience Aloy’s legendary quest to unravel the mysteries of a future Earth ruled by Machines. Use devastating tactical attacks against your prey and explore a majestic open world in this award-winning action RPG!', 2017, 'Single player', 0, 2, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (2, 'Breath of the Wild', 'Breath of the Wild is an action-adventure game set in an open world where players are tasked with exploring the kingdom of Hyrule while controlling Link. ... Link can procure items from the environment, including weapons, food, and other resources. Unlike previous Zelda games, weapons and shields degrade through use.', 2017, 'Single player', 0, 3, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (3, 'Hades', 'Defy the god of the dead as you hack and slash out of the Underworld in this rogue-like dungeon crawler from the creators of Bastion, Transistor, and Pyre.', 2018, 'Single player', 0, 4, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (4, 'Apex Legends', 'Apex Legends is the award-winning, free-to-play Hero shooter from Respawn Entertainment. Master an ever-growing roster of legendary characters with powerful abilities and experience strategic squad play and innovative gameplay in the next evolution of Hero Shooter and Battle Royale.', 2019, 'Multiplayer', 1, 7, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (5, 'Destiny 2', 'Destiny 2 is an action MMO with a single evolving world that you and your friends can join anytime, anywhere, absolutely free.', 2017, 'Single player, Multiplayer', 1, 11, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (6, 'Mega Man', 'Mega Man, known as Rockman in Japan, is a Japanese science fiction video game franchise created by Capcom, starring a series of robot characters each known by the moniker \"Mega Man\".', 1987, 'Single player', 0, 1, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (7, 'Ghost Recon', 'Eastern Europe, 2008. War has broken out on the borders of Russia and the fate of the world hangs in the balance. That\'s when the call goes out for the Ghostsan elite handful of specially trained Green Berets, armed with the latest technology and trained to use the deadliest weapons. Their mission: Spearhead the way for a NATO peacekeeping force, and keep the lid on the conflict before it mushrooms... literally.', 2001, 'Single player, Multiplayer', 0, 9, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (8, 'Madden NFL Football', 'Madden NFL (known as John Madden Football until 1994) is an American Football video game series developed by EA Tiburon for EA Sports. It is named after Pro Football Hall Of Fame coach and commentator John Madden, and it has sold more than 250 million copies. It is also the only officially licensed (NFL) video game series, and it has influenced many players and coaches of the physical sport.', 1988, 'Single player, Multiplayer', 0, 6, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (9, 'NCAA College Football', 'NCAA Football is an American Football video game series series developed by EA Sports in which players control and compete against current Division 1 FBS college football teams. It served as a college football counterpart to the  Madden NFL series. The series began in 1993 with the release of Bill Walsh College Football. EA eventually acquired the licensing rights to the NCAA name and officially rechristened the series with the release of NCAA Football 98', 1993, 'Single player, Multiplayer', 0, 6, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (10, 'Paper Boy', 'Paperboy is an arcade action game developed and published by Atari Games and Midway Games, and released in 1985. The player takes the role of a paperboy who delivers a fictional newspaper called The Daily Sun along a suburban street on his bicycle. The arcade version of the game featured bike handlebars as the controller.The game was ported to many home systems beginning in 1986.', 1985, 'Single player', 0, 10, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (11, 'Final Fantasy IX', 'Zidane and the Tantalus Theater Troupe have kidnapped Princess Garnet, the heir of Alexandria. To their surprise, however, the princess herself yearned to escape the castle.\nThrough a series of unusual circumstances, she and her personal guard, Steiner, fall in with Zidane and set out on an incredible journey. Meeting unforgettable characters like Vivi and Quina along the way, they learn about themselves, the secrets of the Crystal, and a malevolent force that threatens to destroy their world.', 2020, 'Single player', 0, 5, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (12, 'My Time In Portia', 'Start a new life in the enchanting town of Portia! Restore your Pa\'s neglected workshop to its former glory by fulfilling commissions, growing crops, raising animals, and befriending the quirky inhabitants of this charming post-apocalyptic land!', 2019, 'Single player', 0, 18, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (13, 'Stardew Valley', 'You\'ve inherited your grandfather\'s old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home?', 2016, 'Single player, Multiplayer', 0, 8, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (14, 'Mario Party 10', 'Mario Party 10 continues the tradition of the Mario Party series, in which four players, controlled by either human or CPU, compete against each other on a game board by participating in various minigames.', 2015, 'Single player, Multiplayer', 0, 3, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (15, 'Super Smash Bros Wii U', 'non-traditional fighting games where players use different attacks to weaken their opponents and knock them out of an arena. The games are crossover titles that feature characters, items, music, and stages from various Nintendo franchises, as well as from several third-party franchises.', 2014, 'Single player, Multiplayer', 0, 3, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (16, 'Player Unknown Battle Grounds', 'Pubg // Battlegrounds is a player versus player shooter game in which up to one hundred players fight in a battle royale, a type of large-scale last man standing deathmatch where players fight to remain the last alive. Players can choose to enter the match solo, duo, or with a small team of up to four people. The last person or team alive wins the match', 2017, 'Multiplayer', 1, 13, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (17, 'Overwatch', 'Overwatch is a team-based multiplayer first-person shooter game developed and published by Blizzard Entertainment. Described as a “hero shooter”, Overwatch assigns players into two teams of six, with each player selecting from a large roster of characters, known as “heroes”, with unique abilities.', 2016, 'Multiplayer', 1, 14, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (18, 'Starcraft', 'Set in a fictitious future timeline during the 25th century AD in a distant part of the Milky Way galaxy known as the Koprulu Sector, the game revolves around three intelligent species fighting for dominance: the Terrans are humans exiled from Earth who are now skilled at adapting to any situation; the Zerg are a race of insectoid aliens in pursuit of genetic perfection and obsessed with assimilating other races; the Protoss are a humanoid species with advanced technology and psionic abilities who are attempting to preserve their civilization and strict philosophy about their way of life from the Zerg./', 1999, 'Single player, Multiplayer', 0, 14, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (19, 'Need for Speed Underground', 'Need for Speed: Underground is a 2003 racing video game and the seventh installment in the Need for Speed series. It was developed by EA Black Box and published by Electronic Arts. Three different games were produced, one for consoles and Windows, and the other for the Game Boy Advance along with a version deveolped by Global VR for Arcades that was published by Konami.', 2003, 'Single player', 0, 15, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (20, 'World of Warcraft', 'World of Warcraft (WoW) is a massively multiplayer online role-playing game (MMORPG) released in 2004 by Blizzard Entertainment. Similar to other MMORPGs, the game allows players to create a character avatar and explore an open game world in third- or first-person view, exploring the landscape, fighting various monsters, completing quests, and interacting with non-player characters (NPCs) or other players. The game encourages players to work together to complete quests, enter dungeons and engage in player versus player (PvP) combat, however the game can also be played solo without interacting with others.', 2004, 'Single player, Multiplayer', 0, 14, NULL, NULL, NULL, NULL);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `mode`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`) VALUES (21, 'The Witcher', 'Become The Witcher, Geralt of Rivia, a legendary monster slayer caught in a web of intrigue woven by forces vying for control of the world. Make difficult decisions and live with the consequences in a game that will immerse you in an extraordinary tale like no other.', 2007, 'Single player', 0, 17, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -351,8 +458,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `book` (`id`, `title`, `description`, `release_year`, `author`, `video_game_id`) VALUES (1, 'Blood of Elves', 'Blood of Elves is the first novel in the Witcher Saga written by the Polish fantasy writer Andrzej Sapkowski, first published in Poland in 1994. It is a sequel to the Witcher short stories collected in the books The Last Wish and Sword of Destiny and is followed by Time of Contempt.', 1994, 'Andrzej Sapkowski', 21);
-INSERT INTO `book` (`id`, `title`, `description`, `release_year`, `author`, `video_game_id`) VALUES (2, 'Ghost Recon', 'The U.S. Army\'s Special Forces are known for their highly specialized training and courage behind enemy lines. But there\'s a group that\'s even more stealthy and deadly. It\'s composed of the most feared operators on the face of the earth-the soldiers of Ghost Recon.', 2008, 'David Michaels', 7);
+INSERT INTO `book` (`id`, `title`, `description`, `release_year`, `author`, `game_series_id`) VALUES (1, 'Blood of Elves', 'Blood of Elves is the first novel in the Witcher Saga written by the Polish fantasy writer Andrzej Sapkowski, first published in Poland in 1994. It is a sequel to the Witcher short stories collected in the books The Last Wish and Sword of Destiny and is followed by Time of Contempt.', 1994, 'Andrzej Sapkowski', 8);
+INSERT INTO `book` (`id`, `title`, `description`, `release_year`, `author`, `game_series_id`) VALUES (2, 'Ghost Recon', 'The U.S. Army\'s Special Forces are known for their highly specialized training and courage behind enemy lines. But there\'s a group that\'s even more stealthy and deadly. It\'s composed of the most feared operators on the face of the earth-the soldiers of Ghost Recon.', 2008, 'David Michaels', 7);
 
 COMMIT;
 
@@ -362,30 +469,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `movie` (`id`, `title`, `release_year`, `description`, `video_game_id`) VALUES (1, 'Warcraft', 2016, 'American action fantasy film based on the video game series of the same name.', 20);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `series`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `fomogaming`;
-INSERT INTO `series` (`id`, `name`, `number_games`, `video_game_id`, `movie_id`) VALUES (1, 'The Legend of Zelda', 27, 2, NULL);
-INSERT INTO `series` (`id`, `name`, `number_games`, `video_game_id`, `movie_id`) VALUES (2, 'Final Fantasy', 15, 11, NULL);
-INSERT INTO `series` (`id`, `name`, `number_games`, `video_game_id`, `movie_id`) VALUES (3, 'Mario Party', 17, 14, NULL);
-INSERT INTO `series` (`id`, `name`, `number_games`, `video_game_id`, `movie_id`) VALUES (4, 'Super Smash Brothers', 6, 15, NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `tv_shows`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `fomogaming`;
-INSERT INTO `tv_shows` (`id`, `title`, `number_seasons`, `stream_service`, `release_year`, `description`, `video_game_id`, `series_id`) VALUES (1, 'THE WITCHER', 1, 'Netflix', 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, NULL);
+INSERT INTO `movie` (`id`, `title`, `release_year`, `description`, `series_id`, `imdb_url`, `poster_image_url`, `trailer_url`) VALUES (1, 'Warcraft', 2016, 'American action fantasy film based on the video game series of the same name.', 9, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -401,17 +485,17 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `platforms`
+-- Data for table `platform`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `platforms` (`id`, `system_name`) VALUES (1, 'Nintendo');
-INSERT INTO `platforms` (`id`, `system_name`) VALUES (2, 'PC');
-INSERT INTO `platforms` (`id`, `system_name`) VALUES (3, 'Mac');
-INSERT INTO `platforms` (`id`, `system_name`) VALUES (4, 'Xbox');
-INSERT INTO `platforms` (`id`, `system_name`) VALUES (5, 'PlayStation');
-INSERT INTO `platforms` (`id`, `system_name`) VALUES (6, 'Sega');
-INSERT INTO `platforms` (`id`, `system_name`) VALUES (7, 'Arcade');
+INSERT INTO `platform` (`id`, `system_name`, `logo_url`, `release_year`, `platform_url`) VALUES (1, 'Nintendo', NULL, NULL, NULL);
+INSERT INTO `platform` (`id`, `system_name`, `logo_url`, `release_year`, `platform_url`) VALUES (2, 'PC', NULL, NULL, NULL);
+INSERT INTO `platform` (`id`, `system_name`, `logo_url`, `release_year`, `platform_url`) VALUES (3, 'Mac', NULL, NULL, NULL);
+INSERT INTO `platform` (`id`, `system_name`, `logo_url`, `release_year`, `platform_url`) VALUES (4, 'Xbox', NULL, NULL, NULL);
+INSERT INTO `platform` (`id`, `system_name`, `logo_url`, `release_year`, `platform_url`) VALUES (5, 'PlayStation', NULL, NULL, NULL);
+INSERT INTO `platform` (`id`, `system_name`, `logo_url`, `release_year`, `platform_url`) VALUES (6, 'Sega', NULL, NULL, NULL);
+INSERT INTO `platform` (`id`, `system_name`, `logo_url`, `release_year`, `platform_url`) VALUES (7, 'Arcade', NULL, NULL, NULL);
 
 COMMIT;
 
@@ -421,44 +505,28 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (1, 'role playing', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (2, 'action', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (3, 'adventure', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (4, 'shooter', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (5, 'sports', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (6, 'fighting', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (7, 'strategy', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (8, 'platform', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (9, 'racing', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (10, 'simulation', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (11, 'puzzle', NULL);
-INSERT INTO `genre` (`id`, `genre_type`, `video_game_id`) VALUES (12, NULL, NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (1, 'role playing', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (2, 'action', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (3, 'adventure', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (4, 'shooter', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (5, 'sports', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (6, 'fighting', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (7, 'strategy', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (8, 'platform', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (9, 'racing', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (10, 'simulation', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (11, 'puzzle', NULL);
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (12, NULL, NULL);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `developer`
+-- Data for table `tv_show`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (1, 'Capcom', 'Japan', 1979, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (2, 'Guerrilla Games', 'Netherlands', 2000, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (3, 'Nintendo Entertainment', 'Japan', NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (4, 'Supergiant Games', 'United States', 2009, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (5, 'Square Enix', 'Japan', 2003, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (6, 'EA Sports', 'United States', 1991, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (7, 'Respawn Entertainment', 'United States', 2010, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (8, 'Concerned Ape', 'United States', 2012, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (9, 'Ubisoft', 'France', 1986, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (10, 'Atari', 'United States', 1976, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (11, 'Bungie', 'United States', 1991, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (12, 'ND Cube', 'Japan', 2000, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (13, 'PUBG Corp', 'South Korea', 2009, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (14, 'Blizzard Entertainment', 'United States', 1991, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (15, 'EA', 'United States', 1982, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (16, 'Sora Ltd', 'Japan', 2005, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `video_game_id`, `board_game_id`) VALUES (17, 'CD Projekt Red', 'Poland', 2002, NULL, NULL);
+INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, NULL, NULL, NULL, NULL);
 
 COMMIT;
 
