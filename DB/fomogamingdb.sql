@@ -529,7 +529,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, NULL, NULL, NULL, NULL);
+INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, 8, NULL, NULL, NULL);
 
 COMMIT;
 

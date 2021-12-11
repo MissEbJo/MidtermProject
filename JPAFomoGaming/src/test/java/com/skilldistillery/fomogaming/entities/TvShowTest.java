@@ -50,13 +50,12 @@ class TvShowTest {
 		assertEquals(2019, tv.getReleaseYear());
 	}
 	
-//	@Test
-//	@DisplayName("Test TV Show to Game Series mapping")
-//	void test2() {
-//		assertNotNull(tv);
-//		assertEquals("The Witcher", tv.getGameSeries().getName());
-//		assertEquals(8, tv.getGameSeries().getId());
-//	}
+	@Test
+	@DisplayName("Test TV Show to Game Series mapping")
+	void test2() {
+		assertNotNull(tv);
+		assertEquals("The Witcher", tv.getGameSeries().getName());
+	}
 	
 	@Test
 	@DisplayName("Test TV Show to Video Game mapping")
