@@ -57,5 +57,12 @@ class VideoGameTest {
 //		assertTrue(vg.getGenres().size() > 0);
 //		assertEquals(3, vg.getGenres().size());
 //	}
+	
+	@Test
+	@DisplayName("Test Video Game to Game Series mapping")
+	void test3() {
+		assertNotNull(vg);
+		assertEquals("Horizon", vg.getGameSeries().getName());
+	}
 
 }
