@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Movie {
@@ -39,10 +40,28 @@ public class Movie {
 	@ManyToMany(mappedBy= "movies")
 	private List<StreamingService> ss;
 	
+	@ManyToOne
+	@JoinColumn("game_series")
+	private String gameSeries;
+	
 	public Movie() {
 		super();
 		
 	}
+	
+	
+
+	public String getGameSeries() {
+		return gameSeries;
+	}
+
+
+
+	public void setGameSeries(String gameSeries) {
+		this.gameSeries = gameSeries;
+	}
+
+
 
 	public int getId() {
 		return id;

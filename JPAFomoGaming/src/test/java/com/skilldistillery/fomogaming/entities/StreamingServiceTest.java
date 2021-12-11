@@ -55,4 +55,12 @@ class StreamingServiceTest {
 		assertTrue(ss.getMovies().size() > 0);
 	}
 	
+	@Test
+	@DisplayName("test Streaming Service Many to Many TV show mapping")
+	void test2() {
+		ss = em.find(StreamingService.class, 1);
+		assertNotNull(ss);
+		assertTrue(ss.getTvShows().size() > 0);
+	}
+	
 }
