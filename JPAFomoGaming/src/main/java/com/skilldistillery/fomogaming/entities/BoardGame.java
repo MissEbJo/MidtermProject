@@ -10,21 +10,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="board_game")
+@Table(name = "board_game")
 public class BoardGame {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
-	@Column(name="release_year")
+
+	@Column(name = "release_year")
 	private int releaseYear;
-	
+
 	private String description;
-	
+
 	private String gameplay;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	@Column(name = "website_url")
+	private String websiteUrl;
+
+	public BoardGame() {
+	}
 
 	public int getId() {
 		return id;
@@ -66,6 +75,22 @@ public class BoardGame {
 		this.gameplay = gameplay;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getWebsiteUrl() {
+		return websiteUrl;
+	}
+
+	public void setWebsiteUrl(String websiteUrl) {
+		this.websiteUrl = websiteUrl;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -88,6 +113,5 @@ public class BoardGame {
 		return "BoardGame [id=" + id + ", name=" + name + ", releaseYear=" + releaseYear + ", description="
 				+ description + ", gameplay=" + gameplay;
 	}
-	
 
 }

@@ -14,11 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BoardGameTest {
-	
+class DeveloperTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private BoardGame bGame;
+	private Developer develop;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,22 +33,22 @@ class BoardGameTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		bGame = em.find(BoardGame.class, 1);
+		develop = em.find(Developer.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		bGame = null;
+		develop = null;
 	}
 
 	@Test
-	@DisplayName("test BoardGame mappings")
+	@DisplayName("test Developer mappings")
 	void test1() {
-		assertNotNull(bGame);
-		assertEquals("Dark Souls: The Board Game", bGame.getName());
-		assertEquals(2017, bGame.getReleaseYear());
-		
+		assertNotNull(develop);
+		assertEquals("Capcom", develop.getName());
+		assertEquals(1979, develop.getFoundingYear());
+
 	}
 
 }
