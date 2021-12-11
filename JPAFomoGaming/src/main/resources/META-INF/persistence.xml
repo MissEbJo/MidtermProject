@@ -5,7 +5,7 @@
     </provider>
 		<class>com.skilldistillery.fomogaming.entities.BoardGame</class>
 		<class>com.skilldistillery.fomogaming.entities.Book</class>
-		<class>com.skilldistillery.fomogaming.entities.GameService</class>
+		<class>com.skilldistillery.fomogaming.entities.GameSeries</class>
 		<class>com.skilldistillery.fomogaming.entities.Genre</class>
 		<class>com.skilldistillery.fomogaming.entities.Movie</class>
 		<class>com.skilldistillery.fomogaming.entities.Platform</class>
