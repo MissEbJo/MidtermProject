@@ -14,11 +14,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class TvShowTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private TvShow tv;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,20 +32,22 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		tv = em.find(TvShow.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		tv = null;
 	}
 
 	@Test
-	@DisplayName("Test User basic mapping")
-	void test() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+	@DisplayName("Test TV Show basic mapping")
+	void test1() {
+		assertNotNull(tv);
+		assertEquals("THE WITCHER", tv.getTitle());
+		assertEquals(1, tv.getNumberOfSeasons());
+		assertEquals(2019, tv.getReleaseYear());
 	}
 
 }
