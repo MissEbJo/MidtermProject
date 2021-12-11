@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -23,7 +25,13 @@ public class Genre {
 	@ManyToMany(mappedBy="genres")
 	private List<GameSeries> seriesList;
 	
-	public Genre() {
+	@ManyToMany
+	@JoinTable(name="video_game_has_genre",
+					joinColumns=@JoinColumn(name="genre_id"),
+					inverseJoinColumns=@JoinColumn(name="video_game_id"))
+	private List<VideoGame> videoGames;
+	
+	Genre() {
 		super();
 	}
 	public int getId() {
