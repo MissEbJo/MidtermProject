@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -54,6 +55,9 @@ public class VideoGame {
 	@ManyToOne
 	@JoinColumn(name = "series_id")
 	private GameSeries gameSeries;
+	
+	@OneToMany(mappedBy="videoGame")
+	private List<TvShow> tvShows;
 
 	public VideoGame() {
 		super();
@@ -153,6 +157,22 @@ public class VideoGame {
 
 	public void setGameSeries(GameSeries gameSeries) {
 		this.gameSeries = gameSeries;
+	}
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
+	public List<TvShow> getTvShows() {
+		return tvShows;
+	}
+
+	public void setTvShows(List<TvShow> tvShows) {
+		this.tvShows = tvShows;
 	}
 
 	@Override

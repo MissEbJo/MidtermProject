@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Movie {
@@ -33,7 +35,10 @@ public class Movie {
 	
 	@Column(name= "trailer_url")
 	private String trailerUrl;
-
+	
+	@ManyToMany(mappedBy= "movies")
+	private List<StreamingService> ss;
+	
 	public Movie() {
 		super();
 		
@@ -101,6 +106,14 @@ public class Movie {
 
 	public void setTrailerUrl(String trailerUrl) {
 		this.trailerUrl = trailerUrl;
+	}
+
+	public List<StreamingService> getSs() {
+		return ss;
+	}
+
+	public void setSs(List<StreamingService> ss) {
+		this.ss = ss;
 	}
 
 	@Override

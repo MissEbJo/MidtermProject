@@ -1,13 +1,20 @@
 package com.skilldistillery.fomogaming.entities;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name= "streaming_service")
@@ -24,43 +31,93 @@ public class StreamingService {
 	
 	@Column(name= "website_url")
 	private String websiteUrl;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "movie_has_streaming_service",
+	joinColumns = @JoinColumn(name = "streaming_service_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
+	private List<Movie> movies;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "tv_show_has_streaming_service",
+	joinColumns = @JoinColumn(name = "streaming_service_id"), inverseJoinColumns = @JoinColumn(name = "tv_show_id"))
+	private List<TvShow> tvShows;
 
 	public StreamingService() {
 		super();
 
 	}
 
+	
+	
+	
 	public int getId() {
 		return id;
 	}
+
+
+
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
+
+
+
 	public String getName() {
 		return name;
 	}
+
+
+
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getImage_url() {
+
+
+
+	public String getImageUrl() {
 		return imageUrl;
 	}
 
-	public void setImage_url(String image_url) {
-		this.imageUrl = image_url;
+
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
-	public String getWebsite_url() {
+
+
+
+	public String getWebsiteUrl() {
 		return websiteUrl;
 	}
 
-	public void setWebsite_url(String website_url) {
-		this.websiteUrl = website_url;
+
+
+
+	public void setWebsiteUrl(String websiteUrl) {
+		this.websiteUrl = websiteUrl;
 	}
+
+
+
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+
+
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
+	}
+
+
 
 	@Override
 	public int hashCode() {

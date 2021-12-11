@@ -50,13 +50,13 @@ class VideoGameTest {
 		assertEquals(2017, vg.getReleaseYear());
 	}
 	
-//	@Test
-//	@DisplayName("Test Video Game to Genre mapping")
-//	void test2() {
-//		assertNotNull(vg);
-//		assertTrue(vg.getGenres().size() > 0);
-//		assertEquals(3, vg.getGenres().size());
-//	}
+	@Test
+	@DisplayName("Test Video Game to Genre mapping")
+	void test2() {
+		assertNotNull(vg);
+		assertTrue(vg.getGenres().size() > 0);
+		assertEquals(3, vg.getGenres().size());
+	}
 	
 	@Test
 	@DisplayName("Test Video Game to Game Series mapping")
@@ -65,4 +65,13 @@ class VideoGameTest {
 		assertEquals("Horizon", vg.getGameSeries().getName());
 	}
 
+	@Test
+	@DisplayName("Test Video Game to TV Show mapping")
+	void test4() {
+		vg = null;
+		vg = em.find(VideoGame.class, 21);
+		assertNotNull(vg);
+		assertEquals("THE WITCHER", vg.getTvShows().get(0).getTitle());
+		assertTrue(vg.getTvShows().size() > 0);
+	}
 }
