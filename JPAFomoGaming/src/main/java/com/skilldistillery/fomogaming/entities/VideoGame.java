@@ -47,6 +47,9 @@ public class VideoGame {
 
 	@ManyToMany(mappedBy = "videoGames")
 	private List<User> users;
+	
+	@ManyToMany(mappedBy = "videoGames")
+	private List<Genre> genres;
 
 	@ManyToOne
 	@JoinColumn(name = "series_id")
