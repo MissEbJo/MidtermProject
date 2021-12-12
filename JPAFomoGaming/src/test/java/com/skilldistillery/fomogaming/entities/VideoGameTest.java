@@ -55,7 +55,7 @@ class VideoGameTest {
 	void test2() {
 		assertNotNull(vg);
 		assertTrue(vg.getGenres().size() > 0);
-		assertEquals(3, vg.getGenres().size());
+		assertEquals(2, vg.getGenres().size());
 	}
 	
 	@Test
