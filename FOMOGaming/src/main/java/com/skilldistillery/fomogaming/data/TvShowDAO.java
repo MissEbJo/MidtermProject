@@ -1,16 +1,13 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.util.List;
-
-import com.skilldistillery.fomogaming.entities.User;
-import com.skilldistillery.fomogaming.entities.VideoGame;
+import com.skilldistillery.fomogaming.entities.TvShow;
 
 public interface TvShowDAO {
 
-	public User findByUsername(String username);
+	public TvShow addTvShow(TvShow tvs);
 	
-	public List<VideoGame>  listorSearchGamesByGenre(String genre);
+	public void removeTvShow(TvShow tvs);
 	
-	public List<VideoGame> findGameByName(String name);
+	public TvShow updateTvShow(TvShow tvs);
 	
 }
