@@ -47,5 +47,36 @@ class VideoGameDAOTest {
 		assertTrue(yearList.size() > 0);
 	}
 	
+	@Test
+	@DisplayName("test method Search by Mode")
+	void test4() {
+		List<VideoGame> modeList = gameDao.searchByMode("Single player");
+		assertNotNull(modeList);
+		assertTrue(modeList.size() > 0);
+	}
+	
+	@Test
+	@DisplayName("test method Search by Platform")
+	void test5() {
+		List<VideoGame> platformList = gameDao.searchByPlatform("Nintendo");
+		assertNotNull(platformList);
+		assertTrue(platformList.size() > 0);
+	}
 
+	@Test
+	@DisplayName("test method Search by Developer")
+	void test6() {
+		List<VideoGame> developerList = gameDao.searchByDeveloper("Bungie");
+		assertNotNull(developerList);
+		assertTrue(developerList.size() > 0);
+	}
+
+	@Test
+	@DisplayName("test method Search by Series")
+	void test7() {
+		List<VideoGame> seriesList = gameDao.searchBySeries("Horizon");
+		assertNotNull(seriesList);
+		assertTrue(seriesList.size() > 0);
+	}
 }
+
