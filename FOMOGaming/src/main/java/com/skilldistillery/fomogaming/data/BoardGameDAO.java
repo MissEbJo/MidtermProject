@@ -1,16 +1,13 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.util.List;
-
-import com.skilldistillery.fomogaming.entities.User;
-import com.skilldistillery.fomogaming.entities.VideoGame;
+import com.skilldistillery.fomogaming.entities.BoardGame;
 
 public interface BoardGameDAO {
 
-	public User findByUsername(String username);
+	public BoardGame updateBoardGame(BoardGame bg);
 	
-	public List<VideoGame>  listorSearchGamesByGenre(String genre);
-	
-	public List<VideoGame> findGameByName(String name);
+	public void removeBoardGame(BoardGame bg);
+
+	public BoardGame addBoardGame(BoardGame bg);
 	
 }
