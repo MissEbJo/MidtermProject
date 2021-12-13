@@ -30,12 +30,21 @@ class VideoGameDAOTest {
 	}
 	
 	@Test
-	@DisplayName("test method Search by Title")
+	@DisplayName("test method Search by Name")
 	void test2() {
-		List<VideoGame> titleList = gameDao.searchByTitle("The Witcher");
+		List<VideoGame> titleList = gameDao.searchByName("The Witcher");
 		
 		assertNotNull(titleList);
 		
+	}
+	
+	@Test
+	@DisplayName("test method Search by Release Year")
+	void test3() {
+		List<VideoGame> yearList = gameDao.searchByReleaseYear(2017);
+		
+		assertNotNull(yearList);
+		assertTrue(yearList.size() > 0);
 	}
 	
 

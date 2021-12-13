@@ -15,10 +15,10 @@ import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @SpringBootTest
-class MethodsTesting {
+class UserTesting {
 
-	@Autowired
-	private UserDAO userDao;
+//	@Autowired
+//	private UserDAO userDao;
 
 
 	
