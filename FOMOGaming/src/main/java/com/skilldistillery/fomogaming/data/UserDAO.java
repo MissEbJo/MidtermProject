@@ -9,7 +9,6 @@ public interface UserDAO {
 
 	public User findByUsername(String username);
 	
-	public List<VideoGame>  listorSearchGamesByGenre(String genre);
 	
 	public List<VideoGame> findGameByName(String name);
 	
