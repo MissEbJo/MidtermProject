@@ -21,14 +21,7 @@ class MethodsTesting {
 	private UserDAO userDao;
 
 
-	@Test
-	@DisplayName("test method gamesInAction")
-	void test1() {
-		List<VideoGame> genreList = userDao.listorSearchGamesByGenre("action");
-		assertNotNull(genreList);
-		assertTrue(genreList.size() > 0);
-//		assertEquals(7, genreList.size());
-	}
+	
 	
 
 }
