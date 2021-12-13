@@ -1,10 +1,13 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.util.List;
-
-import com.skilldistillery.fomogaming.entities.User;
-import com.skilldistillery.fomogaming.entities.VideoGame;
+import com.skilldistillery.fomogaming.entities.Book;
 
 public interface BookDAO {
 
+	public Book addBook(Book bk);
+
+	Book updateBook(Book bk);
+
+	void removeBook(Book bk);
+	
 }
