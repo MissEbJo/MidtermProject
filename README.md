@@ -37,6 +37,7 @@ Oh look at that, these line up with what you can do in the project. :D
 *MySQL
 *HTML/CSS
 *FIGMA.COM
+*SpringBoot
 
 
 ##Lessons learned
