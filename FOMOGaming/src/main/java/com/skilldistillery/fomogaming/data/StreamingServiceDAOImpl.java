@@ -9,48 +9,62 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.skilldistillery.fomogaming.entities.StreamingService;
 import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Repository
 @Transactional
-public class StreamingServiceDAOImpl implements UserDAO {
-
+public class StreamingServiceDAOImpl implements StreamingServiceDAO {
+	
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public User findByUsername(String username) {
-		String jpql = "SELECT u FROM User u WHERE u.username = :n";
-
-		try {
-			return em.createQuery(jpql, User.class).setParameter("n", username).getSingleResult();
-		} catch (Exception e) {
-			System.err.println("Invalid user name:  " + username);
-			return null;
-		}
+	public StreamingService addStreamingService(StreamingService ss) {
+		StreamingService streamingservice = new StreamingService();
+		streamingservice = ss;
+		em.getTransaction().begin();
+		em.persist(streamingservice);
+		em.flush();
+		em.getTransaction().commit();
+		
+		return streamingservice;
 	}
 
 	@Override
-	public List<VideoGame> listorSearchGamesByGenre(String genre) {
-		List<VideoGame> genreList = new ArrayList<>();
-
-		String query = "SELECT v FROM VideoGame v JOIN v.genres g WHERE g.name = :genre";
-
-		genreList = em.createQuery(query, VideoGame.class).setParameter("genre", genre).getResultList();
-
-		return genreList;
+	public StreamingService updateStreamingService(StreamingService ss) {
+		em.getTransaction().begin();
+		StreamingService streamingservice = em.find(StreamingService.class, ss.getId());
+		streamingservice = ss;
+		em.persist(streamingservice);
+		em.flush();
+		em.getTransaction().commit();
+		
+		return streamingservice;
+		
+		
 	}
 
 	@Override
-	public List<VideoGame> findGameByName(String name) {
-		List<VideoGame> games = null;
-
-		String query = "SELECT v FROM VideoGame WHERE name LIKE %:name% ";
-
-		games = em.createQuery(query, VideoGame.class).setParameter("name", name).getResultList();
-
-		return games;
+	public StreamingService removeStreamingService(StreamingService ss) {
+		StreamingService streamingservice = em.find(StreamingService.class, 1);
+		streamingservice = ss;
+		em.getTransaction().begin();
+		em.remove(streamingservice);
+		em.getTransaction().commit();
+		
+		return streamingservice;
+		
+		
+		
 	}
+
+	
+
+	
+	
+
+	
 
 }
