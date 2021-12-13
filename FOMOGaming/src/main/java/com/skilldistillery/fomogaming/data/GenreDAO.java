@@ -5,7 +5,7 @@ import java.util.List;
 import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
-public interface UserDAO {
+public interface GenreDAO {
 
 	public User findByUsername(String username);
 	

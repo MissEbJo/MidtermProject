@@ -14,7 +14,7 @@ import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Repository
 @Transactional
-public class UserDAOImpl implements UserDAO {
+public class DeveloperDAOImpl implements UserDAO {
 
 	@PersistenceContext
 	private EntityManager em;
