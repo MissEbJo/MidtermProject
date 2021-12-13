@@ -74,7 +74,7 @@ class VideoGameDAOTest {
 	@Test
 	@DisplayName("test method Search by Series")
 	void test7() {
-		List<VideoGame> seriesList = gameDao.searchBySeries("Horizon");
+		List<VideoGame> seriesList = gameDao.searchByGameSeries("Horizon");
 		assertNotNull(seriesList);
 		assertTrue(seriesList.size() > 0);
 	}
