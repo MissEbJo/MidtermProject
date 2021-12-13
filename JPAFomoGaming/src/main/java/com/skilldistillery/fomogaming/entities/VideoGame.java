@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,6 +66,12 @@ public class VideoGame {
 	
 	@ManyToMany(mappedBy = "videoGames")
 	private List<Platform> platforms;
+	
+	@Column(name = "added_by_user")
+	private int userIdWhoAdded;
+	
+	@Column(name = "when_added")
+	private LocalDateTime whenAdded;
 
 	public VideoGame() {
 		super();
@@ -198,6 +205,22 @@ public class VideoGame {
 		this.platforms = platforms;
 	}
 
+	public int getUserIdWhoAdded() {
+		return userIdWhoAdded;
+	}
+
+	public void setUserIdWhoAdded(int userIdWhoAdded) {
+		this.userIdWhoAdded = userIdWhoAdded;
+	}
+
+	public LocalDateTime getWhenAdded() {
+		return whenAdded;
+	}
+
+	public void setWhenAdded(LocalDateTime whenAdded) {
+		this.whenAdded = whenAdded;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -221,7 +244,8 @@ public class VideoGame {
 				+ releaseYear + ", mode=" + mode + ", crossPlatform=" + crossPlatform + ", imageUrl=" + imageUrl
 				+ ", trailerUrl=" + trailerUrl + ", numberInSeries=" + numberInSeries + ", users=" + users + ", genres="
 				+ genres + ", gameSeries=" + gameSeries + ", tvShows=" + tvShows + ", boardGames=" + boardGames
-				+ ", developer=" + developer + "]";
+				+ ", developer=" + developer + ", platforms=" + platforms + ", userIdWhoAdded=" + userIdWhoAdded
+				+ ", whenAdded=" + whenAdded + "]";
 	}
 
 	

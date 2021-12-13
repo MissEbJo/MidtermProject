@@ -1,20 +1,15 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.fomogaming.entities.BoardGame;
-import com.skilldistillery.fomogaming.entities.User;
-import com.skilldistillery.fomogaming.entities.VideoGame;
 
-@Repository
 @Transactional
+@Service
 public class BoardGameDAOImpl implements BoardGameDAO {
 
 	@PersistenceContext
@@ -25,23 +20,30 @@ public class BoardGameDAOImpl implements BoardGameDAO {
 		BoardGame boardGame = new BoardGame();
 		boardGame = bg;
 		em.getTransaction().begin();
-		em.persist(bg);
+		em.persist(boardGame);
 		em.flush();
 		em.getTransaction().commit();
-
 		return boardGame;
 	}
 
 	@Override
 	public BoardGame updateBoardGame(BoardGame bg) {
-		// TODO Auto-generated method stub
-		return bg;
+		em.getTransaction().begin();
+		BoardGame boardGame = em.find(BoardGame.class, bg.getId());
+		boardGame = bg;
+		em.persist(boardGame);
+		em.flush();
+		em.getTransaction().commit();
+		return boardGame;
 	}
 
 	@Override
 	public void removeBoardGame(BoardGame bg) {
-		// TODO Auto-generated method stub
-		
+		em.getTransaction().begin();
+		BoardGame boardGame = new BoardGame();
+		boardGame = em.find(BoardGame.class, bg.getId());
+		em.remove(boardGame);
+		em.getTransaction().commit();
 	}
 	
 
