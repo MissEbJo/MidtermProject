@@ -7,10 +7,5 @@ import com.skilldistillery.fomogaming.entities.VideoGame;
 
 public interface DeveloperDAO {
 
-	public User findByUsername(String username);
-	
-	public List<VideoGame>  listorSearchGamesByGenre(String genre);
-	
-	public List<VideoGame> findGameByName(String name);
 	
 }

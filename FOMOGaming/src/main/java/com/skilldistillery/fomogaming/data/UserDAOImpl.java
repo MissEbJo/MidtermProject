@@ -31,16 +31,6 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	@Override
-	public List<VideoGame> listorSearchGamesByGenre(String genre) {
-		List<VideoGame> genreList = new ArrayList<>();
-
-		String query = "SELECT v FROM VideoGame v JOIN v.genres g WHERE g.name = :genre";
-
-		genreList = em.createQuery(query, VideoGame.class).setParameter("genre", genre).getResultList();
-
-		return genreList;
-	}
 
 	@Override
 	public List<VideoGame> findGameByName(String name) {
