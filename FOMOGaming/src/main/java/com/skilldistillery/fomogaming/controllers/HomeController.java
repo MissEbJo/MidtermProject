@@ -19,6 +19,12 @@ public class HomeController {
 		return "home";
 	}
 	
-	
+	@RequestMapping(path = "home.do")
+	public String someGames() {
+		
+		
+		return "home";
+		
+	}
 
 }

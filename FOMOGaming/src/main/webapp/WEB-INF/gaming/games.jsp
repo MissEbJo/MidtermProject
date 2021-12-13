@@ -4,13 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FOMO Gaming</title>
+<title>Video Games</title>
+<jsp:include page="../bootstrapHead.jsp"/>
 </head>
 <body>
-<h1>Fear of Missing Out Gaming</h1>
-<jsp:include page="bootstrapHead.jsp"/>
 
-<h2>USER: ${DEBUG}</h2>
 
 </body>
 </html>
