@@ -10,6 +10,10 @@
 <body>
 	<h3>Games Listing</h3>
 		<jsp:include page="bootstrapHead.jsp"/>
+		<form action="GetGames.do" method="GET">
+		<input type="text" name="howmany" value="6" size="2" /> <input
+			type="submit" value="Get Games" />
+		</form>
 		
 	<c:if test="${not empty games }">
 		<table>
