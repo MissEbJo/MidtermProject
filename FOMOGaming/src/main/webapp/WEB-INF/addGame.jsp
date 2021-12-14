@@ -29,9 +29,9 @@
 		<br>
 		Is this game cross-platform (can two players on two different systems play with each other)?: 
 		<label for="crpl1">Yes</label>
-		<input type="radio" name="crossPlatform" id="crpl1" value="0"/>
+		<input type="radio" name="crossPlatform" id="crpl1" value="true"/>
 		<label for="crpl2">No</label>
-		<input type="radio" name="crossPlatform" id="crpl2" value="1"/>
+		<input type="radio" name="crossPlatform" id="crpl2" value="false"/>
 		<br>
 		Cover Art URL: 
 		<input type="URL" name="imageUrl"/> 

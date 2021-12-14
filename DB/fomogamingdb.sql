@@ -52,7 +52,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `video_game` ;
 
 CREATE TABLE IF NOT EXISTS `video_game` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `description` TEXT NULL,
   `release_year` INT(4) NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `video_game` (
   `image_url` VARCHAR(3000) NULL,
   `trailer_url` VARCHAR(3000) NULL,
   `number_in_series` INT NULL,
-  `added_by_user` INT NOT NULL DEFAULT 1,
+  `added_by_user` INT NULL,
   `when_added` DATETIME NULL,
   `singleplayer` TINYINT NULL,
   `multiplayer` TINYINT NULL,
