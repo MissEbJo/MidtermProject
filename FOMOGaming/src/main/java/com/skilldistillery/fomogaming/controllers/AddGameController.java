@@ -33,10 +33,19 @@ public class AddGameController {
 			series = gameDao.getAllSeries();
 			gameDao.addVideoGame(vg);
 			mv.addObject("series", series);
-			mv.setViewName("addTieIn");
+			mv.addObject("videoGame", vg);
+			mv.setViewName("addSeriesToGame");
 //		} else {
 //			mv.setViewName("redirect:login.do");
 //		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(path="AddSeriesToGame.do")
+	public ModelAndView commitSeriesToGame(GameSeries s, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
 		
 		return mv;
 	}

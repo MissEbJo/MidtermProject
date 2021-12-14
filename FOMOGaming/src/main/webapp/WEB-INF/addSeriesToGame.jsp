@@ -10,7 +10,7 @@
 <body>
 	<h3>Add a game to FOMOGaming</h3>
 
-	<form action="NewGameInfo.do" method="GET">
+	<form action="AddSeriesToGame.do" method="GET">
 	
 	Is this game part of a series? (Select "No" if you need to add the series into the database)
 	 	<select id="gameSeries" name="gameSeries"> 
