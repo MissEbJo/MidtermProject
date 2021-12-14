@@ -10,8 +10,6 @@
 <body>
 	<h1>Fear of Missing Out Gaming</h1>
 	<jsp:include page="bootstrapHead.jsp" />
-
-	<h2>Cryptic Slime Welcomes You...</h2>
 	
 		<form action="GetGames.do" method="GET">
 		</form>
@@ -35,8 +33,8 @@
 			</table>
 		</c:if>
 
-		<a href="AddNewGame.do">Add a new game</a><br> <a href="AddNewUser.do">Create
-			Account</a>
-	</div>
+		<a href="AddNewGame.do">Add a new game</a> <br>
+		 <a href="AddNewUser.do">Create Account</a>
+	
 </body>
 </html>
