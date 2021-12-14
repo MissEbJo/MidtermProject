@@ -12,13 +12,13 @@
 
 	<form action="addUserInfo.do" method="GET">
 		First Name: <input type="text" name="firstname" required /> <br>
-		Last Name:<input type="text" name="lastname" required />
-		<br> User Name: <input type="text" name="name" required /> <br>
+		Last Name:<input type="text" name="lastname" required /><br>
+	    User Name: <input type="text" name="name" required /> <br>
 		Email: <input type="email" id="email" required /> <br> 
 		Password (8 character minimum): <input type="password" id="pass"
 			name="password" minlength="8" required /> <br> 
 			Birthday (YYYY/MM): <input type="month" id="bday" name="bdaymonth" /> <br>
-			Add a profile picture (optional): <input id="image" type="file"
+		Add a profile picture (optional): <input id="image" type="file"
 			name="profile_photo" placeholder="Photo" capture /> <br> 
 			<a href="home.do"><input type="button" value="Home"></a>
 			<input type="reset">
