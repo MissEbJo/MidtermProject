@@ -24,22 +24,22 @@ public class StreamingServiceDAOImpl implements StreamingServiceDAO {
 	public StreamingService addStreamingService(StreamingService ss) {
 		StreamingService streamingservice = new StreamingService();
 		streamingservice = ss;
-		em.getTransaction().begin();
+		
 		em.persist(streamingservice);
 		em.flush();
-		em.getTransaction().commit();
+		
 		
 		return streamingservice;
 	}
 
 	@Override
 	public StreamingService updateStreamingService(StreamingService ss) {
-		em.getTransaction().begin();
+		
 		StreamingService streamingservice = em.find(StreamingService.class, ss.getId());
 		streamingservice = ss;
 		em.persist(streamingservice);
 		em.flush();
-		em.getTransaction().commit();
+		
 		
 		return streamingservice;
 		
@@ -50,9 +50,9 @@ public class StreamingServiceDAOImpl implements StreamingServiceDAO {
 	public StreamingService removeStreamingService(StreamingService ss) {
 		StreamingService streamingservice = em.find(StreamingService.class, 1);
 		streamingservice = ss;
-		em.getTransaction().begin();
+		
 		em.remove(streamingservice);
-		em.getTransaction().commit();
+		
 		
 		return streamingservice;
 		
