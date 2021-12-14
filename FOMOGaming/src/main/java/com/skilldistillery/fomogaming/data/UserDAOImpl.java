@@ -1,6 +1,5 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -42,5 +41,16 @@ public class UserDAOImpl implements UserDAO {
 
 		return games;
 	}
+	
+	@Override
+	public User createUser(User user) {
+		User newUser = new User();
+		newUser = user;
+		newUser.setRole("User");
+		em.persist(newUser);
+		em.getProperties();
+		return newUser;
+		}
+	}
 
-}
+

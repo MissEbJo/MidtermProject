@@ -1,8 +1,21 @@
 
-body{
-	background-color: black;
-	color: aqua;
+body, html{
+	color:lightgrey;	
 	
+<<<<<<< HEAD
+}
+.bg{
+	background-image:url("HaloHome.jpeg");
+	
+	height:100%;
+	
+	background-position:center;
+	
+	background-repeat:no-repeat;
+	
+	background-size:cover;
+}
+=======
 	background-image: url('HaloHome.jpeg');
 	
 }
@@ -23,3 +36,4 @@ add persistent header for search functionality in here.
 	color: black;
 }
 
+>>>>>>> 4cc6cdaa0d211cc83589ca6a59a6fb8a75a25955
