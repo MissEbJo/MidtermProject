@@ -30,8 +30,10 @@ public class VideoGame {
 	@Column(name = "release_year")
 	private Integer releaseYear;
 
-	private String mode;
+	private Boolean singlePlayer;
 
+	private Boolean multiPlayer;
+	
 	@Column(name = "cross_platform")
 	private boolean crossPlatform;
 
@@ -109,13 +111,6 @@ public class VideoGame {
 		this.releaseYear = releaseYear;
 	}
 
-	public String getMode() {
-		return mode;
-	}
-
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
 
 	public boolean isCrossPlatform() {
 		return crossPlatform;
@@ -219,6 +214,22 @@ public class VideoGame {
 
 	public void setWhenAdded(LocalDateTime whenAdded) {
 		this.whenAdded = whenAdded;
+	}
+
+	public Boolean getSinglePlayer() {
+		return singlePlayer;
+	}
+
+	public void setSinglePlayer(Boolean singlePlayer) {
+		this.singlePlayer = singlePlayer;
+	}
+
+	public Boolean getMultiPlayer() {
+		return multiPlayer;
+	}
+
+	public void setMultiPlayer(Boolean multiPlayer) {
+		this.multiPlayer = multiPlayer;
 	}
 
 	@Override

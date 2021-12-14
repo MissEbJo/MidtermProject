@@ -1,13 +1,18 @@
 package com.skilldistillery.fomogaming.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
+import com.skilldistillery.fomogaming.entities.Genre;
+import com.skilldistillery.fomogaming.entities.Mode;
+import com.skilldistillery.fomogaming.entities.Platform;
+import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Controller
 public class AddGameController {
@@ -31,8 +36,10 @@ public class AddGameController {
 //	}
 	
 	@RequestMapping(path="NewGameInfo.do")
-	public ModelAndView gameInfo() {
+	public ModelAndView gameInfo(VideoGame vg) {
 		ModelAndView mv = new ModelAndView();
+		
+		
 		
 		return mv;
 	}

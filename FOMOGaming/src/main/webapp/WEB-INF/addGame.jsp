@@ -22,9 +22,9 @@
 		<br>
 		Mode: 
 		<label for="sp">Single Player</label>
-		<input type="checkbox" name="mode" id="sp" value="singlePlayer"/> 
+		<input type="checkbox" name="singlePlayer" value=""/> 
 		<label for="mp">MultiPlayer</label>
-		<input type="checkbox" name="mode" id="mp" value="multiPlayer"/> 
+		<input type="checkbox" name="multiPlayer" value=""/> 
 		<br>
 		Is this game cross-platform (can two players on two different systems play with each other)?: 
 		<label for="crpl1">Yes</label>
