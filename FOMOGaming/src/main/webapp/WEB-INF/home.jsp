@@ -13,6 +13,7 @@
 <h2>USER: ${DEBUG}</h2>
 
 <a href="AddNewGame.do">Add a new game</a>
+<a href="AddNewUser.do">Create Account</a>
 
 </body>
 </html>

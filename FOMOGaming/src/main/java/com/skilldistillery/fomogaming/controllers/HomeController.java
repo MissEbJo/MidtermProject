@@ -38,6 +38,14 @@ public class HomeController {
 		return mv;
 	}
 	
+	@RequestMapping(path = "AddNewUser.do")
+	public String createAccount() {
+		
+		
+		return "createAccount";
+	}
+	
+	
 	
 
 }

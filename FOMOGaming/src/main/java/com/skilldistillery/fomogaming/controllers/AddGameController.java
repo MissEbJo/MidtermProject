@@ -16,19 +16,19 @@ public class AddGameController {
 	private UserDAO userDao;
 	private VideoGameDAO gameDao;
 	
-	@RequestMapping(path = {"/" , "home.do"} )
-	public String home(Model model) {
-		model.addAttribute("DEBUG" , userDao.findByUsername("admin"));
-		return "home";
-	}
-	
-	
-	@RequestMapping(path = "AddNewGame.do")
-	public ModelAndView addNewGame() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("addGame");
-		return mv;
-	}
+//	@RequestMapping(path = {"/" , "home.do"} )
+//	public String home(Model model) {
+//		model.addAttribute("DEBUG" , userDao.findByUsername("admin"));
+//		return "home";
+//	}
+//	
+//	
+//	@RequestMapping(path = "AddNewGame.do")
+//	public ModelAndView addNewGame() {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("addGame");
+//		return mv;
+//	}
 	
 	@RequestMapping(path="NewGameInfo.do")
 	public ModelAndView gameInfo() {
