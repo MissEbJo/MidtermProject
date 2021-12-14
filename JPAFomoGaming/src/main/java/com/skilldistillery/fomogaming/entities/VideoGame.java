@@ -252,7 +252,7 @@ public class VideoGame {
 	@Override
 	public String toString() {
 		return "VideoGame [id=" + id + ", name=" + name + ", description=" + description + ", releaseYear="
-				+ releaseYear + ", mode=" + mode + ", imageUrl=" + imageUrl + ", trailerUrl=" + trailerUrl
+				+ releaseYear + ", imageUrl=" + imageUrl + ", trailerUrl=" + trailerUrl
 				+ ", gameSeries=" + gameSeries + ", developer=" + developer + ", userIdWhoAdded=" + userIdWhoAdded
 				+ ", whenAdded=" + whenAdded;
 	}
