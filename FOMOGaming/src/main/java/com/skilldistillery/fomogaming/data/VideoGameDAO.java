@@ -1,6 +1,9 @@
 package com.skilldistillery.fomogaming.data;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.http.HttpStatus.Series;
 
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
@@ -27,5 +30,7 @@ public interface VideoGameDAO {
 	public void removeVideoGame(VideoGame vg);
 
 	List<VideoGame> searchByGameSeries(String gameSeries);
+
+	List<Series> getAllSeries();
 
 }
