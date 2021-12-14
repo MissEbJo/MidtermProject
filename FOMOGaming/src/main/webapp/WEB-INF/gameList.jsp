@@ -12,7 +12,7 @@
 		<jsp:include page="bootstrapHead.jsp"/>
 		<form action="GetGames.do" method="GET">
 		<input type="text" name="howmany" value="6" size="2" /> <input
-			type="submit" value="Get Games" />
+			type="submit" value="Get Numbers" />
 		</form>
 		
 	<c:if test="${not empty games }">
