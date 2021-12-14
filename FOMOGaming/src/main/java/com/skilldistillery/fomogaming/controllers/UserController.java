@@ -24,7 +24,7 @@ public class UserController {
 			userDao.createUser(user);
 			
 		} catch (Exception e) {
-			mv.setViewName("redirect:home.do");
+			System.out.println("Error creating account");
 		} 
 		
 
