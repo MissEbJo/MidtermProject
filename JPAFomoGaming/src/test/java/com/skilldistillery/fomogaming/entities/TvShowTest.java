@@ -73,5 +73,6 @@ class TvShowTest {
 		assertTrue(tv.getStreamingService().size() > 0);
 		assertEquals("Netflix", tv.getStreamingService().get(0).getName());
 	}
+	
 
 }
