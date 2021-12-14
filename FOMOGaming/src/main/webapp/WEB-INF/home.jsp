@@ -12,6 +12,7 @@
 <jsp:include page="bootstrapHead.jsp"/>
 
 <h2>USER: ${DEBUG}</h2>
+<div>
 <h3>Games Listing</h3>
 		<jsp:include page="bootstrapHead.jsp"/>
 		<form action="GetGames.do" method="GET">
@@ -41,6 +42,6 @@
 
 <a href="AddNewGame.do">Add a new game</a>
 <a href="AddNewUser.do">Create Account</a>
-
+</div>
 </body>
 </html>
