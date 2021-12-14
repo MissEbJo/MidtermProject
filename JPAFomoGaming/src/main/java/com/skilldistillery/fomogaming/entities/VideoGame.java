@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "video_game")
 public class VideoGame {
@@ -30,8 +32,10 @@ public class VideoGame {
 	@Column(name = "release_year")
 	private Integer releaseYear;
 
+	@Column(name="singleplayer")
 	private Boolean singlePlayer;
 
+	@Column(name="multiplayer")
 	private Boolean multiPlayer;
 	
 	@Column(name = "cross_platform")
@@ -69,10 +73,12 @@ public class VideoGame {
 	@ManyToMany(mappedBy = "videoGames")
 	private List<Platform> platforms;
 	
-	@Column(name = "added_by_user")
-	private int userIdWhoAdded;
+	@ManyToOne
+	@JoinColumn(name = "added_by_user")
+	private User userWhoAdded;
 	
 	@Column(name = "when_added")
+	@CreationTimestamp
 	private LocalDateTime whenAdded;
 
 	public VideoGame() {
@@ -200,14 +206,6 @@ public class VideoGame {
 		this.platforms = platforms;
 	}
 
-	public int getUserIdWhoAdded() {
-		return userIdWhoAdded;
-	}
-
-	public void setUserIdWhoAdded(int userIdWhoAdded) {
-		this.userIdWhoAdded = userIdWhoAdded;
-	}
-
 	public LocalDateTime getWhenAdded() {
 		return whenAdded;
 	}
@@ -232,6 +230,14 @@ public class VideoGame {
 		this.multiPlayer = multiPlayer;
 	}
 
+	public User getUserWhoAdded() {
+		return userWhoAdded;
+	}
+
+	public void setUserWhoAdded(User userWhoAdded) {
+		this.userWhoAdded = userWhoAdded;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -252,9 +258,10 @@ public class VideoGame {
 	@Override
 	public String toString() {
 		return "VideoGame [id=" + id + ", name=" + name + ", description=" + description + ", releaseYear="
-				+ releaseYear + ", imageUrl=" + imageUrl + ", trailerUrl=" + trailerUrl
-				+ ", gameSeries=" + gameSeries + ", developer=" + developer + ", userIdWhoAdded=" + userIdWhoAdded
-				+ ", whenAdded=" + whenAdded;
+				+ releaseYear + ", singlePlayer=" + singlePlayer + ", multiPlayer=" + multiPlayer + ", crossPlatform="
+				+ crossPlatform + ", imageUrl=" + imageUrl + ", trailerUrl=" + trailerUrl + ", numberInSeries="
+				+ numberInSeries + ", gameSeries=" + gameSeries + ", developer=" + developer + ", userWhoAdded="
+				+ userWhoAdded + ", whenAdded=" + whenAdded + "]";
 	}
 
 	
