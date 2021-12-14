@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home (Logged In)</title>
 </head>
 <body>
+<h3>FOMO Gaming</h3>
+
+<a href="userProfile.do">Profile Page</a>
+<a href="logout.do">Log Out</a>
+
 
 </body>
 </html>
