@@ -32,6 +32,7 @@
 						<tr>
 							<td>${g.name}</td>
 							<td>${g.description}</td>
+							<td><img class="gameListImg" src="${g.imageUrl}"/></td>
 						</tr>
 					</c:forEach>
 				</tbody>
