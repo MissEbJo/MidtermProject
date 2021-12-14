@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Video Game</title>
-<jsp:include page="../bootstrapHead.jsp"/>
+<jsp:include page="bootstrapHead.jsp"/>
 </head>
 <body>
 	<c:choose>
