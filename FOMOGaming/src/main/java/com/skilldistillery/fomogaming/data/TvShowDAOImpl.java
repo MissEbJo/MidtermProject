@@ -28,13 +28,13 @@ public class TvShowDAOImpl implements TvShowDAO {
 
 	@Override
 	public TvShow updateTvShow(TvShow tvs) {
-			em.getTransaction().begin();
-			TvShow tvShow = em.find(TvShow.class, tvs.getId());
-			tvShow = tvs;
-			em.persist(tvShow);
-			em.flush();
-			em.getTransaction().commit();
-			return tvShow;
+		em.getTransaction().begin();
+		TvShow tvShow = em.find(TvShow.class, tvs.getId());
+		tvShow = tvs;
+		em.persist(tvShow);
+		em.flush();
+		em.getTransaction().commit();
+		return tvShow;
 	}
 
 	@Override
