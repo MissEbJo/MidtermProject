@@ -1,8 +1,16 @@
 
-body{
-	background-color: black;
-	color: aqua;
+body, html{
+	color:lightgrey;	
 	
-	background-image: url('HaloHome.jpeg')
+}
+.bg{
+	background-image:url("HaloHome.jpeg");
 	
+	height:100%;
+	
+	background-position:center;
+	
+	background-repeat:no-repeat;
+	
+	background-size:cover;
 }

@@ -1,12 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Game Series</title>
 </head>
 <body>
-
+	<c:choose>
+		<c:when test ="${! empty game }
+	</c:choose>
+	<li> </li>
+	<a href="home.do"><input type="button" value="Home"></a>
+	
 </body>
 </html>
