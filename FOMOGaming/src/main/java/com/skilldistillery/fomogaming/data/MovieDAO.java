@@ -1,11 +1,14 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.util.List;
-
-import com.skilldistillery.fomogaming.entities.User;
-import com.skilldistillery.fomogaming.entities.VideoGame;
+import com.skilldistillery.fomogaming.entities.Movie;
 
 public interface MovieDAO {
+
+	Movie addMovie(Movie movie);
+
+	Movie updateMovie(Movie mv);
+
+	void removeMovie(Movie mv);
 
 	
 }

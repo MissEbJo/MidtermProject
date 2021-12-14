@@ -55,6 +55,10 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	public List<VideoGame> searchByMode(String mode) {
 		List<VideoGame> modeList = new ArrayList<>();
 		
+		String query = "SELECT v FROM VideoGame v WHERE mode = :mode ";
+		
+		modeList = em.createQuery(query, VideoGame.class).setParameter("mode", mode).getResultList();
+		
 		return modeList;
 	}
 
@@ -73,10 +77,39 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 
 	@Override
 	public List<VideoGame> searchByPlatform(String platform) {
-		// TODO Auto-generated method stub
-		return null;
+		List<VideoGame> modeList = new ArrayList<>();
+
+		String query = "SELECT v FROM VideoGame v JOIN v.platforms p WHERE p.systemName = :platform";
+
+		modeList = em.createQuery(query, VideoGame.class).setParameter("platform", platform).getResultList();
+		
+		return modeList;
 	}
 
+	@Override
+	public List<VideoGame> searchByDeveloper(String developer) {
+		
+		List<VideoGame> developerList = new ArrayList<>();
+
+		String query = "SELECT v FROM VideoGame v JOIN v.developer d WHERE d.name = :developer";
+
+		developerList = em.createQuery(query, VideoGame.class).setParameter("developer", developer).getResultList();
+		
+		return developerList;
+	}
+	
+	@Override
+	public List<VideoGame> searchByGameSeries(String gameSeries) {
+		
+		List<VideoGame> seriesList = new ArrayList<>();
+		
+		String query = "SELECT v FROM VideoGame v JOIN v.gameSeries g WHERE g.name = :series";
+		
+		seriesList = em.createQuery(query, VideoGame.class).setParameter("series", gameSeries).getResultList();
+		
+		return seriesList;
+	}
+	
 	@Override
 	public VideoGame addVideoGame(VideoGame vg) {
 		VideoGame videogame = new VideoGame();
@@ -107,5 +140,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		em.remove(videogame);
 		em.getTransaction().commit();
 	}
+
+	
 
 }

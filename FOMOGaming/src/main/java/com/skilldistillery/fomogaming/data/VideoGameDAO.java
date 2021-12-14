@@ -18,10 +18,14 @@ public interface VideoGameDAO {
 
 	public List<VideoGame> searchByPlatform(String platform);
 	
+	public List<VideoGame> searchByDeveloper(String developer);
+	
 	public VideoGame addVideoGame(VideoGame newGame);
 	
 	public VideoGame updateVideoGame(VideoGame vg);
 	
 	public void removeVideoGame(VideoGame vg);
+
+	List<VideoGame> searchByGameSeries(String gameSeries);
 
 }
