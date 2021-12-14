@@ -7,9 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.springframework.http.HttpStatus.Series;
 import org.springframework.stereotype.Repository;
 
+import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Repository
@@ -116,7 +116,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		videogame = vg;
 //		em.getTransaction().begin();
 		em.persist(videogame);
-		em.flush();
+//		em.flush();
 //		em.getTransaction().commit();
 		return videogame;
 	}
@@ -142,10 +142,10 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	}
 
 	@Override
-	public List<Series> getAllSeries() {
-		List<Series> series = new ArrayList<>();
+	public List<GameSeries> getAllSeries() {
+		List<GameSeries> series = new ArrayList<>();
 		String query = "SELECT s FROM GameSeries s";
-		series = em.createQuery(query, Series.class).getResultList();
+		series = em.createQuery(query, GameSeries.class).getResultList();
 		
 		return series;
 	}

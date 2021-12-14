@@ -15,8 +15,8 @@
 	Is this game part of a series? (Select "No" if you need to add the series into the database)
 	 	<select id="gameSeries" name="gameSeries"> 
 		<option value="">No</option>
-		<c:forEach forEach var="singleSeries" items="${series}">
-			<option value="${singleSeries}">${singleSeries.name }</option>
+		<c:forEach var="s" items="${series}">
+			<option value="${s}">${s.name }</option>
 		</c:forEach>
 		</select> 
 		<br> 

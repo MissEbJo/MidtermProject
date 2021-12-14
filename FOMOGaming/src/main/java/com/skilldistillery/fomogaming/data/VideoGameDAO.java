@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus.Series;
 
+import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 public interface VideoGameDAO {
@@ -31,6 +32,6 @@ public interface VideoGameDAO {
 
 	List<VideoGame> searchByGameSeries(String gameSeries);
 
-	List<Series> getAllSeries();
+	List<GameSeries> getAllSeries();
 
 }
