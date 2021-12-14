@@ -28,6 +28,7 @@
 						<tr>
 							<td>${g.name}</td>
 							<td>${g.description}</td>
+							<!-- img  -->
 						</tr>
 					</c:forEach>
 				</tbody>

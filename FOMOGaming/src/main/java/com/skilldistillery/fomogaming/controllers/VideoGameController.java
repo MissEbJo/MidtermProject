@@ -16,6 +16,8 @@ public class VideoGameController {
 	@Autowired
 	private VideoGameDAO gameDao;
 	
+	// add a search at the top 
+	
 	@RequestMapping("GetGames.do")
 	public ModelAndView getGames(){
 		ModelAndView mv = new ModelAndView();
