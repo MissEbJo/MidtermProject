@@ -9,6 +9,7 @@ public interface UserDAO {
 
 	public User findByUsername(String username);
 	
+	public User createUser(User user);
 	
 	public List<VideoGame> findGameByName(String name);
 	

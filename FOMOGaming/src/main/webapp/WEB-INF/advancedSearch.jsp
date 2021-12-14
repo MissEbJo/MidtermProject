@@ -8,5 +8,7 @@
 </head>
 <body>
 
+<jsp:include page="bootstrapHead.jsp" />
+
 </body>
 </html>

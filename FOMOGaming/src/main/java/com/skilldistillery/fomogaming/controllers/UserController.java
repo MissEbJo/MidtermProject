@@ -17,11 +17,16 @@ public class UserController {
 	private UserDAO userDao;
 	
 	
-	@RequestMapping(path="AddedNewUser.do")
-	public ModelAndView newUser(User user) {
+	@RequestMapping(path="AddNewUser.do")
+	public ModelAndView newUser(User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User
+		try {
+			userDao.createUser(user);
 			
+		} catch (Exception e) {
+			mv.setViewName("redirect:home.do");
+		} 
+		
 
 		
 		return mv;

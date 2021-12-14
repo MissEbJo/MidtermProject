@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h3>Please enter required information to create an account</h3>
+	<jsp:include page="bootstrapHead.jsp" />
 
 	<form action="addUserInfo.do" method="GET">
 		First Name: <input type="text" name="firstname" required /> <br>
