@@ -9,6 +9,7 @@
 </head>
 <body>
 	<h3>Add a game to FOMOGaming</h3>
+	<jsp:include page="bootstrapHead.jsp" />
 
 	<form action="NewGameInfo.do" method="GET">
 		Name:
