@@ -17,9 +17,9 @@
 				<li>Game Name: ${game.releaseYear} </li>
 				<li>Game Name: ${game.mode} </li>
 				<li>Game Name: ${game.crossPlatform} </li>
-				<li>Game Name: ${game.imageUrl} </li>
+				<li>Game Name: ${game.imageUrl} </li>  <!--change to img src  -->
 				<li>Game Name: ${game.genre} </li>
-				<li>Game Name: ${game.trailerUrl} </li>
+				<li>Game Name: ${game.trailerUrl} </li> <!--change to img src  -->
 				<li>Game Name: ${game.developer} </li>
 
 			</ul>

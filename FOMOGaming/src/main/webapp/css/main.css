@@ -3,6 +3,23 @@ body{
 	background-color: black;
 	color: aqua;
 	
-	background-image: url('HaloHome.jpeg')
+	background-image: url('HaloHome.jpeg');
 	
 }
+
+/*
+add persistent header for search functionality in here.
+*/
+.gameListImg{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 200px;
+	width: 200px;
+}
+
+.navbar-brand{
+	background-color: aqua;
+	color: black;
+}
+
