@@ -21,21 +21,21 @@
 		<input type="number" name="releaseYear" min="1970" max="2021"/> 
 		<br>
 		Mode: 
-		<input type="checkbox" name="mode" id="sp" value="singlePlayer"/> 
 		<label for="sp">Single Player</label>
-		<input type="checkbox" name="mode" id="mp" value="multiPlayer"/> 
+		<input type="checkbox" name="mode" id="sp" value="singlePlayer"/> 
 		<label for="mp">MultiPlayer</label>
+		<input type="checkbox" name="mode" id="mp" value="multiPlayer"/> 
 		<br>
 		Is this game cross-platform (can two players on two different systems play with each other)?: 
-		<input type="radio" name="crossPlatform" id="crpl1" value="0"/>
-		<input type="radio" name="crossPlatform" id="crpl2" value="1"/>
 		<label for="crpl1">Yes</label>
+		<input type="radio" name="crossPlatform" id="crpl1" value="0"/>
 		<label for="crpl2">No</label>
+		<input type="radio" name="crossPlatform" id="crpl2" value="1"/>
 		<br>
-		Cover Art: 
+		Cover Art URL: 
 		<input type="URL" name="imageUrl"/> 
 		<br>
-		Game Trailer:
+		Game Trailer URL:
 		<input type="URL" name="trailerUrl"/> 
 		<br>
 		What number in the series is this game? 
@@ -99,8 +99,9 @@
 		<input type="checkbox" name="platform" id="arcade" value="arcade"/> 
 		<label for="arcade">Arcade</label>
 		<br>
-		<input type="submit" value="Submit Game to FOMOGaming" />
+		<a href="home.do"><input type="button" value="Home"></a>
 		<input type="reset">
+		<input type="submit" value="Next >" />
 
 	</form>
 

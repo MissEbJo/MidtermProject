@@ -1,7 +1,5 @@
 package com.skilldistillery.fomogaming.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
-import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Controller
-public class HomeController {
+public class AddGameController {
 	
 	@Autowired
 	private UserDAO userDao;
@@ -25,15 +22,6 @@ public class HomeController {
 		return "home";
 	}
 	
-//	@RequestMapping(path = "home.do")
-//	public ModelAndView someGamesByGenre() {
-//		ModelAndView mv = new ModelAndView();
-//		List<VideoGame> genreList = gameDao.searchByGenre("action");
-//		mv.addObject("games", genreList);
-//		mv.setViewName("gameList");
-//		return mv;
-//		
-//	}
 	
 	@RequestMapping(path = "AddNewGame.do")
 	public ModelAndView addNewGame() {
@@ -42,6 +30,11 @@ public class HomeController {
 		return mv;
 	}
 	
-	
+	@RequestMapping(path="NewGameInfo.do")
+	public ModelAndView gameInfo() {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
 
 }
