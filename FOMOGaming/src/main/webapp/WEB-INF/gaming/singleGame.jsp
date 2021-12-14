@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${! empty game }">
+		<c:when test="${! not empty game }">
 			<ul>
 				<li>Game Name: ${game.name} </li>
 				<li>Game Name: ${game.description} </li>
