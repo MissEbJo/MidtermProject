@@ -10,6 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="home.do">Home <span class="sr-only"></span></a>
+
       
       <a class="nav-item nav-link"></a><form action="GetByName.do" method="GET">
 		<input type="text" name="name" placeholder="Game Name"/> 
@@ -18,6 +19,7 @@
       
       <a class="nav-item nav-link" href="AdvancedSearch.do">Advanced Search</a>
       <a class="nav-item nav-link" href="about.do">About this website</a>
+
      <!--  <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
      <c:if test="${not empty loggedInUser }">
      <a class="nav-item nav-link" href="userLogout.do">Logout</a>

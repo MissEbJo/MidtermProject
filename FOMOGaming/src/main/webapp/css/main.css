@@ -34,5 +34,9 @@ add persistent header for search functionality in here.
 	background-color: aqua;
 	color: black;
 }
+div {
+    width: 200px;
+    word-wrap: break-word;
+}
 
 

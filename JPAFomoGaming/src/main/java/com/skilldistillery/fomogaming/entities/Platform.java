@@ -128,8 +128,7 @@ public class Platform {
 
 	@Override
 	public String toString() {
-		return "Platform [id=" + id + ", systemName=" + systemName + ", logoUrl=" + logoUrl + ", releaseYear="
-				+ releaseYear + ", platformUrl=" + platformUrl + "]";
+		return systemName;
 	}
 	
 	

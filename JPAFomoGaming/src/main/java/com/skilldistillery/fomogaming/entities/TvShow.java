@@ -162,10 +162,7 @@ public class TvShow {
 
 	@Override
 	public String toString() {
-		return "TvShow [id=" + id + ", title=" + title + ", numberOfSeasons=" + numberOfSeasons + ", releaseYear="
-				+ releaseYear + ", description=" + description + ", gameSeries=" + gameSeries + ", imdbUrl=" + imdbUrl
-				+ ", trailerUrl=" + trailerUrl + ", posterImageUrl=" + posterImageUrl + ", videoGame=" + videoGame
-				+ "]";
+		return title + "\n Number of Seasons: " + numberOfSeasons;
 	}
 
 }

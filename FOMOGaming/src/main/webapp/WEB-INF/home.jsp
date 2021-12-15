@@ -40,12 +40,12 @@
 		</c:if>
 		
 		
-		<a href="AdvancedSearch.do">Advanced Search</a> <br>
+		<!-- <a href="AdvancedSearch.do">Advanced Search</a> <br>
 		<a href="AddNewGame.do">Add a new game</a> <br>
 		 <a href="AddNewUser.do">Create Account</a><br>
 		  <a href="login.do">Login</a>
 		  <a href="about.do">About this website</a>
-		  
+		   -->
 		  
 	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
