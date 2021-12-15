@@ -21,7 +21,7 @@
 				<li>Platform: ${game.crossPlatform} </li>
 				<li><img class="gameListImg" src="${game.imageUrl}" /></li>
 				<li>Genre(s): ${game.genres} </li>
-				<li>Game Trailer: ${game.trailerUrl} </li> <!--change to Iframe  -->
+				<li><iframe src="${game.trailerUrl}"></iframe> </li> 
 				<li>Developer Name: ${game.developer.name} </li>
 				
 			</ul>
