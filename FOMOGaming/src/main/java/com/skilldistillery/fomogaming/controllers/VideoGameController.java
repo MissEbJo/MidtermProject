@@ -16,10 +16,12 @@ public class VideoGameController {
 	@Autowired
 	private VideoGameDAO gameDao;
 	
+
+	
 	@RequestMapping("GetGames.do")
-	public ModelAndView getGames(){
+	public ModelAndView getGames(String genre){
 		ModelAndView mv = new ModelAndView();
-		List<VideoGame> genreList = gameDao.searchByGenre("action");
+		List<VideoGame> genreList = gameDao.searchByGenre(genre);
 		mv.addObject("games", genreList);
 		mv.setViewName("gameList");
 		return mv;

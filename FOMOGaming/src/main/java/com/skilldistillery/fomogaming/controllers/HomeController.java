@@ -52,13 +52,18 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping(path = "AddNewUser.do")
-	public String createAccount() {
-		
-		
-		return "createAccount";
+//	@RequestMapping(path = "AddNewUser.do")
+//	public String createAccount() {
+//		
+//		
+//		return "createAccount";
+//	}
+	@RequestMapping( path = "login.do")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login");
+		return mv;
 	}
-	
 	
 	
 

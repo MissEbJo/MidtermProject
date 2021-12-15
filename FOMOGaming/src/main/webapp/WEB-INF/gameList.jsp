@@ -12,7 +12,7 @@
 		<jsp:include page="bootstrapHead.jsp"/>
 		<form action="GetGames.do" method="GET">
 		<input type="text" name="howmany" value="6" size="2" /> <input
-			type="submit" value="Get Games" />
+			type="submit" value="Get Numbers" />
 		</form>
 		
 	<c:if test="${not empty games }">
@@ -28,11 +28,12 @@
 						<tr>
 							<td>${g.name}</td>
 							<td>${g.description}</td>
+							<!-- img  -->
 						</tr>
 					</c:forEach>
 				</tbody>
 		</table>
 	</c:if>
-
+<a href="home.do"><input type="button" value="Home"></a>
 </body>
 </html>

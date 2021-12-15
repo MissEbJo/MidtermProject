@@ -9,6 +9,7 @@
 </head>
 <body>
 <h3>If you have an account, please login below:</h3>
+<jsp:include page="bootstrapHead.jsp" />
 
 <form action="userLogin.do" method="GET">
  User Name: <input type="text" name="name" required /> <br>

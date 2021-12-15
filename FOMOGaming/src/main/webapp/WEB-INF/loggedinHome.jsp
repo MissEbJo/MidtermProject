@@ -8,6 +8,7 @@
 </head>
 <body>
 <h3>FOMO Gaming</h3>
+<jsp:include page="bootstrapHead.jsp" />
 
 <a href="userProfile.do">Profile Page</a>
 <a href="logout.do">Log Out</a>
