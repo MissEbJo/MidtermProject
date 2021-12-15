@@ -33,6 +33,19 @@ public class UserController {
 		
 		return mv;
 	}
+	@RequestMapping(path="deleteProfile.do")
+	public String deleteProfile(HttpSession session) {
+		User user1 = new User();
+		user1 = (User) session.getAttribute("loggedInUser");
+		user1 = userDao.removeUser(user1);
+		if(user1 == null) {
+			session.removeAttribute("loggedInUser");
+			return "redirect:home.do";
+		}else {
+			
+			return "redirect:profile.do";
+		}
+	}
 
 	@RequestMapping(path="userLogin.do")
 	public String loggingIn(String username, String password, HttpSession session) {
