@@ -15,7 +15,7 @@
 	<!-- 	First Name: <input type="text" name="firstname" required /> <br>
 		Last Name:<input type="text" name="lastname" required /><br> -->
 	    User Name: <input type="text" name="username" required /> <br>
-		Email: <input type="email" id="email" required /> <br> 
+		Email: <input type="email" id="email" name="email" required /> <br> 
 		Password (8 character minimum): <input type="password" id="pass"
 			name="password" min="8" required /> <br> 
 		<!-- 	Birthday (YYYY/MM): <input type="month" id="bday" name="bdaymonth" /> <br> -->
