@@ -13,6 +13,7 @@
 	<c:if test="${not empty loggedInUser }">
 	<h1>WE DID IT!!!</h1>
 	<h2>Welcome ${loggedInUser.username }</h2>
+	<h4><a href="userLogout.do"><input type="button" value="Logout"></a></h4>
 	</c:if>
 	
 		<form action="GetGames.do" method="GET">
