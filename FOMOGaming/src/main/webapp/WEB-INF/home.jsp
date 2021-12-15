@@ -13,6 +13,7 @@
 	<c:if test="${not empty loggedInUser }">
 	<h1>WE DID IT!!!</h1>
 	<h2>Welcome ${loggedInUser.username }</h2>
+		  <a href="profile.do">Profile</a>
 	</c:if>
 	
 		<form action="GetGames.do" method="GET">
@@ -43,6 +44,8 @@
 		 <a href="AddNewUser.do">Create Account</a><br>
 		  <a href="login.do">Login</a>
 		  <a href="about.do">About this website</a>
+		  
+		  
 	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

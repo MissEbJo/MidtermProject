@@ -45,5 +45,9 @@ public class UserController {
 			return "redirect:login.do";
 		}
 	}
+	@RequestMapping(path="profile.do")
+	public String profile() {
+		return "userProfile";
+	}
 	
 }
