@@ -29,6 +29,8 @@ public class VideoGameController {
 	@RequestMapping(path="GetByName.do", method= RequestMethod.GET)
 	public ModelAndView getByName(String name){
 		ModelAndView mv = new ModelAndView();
+		
+		//if one game, redirect to singleGame jsp
 		List<VideoGame> list = gameDao.searchByName(name);
 		if(list.size() > 1) {
 			mv.addObject("games", list);
