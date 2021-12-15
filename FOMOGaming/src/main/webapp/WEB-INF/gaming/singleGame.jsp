@@ -46,6 +46,8 @@
 		</c:when>
 	</c:choose>
 
-
+		<P>
+		<button class="btn btn-secondary" type="submit" name="favoriteButton"> Add to Favorites</button>
+		</P>
 </body>
 </html>

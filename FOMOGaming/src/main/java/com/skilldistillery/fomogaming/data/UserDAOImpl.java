@@ -83,4 +83,13 @@ public class UserDAOImpl implements UserDAO {
 		return u;
 	}
 
+	@Override
+	public User updateUser(User u) {
+		User user = em.find(User.class, u.getId());
+		user.setUsername(u.getUsername());
+		user.setPassword(u.getPassword());
+		user.setProfilePicture(u.getProfilePicture());
+		user.setEmail(u.getEmail());
+		return user;
+	}
 }
