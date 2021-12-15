@@ -12,5 +12,11 @@ public interface UserDAO {
 	public User createUser(User user);
 	
 	public List<VideoGame> findGameByName(String name);
+
+	User getUserByUserNameAndPassword(String userName, String password);
+
+	List<User> getAllUsers();
+
+	User removeUser(User user);
 	
 }

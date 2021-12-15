@@ -9,6 +9,8 @@ import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 public interface VideoGameDAO {
+	
+	public VideoGame searchForGame(String name);
 
 	public List<VideoGame> searchByName(String name);
 

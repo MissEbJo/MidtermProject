@@ -1,8 +1,5 @@
 package com.skilldistillery.fomogaming.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
-import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 

@@ -10,7 +10,12 @@
 </head>
 <body>
 	<h1>Fear of Missing Out Gaming</h1>
-	
+	<c:if test="${not empty loggedInUser }">
+	<h1>WE DID IT!!!</h1>
+	<h2>Welcome ${loggedInUser.username }</h2>
+		  <a href="profile.do">Profile</a>
+	<h4><a href="userLogout.do"><input type="button" value="Logout"></a></h4>
+	</c:if>
 	
 		<form action="GetGames.do" method="GET">
 		</form>
@@ -34,9 +39,14 @@
 			</table>
 		</c:if>
 		
+		
+		<a href="AdvancedSearch.do">Advanced Search</a> <br>
 		<a href="AddNewGame.do">Add a new game</a> <br>
 		 <a href="AddNewUser.do">Create Account</a><br>
 		  <a href="login.do">Login</a>
+		  <a href="about.do">About this website</a>
+		  
+		  
 	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

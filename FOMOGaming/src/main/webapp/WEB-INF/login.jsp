@@ -12,9 +12,9 @@
 <jsp:include page="bootstrapHead.jsp" />
 
 <form action="userLogin.do" method="GET">
- User Name: <input type="text" name="name" required /> <br>
- Password:  <input type="password" id="pass" name="password" minlength="8" required /> <br> 
- <a href="loginHome.do" input type="button" value="Login"> </a>
+ User Name: <input type="text" name="username" required /> <br>
+ Password:  <input type="password" id="password" name="password" min="8" required /> <br> 
+ <input type="submit" value="login">
  <a href="home.do"><input type="button" value="Home"> </a>
  
  </form>

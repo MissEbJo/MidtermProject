@@ -1,27 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Video Game</title>
-<jsp:include page="bootstrapHead.jsp"/>
 </head>
 <body>
+<jsp:include page="../bootstrapHead.jsp"/>
 	<c:choose>
-		<c:when test="${! not empty game }">
+		<c:when test="${ not empty game }">
 			<ul>
+			
 				<li>Game Name: ${game.name} </li>
-				<li>Game Name: ${game.description} </li>
-				<li>Game Name: ${game.releaseYear} </li>
-				<li>Game Name: ${game.mode} </li>
-				<li>Game Name: ${game.crossPlatform} </li>
-				<li>Game Name: ${game.imageUrl} </li>  <!--change to img src  -->
-				<li>Game Name: ${game.genre} </li>
-				<li>Game Name: ${game.trailerUrl} </li> <!--change to img src  -->
-				<li>Game Name: ${game.developer} </li>
-
+				<li>Description: ${game.description} </li>
+				<li>Release Year: ${game.releaseYear} </li>
+				<li>Single Player: ${game.singlePlayer} </li>
+				<li>Multi Player: ${game.multiPlayer}</li>
+				<li>Platform: ${game.crossPlatform} </li>
+				<li><img class="gameListImg" src="${game.imageUrl}" /></li>
+				<li>Genre(s): ${game.genres} </li>
+				<li><iframe src="${game.trailerUrl}"></iframe> </li> 
+				<li>Developer Name: ${game.developer.name} </li>
+				
 			</ul>
 
 		</c:when>

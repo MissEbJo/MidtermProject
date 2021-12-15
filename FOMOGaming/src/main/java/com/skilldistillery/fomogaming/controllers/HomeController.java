@@ -1,7 +1,8 @@
 package com.skilldistillery.fomogaming.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,27 +12,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
-import com.skilldistillery.fomogaming.entities.GameSeries;
+import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private UserDAO userDao;
-	
+
 	@Autowired
 	private VideoGameDAO gameDao;
-	
-	
-	@RequestMapping(path = {"/" , "home.do"} )
+
+	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
-		model.addAttribute("DEBUG" , userDao.findByUsername("admin"));
+		model.addAttribute("DEBUG", userDao.findByUsername("admin"));
 		List<VideoGame> genreList = gameDao.searchByGenre("action");
 		model.addAttribute("games", genreList);
 		return "home";
 	}
-	
+
 //	@RequestMapping(path = "home.do")
 //	public ModelAndView someGamesByGenre() {
 //		ModelAndView mv = new ModelAndView();
@@ -41,30 +41,37 @@ public class HomeController {
 //		return mv;
 //		
 //	}
-	
+
 	@RequestMapping(path = "AddNewGame.do")
-	public ModelAndView addNewGame() {
+	public ModelAndView addNewGame(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		List<GameSeries> series = new ArrayList<>();
-		series = gameDao.getAllSeries();
-		mv.addObject("series", series);
-		mv.setViewName("addGame");
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
+			mv.setViewName("addGame");
+		}
+		mv.setViewName("redirect:home.do"); // TODO FIX THIS ISH
 		return mv;
 	}
-	
+
 //	@RequestMapping(path = "AddNewUser.do")
 //	public String createAccount() {
 //		
 //		
 //		return "createAccount";
 //	}
-	@RequestMapping( path = "login.do")
-	public ModelAndView login() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login");
-		return mv;
+	@RequestMapping(path = "login.do")
+	public String login() {
+		return "login"; //TODO find if user created an acct... keep them logged in ;)
+	}
+
+	@RequestMapping(path = "AdvancedSearch.do")
+	public String advSearch() {
+		return "advancedSearch";
 	}
 	
-	
+	@RequestMapping(path="about.do")
+	public String about() {
+		return "about";
+	}
 
 }
