@@ -9,10 +9,13 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="home.do">Home <span class="sr-only"></span></a>
-      <a class="nav-item nav-link" href="BeginSearch.do">Search</a> <!--change functionality to have search bar -->
-      <a class="nav-item nav-link" href="AdvancedSearch.do"><input type="button" value="Advanced Search"></a>
+      <!-- <a class="nav-item nav-link" href="BeginSearch.do">Search</a> --> <!--change functionality to have search bar -->
       <a class="nav-item nav-link" href="#">No Where</a>
-      <a class="nav-item nav-link" href="#">About</a>
+      <a class="nav-item nav-link" href="AddNewUser.do">Create Account</a>
+      <a class="nav-item nav-link" href="AddNewGame.do">Add a Game</a>
+      <a class="nav-item nav-link" href="login.do">Login</a>
+      <a class="nav-item nav-link" href="about.do">About</a>
+      <a class="nav-item nav-link" href="AdvancedSearch.do"><input type="button" value="Advanced Search"></a>
      <!--  <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
     </div>
   </div>
