@@ -32,8 +32,18 @@ public class UserController {
 		mv.setViewName("newUserAdded");
 		
 		return mv;
-		
-		
 	}
 
+	@RequestMapping(path="userLogin.do")
+	public String loggingIn(String username, String password, HttpSession session) {
+		User user = new User();
+		user = userDao.getUserByUserNameAndPassword(username, password);
+		if (user != null) {
+			session.setAttribute("loggedInUser", user);
+			return "redirect:home.do";
+		} else {
+			return "redirect:login.do";
+		}
+	}
+	
 }

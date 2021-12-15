@@ -10,7 +10,10 @@
 </head>
 <body>
 	<h1>Fear of Missing Out Gaming</h1>
-	
+	<c:if test="${not empty loggedInUser }">
+	<h1>WE DID IT!!!</h1>
+	<h2>Welcome ${loggedInUser.username }</h2>
+	</c:if>
 	
 		<form action="GetGames.do" method="GET">
 		</form>

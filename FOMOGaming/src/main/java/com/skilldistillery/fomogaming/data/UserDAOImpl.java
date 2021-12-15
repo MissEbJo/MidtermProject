@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,7 +31,29 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
+	@Override
+	  public User getUserByUserNameAndPassword(String userName, String password) {
+	    User u = null;
+	    List<User> users = getAllUsers();
+	    for (User user: users) {
+	      if(user.getUsername().equals(userName) && user.getPassword().equals(password)) {
+	        u = user;
+	        break;
+	      }
+	    }
+	    return u;
+	  }
+	
+	@Override
+	public List<User> getAllUsers() {
+		List<User> users = new ArrayList<>();
+		String query = "SELECT u FROM User u";
+		users = em.createQuery(query, User.class).getResultList();
+		
+		return users;
+	}
 
+	
 	@Override
 	public List<VideoGame> findGameByName(String name) {
 		List<VideoGame> games = null;
