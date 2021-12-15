@@ -47,13 +47,13 @@ class VideoGameDAOTest {
 		assertTrue(yearList.size() > 0);
 	}
 	
-	@Test
-	@DisplayName("test method Search by Mode")
-	void test4() {
-		List<VideoGame> modeList = gameDao.searchByMode("Single player");
-		assertNotNull(modeList);
-		assertTrue(modeList.size() > 0);
-	}
+//	@Test
+//	@DisplayName("test method Search by Mode")
+//	void test4() {
+//		List<VideoGame> modeList = gameDao.searchByMode("Single player");
+//		assertNotNull(modeList);
+//		assertTrue(modeList.size() > 0);
+//	}
 	
 	@Test
 	@DisplayName("test method Search by Platform")
@@ -77,6 +77,15 @@ class VideoGameDAOTest {
 		List<VideoGame> seriesList = gameDao.searchByGameSeries("Horizon");
 		assertNotNull(seriesList);
 		assertTrue(seriesList.size() > 0);
+	}
+	
+	@Test
+	@DisplayName("test method Search for Game")
+	void test8() {
+		VideoGame singleGame = gameDao.searchForGame("Witcher");
+		assertNotNull(singleGame);
+		
+		
 	}
 }
 

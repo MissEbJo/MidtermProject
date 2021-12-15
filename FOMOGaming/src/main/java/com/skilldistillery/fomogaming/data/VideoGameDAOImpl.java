@@ -18,6 +18,18 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Override
+	public VideoGame searchForGame(String name) {
+		VideoGame singleGame = new VideoGame();
+		
+		String query = "SELECT v FROM VideoGame v WHERE name = :name";
+		
+		singleGame = em.createQuery(query, VideoGame.class).setParameter("name", name).getSingleResult();
+		
+		return singleGame;
+	}
+
 
 	@Override
 	public List<VideoGame> searchByName(String name) {
@@ -160,4 +172,5 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		return series;
 	}
 
+	
 }
