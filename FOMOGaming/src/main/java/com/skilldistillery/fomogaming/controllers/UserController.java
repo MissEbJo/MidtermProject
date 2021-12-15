@@ -18,18 +18,22 @@ public class UserController {
 	
 	
 	@RequestMapping(path="AddNewUser.do")
-	public ModelAndView newUser(User user, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		try {
-			userDao.createUser(user);
-			
-		} catch (Exception e) {
-			System.out.println("Error creating account");
-		} 
+	public String newUser() {
 		
-
+		return "createAccount";
+	}
+	
+	@RequestMapping(path="addUserInfo.do")
+	public ModelAndView addUser(User user) {
+		ModelAndView mv = new ModelAndView();
+		User user1 = new User();
+		user1 =	userDao.createUser(user);
+		mv.addObject("user", user1);
+		mv.setViewName("newUserAdded");
 		
 		return mv;
+		
+		
 	}
 
 }
