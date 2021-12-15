@@ -24,8 +24,6 @@ public interface VideoGameDAO {
 	
 	public List<VideoGame> searchByDeveloper(String developer);
 	
-	public VideoGame addVideoGame(VideoGame newGame);
-	
 	public VideoGame updateVideoGame(VideoGame vg);
 	
 	public void removeVideoGame(VideoGame vg);
@@ -33,5 +31,7 @@ public interface VideoGameDAO {
 	List<VideoGame> searchByGameSeries(String gameSeries);
 
 	List<GameSeries> getAllSeries();
+
+	VideoGame addVideoGame(VideoGame vg, int seriesId);
 
 }

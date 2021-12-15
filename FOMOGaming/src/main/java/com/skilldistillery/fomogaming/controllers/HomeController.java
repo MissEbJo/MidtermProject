@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
 import com.skilldistillery.fomogaming.entities.User;
+import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Controller
@@ -47,14 +49,17 @@ public class HomeController {
 	public ModelAndView addNewGame(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User)session.getAttribute("User");
+		List<GameSeries> series = new ArrayList<>();
+		series = gameDao.getAllSeries();
+		mv.addObject("series", series);
 		if(user.getRole().equals("User")) {
-			
-		mv.setViewName("addGame");
-		return mv;
+			mv.setViewName("addGame");
+			return mv;
 		}else {
 			System.out.println("Create an account to add game");
 			return mv;
 		}
+			
 	}
 	
 //	@RequestMapping(path = "AddNewUser.do")
