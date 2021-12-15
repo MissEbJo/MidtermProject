@@ -19,7 +19,7 @@ public class UserController {
 	
 	@RequestMapping(path="AddNewUser.do")
 	public ModelAndView newUser(User user, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView();	
 		try {
 			userDao.createUser(user);
 			
@@ -28,6 +28,8 @@ public class UserController {
 		} 
 		
 
+
+		
 		
 		return mv;
 	}
