@@ -146,11 +146,9 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	
 	@Override
 	public void removeVideoGame(VideoGame vg) {
-		em.getTransaction().begin();
 		VideoGame videogame = new VideoGame();
 		videogame = em.find(VideoGame.class, vg.getId());
 		em.remove(videogame);
-		em.getTransaction().commit();
 	}
 
 	@Override
