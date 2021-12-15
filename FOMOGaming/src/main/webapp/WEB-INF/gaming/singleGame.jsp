@@ -19,7 +19,7 @@
 				<li>Single Player: ${game.singlePlayer} </li>
 				<li>Multi Player: ${game.multiPlayer}</li>
 				<li>Platform: ${game.crossPlatform} </li>
-				<li>Game Image: ${game.imageUrl} </li>  <!--change to img  -->
+				<li><img class="gameListImg" src="${game.imageUrl}" /></li>
 				<li>Genre(s): ${game.genres} </li>
 				<li>Game Trailer: ${game.trailerUrl} </li> <!--change to Iframe  -->
 				<li>Developer Name: ${game.developer.name} </li>
