@@ -30,10 +30,14 @@ public class VideoGameController {
 	public ModelAndView getByName(String name){
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByName(name);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if(list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		}else {
+		mv.addObject("game", list);
+		mv.setViewName("singleGame");
+		}
 		return mv;
-		
 	}
 	@RequestMapping(path="GetByDescription.do", method= RequestMethod.GET)
 	public ModelAndView getByDescription(String description){
