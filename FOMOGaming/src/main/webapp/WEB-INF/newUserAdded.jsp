@@ -13,6 +13,6 @@
 
 ${user.id}
 ${user.username}
-
+<a href="home.do"><input type="button" value="Home"></a>
 </body>
 </html>

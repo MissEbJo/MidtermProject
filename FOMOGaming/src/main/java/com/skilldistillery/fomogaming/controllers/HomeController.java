@@ -17,22 +17,21 @@ import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private UserDAO userDao;
-	
+
 	@Autowired
 	private VideoGameDAO gameDao;
-	
-	
-	@RequestMapping(path = {"/" , "home.do"} )
+
+	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
-		model.addAttribute("DEBUG" , userDao.findByUsername("admin"));
+		model.addAttribute("DEBUG", userDao.findByUsername("admin"));
 		List<VideoGame> genreList = gameDao.searchByGenre("action");
 		model.addAttribute("games", genreList);
 		return "home";
 	}
-	
+
 //	@RequestMapping(path = "home.do")
 //	public ModelAndView someGamesByGenre() {
 //		ModelAndView mv = new ModelAndView();
@@ -42,18 +41,18 @@ public class HomeController {
 //		return mv;
 //		
 //	}
-	
+
 	@RequestMapping(path = "AddNewGame.do")
 	public ModelAndView addNewGame(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {
-		mv.setViewName("addGame");
+			mv.setViewName("addGame");
 		}
-		mv.setViewName("redirect:home.do"); //TODO FIX THIS ISH
+		mv.setViewName("redirect:home.do"); // TODO FIX THIS ISH
 		return mv;
 	}
-	
+
 //	@RequestMapping(path = "AddNewUser.do")
 //	public String createAccount() {
 //		
@@ -62,9 +61,12 @@ public class HomeController {
 //	}
 	@RequestMapping(path = "login.do")
 	public String login() {
-		return "login";
+		return "login"; //TODO find if user created an acct... keep them logged in ;)
 	}
-	
 
-	
+	@RequestMapping(path = "AdvancedSearch.do")
+	public String advSearch() {
+		return "advancedSearch";
+	}
+
 }
