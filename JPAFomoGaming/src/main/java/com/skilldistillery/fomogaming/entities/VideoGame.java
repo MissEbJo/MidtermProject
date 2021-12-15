@@ -32,12 +32,12 @@ public class VideoGame {
 	@Column(name = "release_year")
 	private Integer releaseYear;
 
-	@Column(name="singleplayer")
+	@Column(name = "singleplayer")
 	private Boolean singlePlayer;
 
-	@Column(name="multiplayer")
+	@Column(name = "multiplayer")
 	private Boolean multiPlayer;
-	
+
 	@Column(name = "cross_platform")
 	private boolean crossPlatform;
 
@@ -52,31 +52,31 @@ public class VideoGame {
 
 	@ManyToMany(mappedBy = "videoGames")
 	private List<User> users;
-	
+
 	@ManyToMany(mappedBy = "videoGames")
 	private List<Genre> genres;
 
 	@ManyToOne
 	@JoinColumn(name = "series_id")
 	private GameSeries gameSeries;
-	
-	@OneToMany(mappedBy="videoGame")
+
+	@OneToMany(mappedBy = "videoGame")
 	private List<TvShow> tvShows;
-	
-	@OneToMany(mappedBy="videoGame")
+
+	@OneToMany(mappedBy = "videoGame")
 	private List<BoardGame> boardGames;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "developer_id")
 	private Developer developer;
-	
+
 	@ManyToMany(mappedBy = "videoGames")
 	private List<Platform> platforms;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "added_by_user")
 	private User userWhoAdded;
-	
+
 	@Column(name = "when_added")
 	@CreationTimestamp
 	private LocalDateTime whenAdded;
@@ -116,7 +116,6 @@ public class VideoGame {
 	public void setReleaseYear(Integer releaseYear) {
 		this.releaseYear = releaseYear;
 	}
-
 
 	public boolean isCrossPlatform() {
 		return crossPlatform;
@@ -263,7 +262,5 @@ public class VideoGame {
 				+ numberInSeries + ", gameSeries=" + gameSeries + ", developer=" + developer + ", userWhoAdded="
 				+ userWhoAdded + ", whenAdded=" + whenAdded + "]";
 	}
-
-	
 
 }

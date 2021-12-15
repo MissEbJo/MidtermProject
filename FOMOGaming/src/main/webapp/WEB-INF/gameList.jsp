@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +9,8 @@
 </head>
 <body>
 	<h3>Games Listing</h3>
-		<jsp:include page="bootstrapHead.jsp"/>
-		
+	<jsp:include page="bootstrapHead.jsp" />
+
 	<c:if test="${! empty games }">
 		<table>
 			<thead>
@@ -19,17 +19,19 @@
 					<th>Game Description</th>
 				</tr>
 			</thead>
-				<tbody>
-					<c:forEach var="g" items="${games}">
-						<tr>
-							<td>${g.name}</td>
-							<td>${g.description}</td>
-							<!-- img  -->
-						</tr>
-					</c:forEach>
-				</tbody>
+			<tbody>
+				<c:forEach var="g" items="${games}">
+					<tr>
+						<td>${g.name}</td>
+						<td>${g.description}</td>
+						<!-- img  -->
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</c:if>
-<a href="home.do"><input type="button" value="Home"></a>
+	<a href="home.do"><input type="button" value="Home"></a>
+	<a href="AdvancedSearch.do"><input type="button" value="Search"></a>
+	<br>
 </body>
 </html>

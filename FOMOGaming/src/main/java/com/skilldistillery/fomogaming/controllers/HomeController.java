@@ -52,6 +52,13 @@ public class HomeController {
 		return mv;
 	}
 	
+	@RequestMapping(path = "AdvancedSearch.do")
+	public String advancedSearch() {
+		
+		
+		return "advancedSearch";
+	}
+	
 //	@RequestMapping(path = "AddNewUser.do")
 //	public String createAccount() {
 //		
