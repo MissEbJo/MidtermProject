@@ -14,7 +14,7 @@
 <form action="userLogin.do" method="GET">
  User Name: <input type="text" name="username" required /> <br>
  Password:  <input type="password" id="password" name="password" min="8" required /> <br> 
- <input type="submit" value="login">
+ <input type="submit" value="Login">
  <a href="home.do"><input type="button" value="Home"> </a>
  
  </form>
