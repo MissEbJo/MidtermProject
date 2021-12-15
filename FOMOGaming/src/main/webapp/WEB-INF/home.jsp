@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>FOMO Gaming</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
 	<h1>Fear of Missing Out Gaming</h1>
-	<jsp:include page="bootstrapHead.jsp" />
+	
 	
 		<form action="GetGames.do" method="GET">
 		</form>
@@ -36,6 +37,6 @@
 		<a href="AddNewGame.do">Add a new game</a> <br>
 		 <a href="AddNewUser.do">Create Account</a><br>
 		  <a href="login.do">Login</a>
-	
+	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>
