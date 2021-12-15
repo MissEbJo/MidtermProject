@@ -6,25 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Video Game</title>
-<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="../bootstrapHead.jsp"/>
 	<c:choose>
-		<c:when test="${! not empty game }">
-			<h4>${game.name}!</h4>
+		<c:when test="${ not empty game }">
 			<ul>
-				<li>Game Name: ${game.name}</li>
-				<li>Description: ${game.description}</li>
-				<li>Release Year: ${game.releaseYear}</li>
-				<li>Mode(s): ${game.mode}</li>
-				<li>Cross-Platform Capability: ${game.crossPlatform}</li>
-				<li>Image: ${game.imageUrl}</li>
-				<!--change to img src  -->
-				<li>Genre(s): ${game.genre}</li>
-				<li>Trailer: ${game.trailerUrl}</li>
-				<!--change to img src  -->
-				<li>Developer(s): ${game.developer}</li>
-
+			
+				<li>Game Name: ${game.name} </li>
+				<li>Description: ${game.description} </li>
+				<li>Release Year: ${game.releaseYear} </li>
+				<li>Single Player: ${game.singlePlayer} </li>
+				<li>Multi Player: ${game.multiPlayer}</li>
+				<li>Platform: ${game.crossPlatform} </li>
+				<li><img class="gameListImg" src="${game.imageUrl}" /></li>
+				<li>Genre(s): ${game.genres} </li>
+				<li>Game Trailer: ${game.trailerUrl} </li> <!--change to Iframe  -->
+				<li>Developer Name: ${game.developer.name} </li>
+				
 			</ul>
 
 		</c:when>
