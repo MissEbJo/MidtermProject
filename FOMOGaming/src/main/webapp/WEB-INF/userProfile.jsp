@@ -4,10 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User Profile</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-<jsp:include page="bootstrapHead.jsp" />
 
+
+		<a href="deleteProfile.do"><input type="button" value="Delete Profile"></a>
+		<a href="home.do"><input type="button" value="Home"></a>
 </body>
 </html>
