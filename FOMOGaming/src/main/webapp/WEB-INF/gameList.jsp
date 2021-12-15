@@ -22,7 +22,7 @@
 			<tbody>
 				<c:forEach var="g" items="${games}">
 					<tr>
-						<td>${g.name}</td>
+						<td><a href="GetByNameDetails.do?name=${g.name}">${g.name}</a></td>
 						<td>${g.description}</td>
 						<!-- img  -->
 					</tr>
@@ -31,7 +31,7 @@
 		</table>
 	</c:if>
 	<a href="home.do"><input type="button" value="Home"></a>
-	<a href="AdvancedSearch.do"><input type="button" value="Search"></a>
+	<!-- <a href="AdvancedSearch.do"><input type="button" value="Search"></a> -->
 	<br>
 </body>
 </html>

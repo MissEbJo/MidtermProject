@@ -29,8 +29,19 @@
 
 		<form action="GetByPlatform.do" method="GET">
 		Game Platform:
-		<input type="text" name="platform" /> 
-		<input type="submit" value="Get Games" />
+		
+		<select id="platform" name="platform">
+		<option value="Nintendo">Nintendo</option>
+		<option value="playstation">PlayStation</option>
+		<option value="xbox">XBox</option>
+		<option value="pc">PC</option>
+		<option value="mac">Mac</option>
+		<option value="sega">Sega</option>
+		<option value="arcade">Arcade</option>
+		</select><input type="submit" value="Search By Platform"/>
+		
+		<!-- <input type="text" name="platform" /> 
+		<input type="submit" value="Get Games" /> -->
 		</form>
 
 		<form action="GetByDeveloper.do" method="GET">

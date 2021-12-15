@@ -10,6 +10,7 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="home.do">Home <span class="sr-only"></span></a>
       <a class="nav-item nav-link" href="BeginSearch.do">Search</a> <!--change functionality to have search bar -->
+      <a class="nav-item nav-link" href="AdvancedSearch.do"><input type="button" value="Advanced Search"></a>
       <a class="nav-item nav-link" href="#">No Where</a>
       <a class="nav-item nav-link" href="#">About</a>
      <!--  <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
