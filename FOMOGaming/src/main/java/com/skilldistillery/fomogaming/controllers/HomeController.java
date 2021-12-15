@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
+import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Controller
@@ -43,6 +45,9 @@ public class HomeController {
 	@RequestMapping(path = "AddNewGame.do")
 	public ModelAndView addNewGame() {
 		ModelAndView mv = new ModelAndView();
+		List<GameSeries> series = new ArrayList<>();
+		series = gameDao.getAllSeries();
+		mv.addObject("series", series);
 		mv.setViewName("addGame");
 		return mv;
 	}
