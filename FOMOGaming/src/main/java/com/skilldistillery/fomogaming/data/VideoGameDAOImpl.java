@@ -23,7 +23,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	public List<VideoGame> searchByName(String name) {
 		List<VideoGame> titleList = new ArrayList<>();
 		
-		String query = "SELECT v FROM VideoGame v WHERE name = :name";
+		String query = "SELECT v FROM VideoGame v WHERE name LIKE :name";
 		
 		titleList = em.createQuery(query, VideoGame.class).setParameter("name", name).getResultList();
 		return titleList;
