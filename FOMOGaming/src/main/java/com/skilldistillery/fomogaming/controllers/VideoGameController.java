@@ -36,8 +36,8 @@ public class VideoGameController {
 			mv.addObject("games", list);
 			mv.setViewName("gameList");
 		}else {
-		mv.addObject("game", list);
-		mv.setViewName("singleGame");
+		mv.addObject("game", list.get(0));
+		mv.setViewName("gaming/singleGame");
 		}
 		return mv;
 	}
