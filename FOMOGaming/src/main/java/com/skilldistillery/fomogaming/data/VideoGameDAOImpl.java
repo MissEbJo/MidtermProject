@@ -111,24 +111,37 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	}
 	
 	@Override
-	public VideoGame addVideoGame(VideoGame vg) {
+	public VideoGame addVideoGame(VideoGame vg, int seriesId) {
+		// TODO check series ID and add that to the videogame -- done?
 		VideoGame videogame = new VideoGame();
+		if (seriesId > 0) {
+		GameSeries gs = em.find(GameSeries.class, seriesId);
 		videogame = vg;
-//		em.getTransaction().begin();
+		videogame.setGameSeries(gs);
 		em.persist(videogame);
-//		em.flush();
-//		em.getTransaction().commit();
-		return videogame;
+		}
+		else {
+			videogame = vg;
+			em.persist(videogame);
+		}
+		return videogame; 
 	}
 	
 	@Override
 	public VideoGame updateVideoGame(VideoGame vg) {
-		em.getTransaction().begin();
 		VideoGame videogame = em.find(VideoGame.class, vg.getId());
-		videogame = vg;
-		em.persist(videogame);
-		em.flush();
-		em.getTransaction().commit();
+//		videogame = vg; //call setters (not id)
+		videogame.setName(vg.getName());
+		videogame.setDescription(vg.getDescription());
+		videogame.setCrossPlatform(vg.isCrossPlatform());
+		videogame.setReleaseYear(vg.getReleaseYear());
+		videogame.setSinglePlayer(vg.getSinglePlayer());
+		videogame.setMultiPlayer(vg.getMultiPlayer());
+		videogame.setImageUrl(vg.getImageUrl());
+		videogame.setNumberInSeries(vg.getNumberInSeries());
+		videogame.setGameSeries(vg.getGameSeries());
+		videogame.setDeveloper(vg.getDeveloper());
+		
 		return videogame;
 	}
 	

@@ -11,6 +11,7 @@
 	<h3>Add a game to FOMOGaming</h3>
 
 	<form action="NewGameInfo.do" method="GET">
+		
 		Name:
 		<input type="text" name="name" required/> 
 		<br>
@@ -99,9 +100,18 @@
 		<input type="checkbox" name="platform" id="arcade" value="arcade"/> 
 		<label for="arcade">Arcade</label>
 		<br>
+		Is this game part of a series? 
+		<select id="gameSeries" name="gameSeries">
+			<option value="-1">No, it's not part of a series</option>
+			<option value="0">Its series isn't on the database, I need to create one</option>
+			<c:forEach var="s" items="${series}">
+				<option value="${s.id}">${s.name }</option>
+			</c:forEach>
+		</select> <br> 
 		<a href="home.do"><input type="button" value="Home"></a>
 		<input type="reset">
-		<input type="submit" value="Next >" />
+		<input type="submit" value="Add Game" />
+
 
 	</form>
 
