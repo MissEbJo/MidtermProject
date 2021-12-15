@@ -22,6 +22,7 @@
 				<li>Game Name: ${game.genres} </li>
 				<li>Game Name: ${game.trailerUrl} </li> <!--change to Iframe  -->
 				<li>Game Name: ${game.developer.name} </li>
+				
 			</ul>
 
 		</c:when>
