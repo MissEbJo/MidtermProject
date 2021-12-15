@@ -74,6 +74,12 @@ public class UserDAOImpl implements UserDAO {
 		em.getProperties();
 		return newUser;
 		}
-	}
 
+@Override
+public void removeUser(User user) {
+	User u = new User();
+	u = em.find(User.class, user.getId());
+	em.remove(u);
+}
 
+}

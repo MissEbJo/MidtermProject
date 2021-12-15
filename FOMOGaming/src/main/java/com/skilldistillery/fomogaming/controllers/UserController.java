@@ -50,4 +50,14 @@ public class UserController {
 		return "userProfile";
 	}
 	
+	@RequestMapping(path="userLogout.do")
+	public String logout(HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
+			session.removeAttribute("loggedInUser");
+			return "logout";
+	} else {
+		return "redirect:login.do";
+	}
+	}
 }

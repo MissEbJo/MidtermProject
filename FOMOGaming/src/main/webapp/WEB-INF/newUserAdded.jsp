@@ -14,5 +14,6 @@
 ${user.id}
 ${user.username}
 <a href="home.do"><input type="button" value="Home"></a>
+<a href="login.do"><input type="button" value="Login"></a>
 </body>
 </html>
