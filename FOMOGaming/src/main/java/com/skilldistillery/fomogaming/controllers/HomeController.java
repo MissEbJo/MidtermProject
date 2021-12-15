@@ -68,5 +68,10 @@ public class HomeController {
 	public String advSearch() {
 		return "advancedSearch";
 	}
+	
+	@RequestMapping(path="about.do")
+	public String about() {
+		return "about";
+	}
 
 }

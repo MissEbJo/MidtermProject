@@ -23,9 +23,8 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	public List<VideoGame> searchByName(String name) {
 		List<VideoGame> titleList = new ArrayList<>();
 		
-		String query = "SELECT v FROM VideoGame v WHERE name LIKE :name";
-		
-		titleList = em.createQuery(query, VideoGame.class).setParameter("name", name).getResultList();
+		String query = "SELECT v FROM VideoGame v WHERE name LIKE '%" + name + "%'";
+		titleList = em.createQuery(query, VideoGame.class).getResultList();
 		return titleList;
 	}
 
@@ -33,9 +32,9 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	public List<VideoGame> searchByKeyword(String keyword) {
 		List<VideoGame> keywordList = new ArrayList<>();
 		
-		String query = "SELECT v FROM VideoGame v WHERE description LIKE :keyword";
+		String query = "SELECT v FROM VideoGame v WHERE description LIKE '%" + keyword + "%'";
 		
-		keywordList = em.createQuery(query, VideoGame.class).setParameter("keyword", keyword).getResultList();
+		keywordList = em.createQuery(query, VideoGame.class).getResultList();
 
 		return keywordList;
 	}
@@ -67,9 +66,9 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		
 		List<VideoGame> genreList = new ArrayList<>();
 
-		String query = "SELECT v FROM VideoGame v JOIN v.genres g WHERE g.name = :genre";
+		String query = "SELECT v FROM VideoGame v JOIN v.genres g WHERE g.name LIKE '%" + genre + "%'";
 
-		genreList = em.createQuery(query, VideoGame.class).setParameter("genre", genre).getResultList();
+		genreList = em.createQuery(query, VideoGame.class).getResultList();
 
 		return genreList;
 		
@@ -91,9 +90,9 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		
 		List<VideoGame> developerList = new ArrayList<>();
 
-		String query = "SELECT v FROM VideoGame v JOIN v.developer d WHERE d.name = :developer";
+		String query = "SELECT v FROM VideoGame v JOIN v.developer d WHERE d.name LIKE '%" + developer + "%'";
 
-		developerList = em.createQuery(query, VideoGame.class).setParameter("developer", developer).getResultList();
+		developerList = em.createQuery(query, VideoGame.class).getResultList();
 		
 		return developerList;
 	}
@@ -103,9 +102,9 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		
 		List<VideoGame> seriesList = new ArrayList<>();
 		
-		String query = "SELECT v FROM VideoGame v JOIN v.gameSeries g WHERE g.name = :series";
+		String query = "SELECT v FROM VideoGame v JOIN v.gameSeries g WHERE g.name LIKE '%" + gameSeries + "%'";
 		
-		seriesList = em.createQuery(query, VideoGame.class).setParameter("series", gameSeries).getResultList();
+		seriesList = em.createQuery(query, VideoGame.class).getResultList();
 		
 		return seriesList;
 	}
@@ -147,11 +146,9 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	
 	@Override
 	public void removeVideoGame(VideoGame vg) {
-		em.getTransaction().begin();
 		VideoGame videogame = new VideoGame();
 		videogame = em.find(VideoGame.class, vg.getId());
 		em.remove(videogame);
-		em.getTransaction().commit();
 	}
 
 	@Override
