@@ -11,7 +11,7 @@
 <body>
 	<h1>Fear of Missing Out Gaming</h1>
 	<c:if test="${not empty loggedInUser }">
-	<h2>Welcome ${loggedInUser.username }</h2>
+	<h2>Welcome, ${loggedInUser.username }</h2>
 	
 	</c:if>
 		<form action="GetGames.do" method="GET">
@@ -29,21 +29,14 @@
 						<tr>
 							<td>${g.name}</td>
 							<td>${g.description}</td>
-							<td><img class="gameListImg" src="${g.imageUrl}" /></td>
+							<%-- <td><form action="GetByName.do"><input type="image" src="${g.imageUrl}" id="${g.name }" name="${g.name }" value="${g.name }"></form></td> --%>
+							<td><img class="gameListImg" src="${g.imageUrl}"/></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</c:if>
-		<c:if test="${empty games }">Dang</c:if>
 		
-		<!-- <a href="AdvancedSearch.do">Advanced Search</a> <br>
-		<a href="AddNewGame.do">Add a new game</a> <br>
-		 <a href="AddNewUser.do">Create Account</a><br>
-		  <a href="login.do">Login</a>
-		  <a href="about.do">About this website</a>
-		   -->
-		  
 	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

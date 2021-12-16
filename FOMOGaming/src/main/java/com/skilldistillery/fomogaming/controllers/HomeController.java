@@ -45,7 +45,7 @@ public class HomeController {
 
 	@RequestMapping(path = "login.do")
 	public String login() {
-		return "login"; //TODO find if user created an acct... keep them logged in ;)
+		return "login";
 	}
 
 	@RequestMapping(path = "AdvancedSearch.do")

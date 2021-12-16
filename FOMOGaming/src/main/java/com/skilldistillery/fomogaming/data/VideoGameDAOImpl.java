@@ -183,7 +183,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		while (r.size() < n) {
 			random = (int) (Math.random() * allGames.size());
 			VideoGame vg = em.find(VideoGame.class, random);
-			if (!r.contains(vg)) {
+			if ((!r.contains(vg)) && (vg != null)) {
 				r.add(vg);
 			}
 		}
