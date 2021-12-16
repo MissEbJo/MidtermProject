@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.fomogaming.data.PlatformDAO;
 import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
 import com.skilldistillery.fomogaming.entities.User;
@@ -23,6 +24,8 @@ public class HomeController {
 
 	@Autowired
 	private VideoGameDAO gameDao;
+	@Autowired
+	private PlatformDAO platformDao;
 
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
@@ -36,10 +39,14 @@ public class HomeController {
 	public ModelAndView addNewGame(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
+		mv.addObject("vg", new VideoGame());
 		if (user != null) {
+			mv.addObject("series", gameDao.getAllSeries());
+			mv.addObject("allPlatforms", platformDao.getAllPlatforms());
 			mv.setViewName("addGame");
+		}else {
+		mv.setViewName("redirect:home.do"); 
 		}
-		mv.setViewName("redirect:home.do"); // TODO FIX THIS ISH
 		return mv;
 	}
 

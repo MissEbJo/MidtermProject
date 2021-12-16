@@ -3,9 +3,8 @@ package com.skilldistillery.fomogaming.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpStatus.Series;
-
 import com.skilldistillery.fomogaming.entities.GameSeries;
+import com.skilldistillery.fomogaming.entities.Platform;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 public interface VideoGameDAO {
@@ -34,8 +33,10 @@ public interface VideoGameDAO {
 
 	List<GameSeries> getAllSeries();
 
-	VideoGame addVideoGame(VideoGame vg, int seriesId);
+	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList);
 
 	List<VideoGame> randomGames(int n);
+
+	VideoGame searchForGameById(int id);
 
 }

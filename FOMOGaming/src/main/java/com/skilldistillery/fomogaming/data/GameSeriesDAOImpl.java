@@ -1,16 +1,12 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.skilldistillery.fomogaming.entities.User;
-import com.skilldistillery.fomogaming.entities.VideoGame;
+import com.skilldistillery.fomogaming.entities.GameSeries;
 
 @Repository
 @Transactional
@@ -19,5 +15,11 @@ public class GameSeriesDAOImpl  {
 	@PersistenceContext
 	private EntityManager em;
 
+	public GameSeries findSeriesById(int Id) {
+		
+		GameSeries gs = new GameSeries();
+		gs = em.find(GameSeries.class, Id);
+		return gs;
+	}
 
 }

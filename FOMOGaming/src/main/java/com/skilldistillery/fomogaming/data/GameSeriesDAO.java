@@ -1,11 +1,8 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.util.List;
-
-import com.skilldistillery.fomogaming.entities.User;
-import com.skilldistillery.fomogaming.entities.VideoGame;
+import com.skilldistillery.fomogaming.entities.GameSeries;
 
 public interface GameSeriesDAO {
 
-	
-}
+	public GameSeries findSeriesById(int Id);
+	}

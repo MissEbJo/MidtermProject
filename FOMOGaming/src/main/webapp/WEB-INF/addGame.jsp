@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,7 @@
 	<jsp:include page="bootstrapHead.jsp" />
 
 	<form action="NewGameInfo.do" method="GET">
+	
 		
 		Name:
 		<input type="text" name="name" required/> 
@@ -86,25 +88,27 @@
 		<br> --%>
 		
 		What Platform can you play your game on?
-		<input type="checkbox" name="platform" id="nintendo" value="nintendo"/> 
-		<label for="nintendo">Nintendo</label>
-		<input type="checkbox" name="platform" id="pc" value="pc"/> 
-		<label for="pc">Windows</label>
-		<input type="checkbox" name="platform" id="mac" value="mac"/> 
+		<c:forEach var="platform" items="${allPlatforms }">
+			
+			<input name="platformNames" type="checkbox" id="${platform.systemName }"  value="${platform.systemName }"/> 
+			<label for="${platform.systemName }">${platform.systemName }</label>
+		</c:forEach>
+		<!-- <input type="checkbox" name="platforms" id="pc" value="pc"/> 
+		<label for="pc">PC</label>
+		<input type="checkbox" name="platforms" id="mac" value="mac"/> 
 		<label for="mac">Mac</label>
-		<input type="checkbox" name="platform" id="xbox" value="xbox"/> 
+		<input type="checkbox" name="platforms" id="xbox" value="xbox"/> 
 		<label for="xbox">Xbox</label>
-		<input type="checkbox" name="platform" id="ps" value="playstation"/> 
+		<input type="checkbox" name="platforms" id="ps" value="playstation"/> 
 		<label for="ps">PlayStation</label>
-		<input type="checkbox" name="platform" id="sega" value="sega"/> 
+		<input type="checkbox" name="platforms" id="sega" value="sega"/> 
 		<label for="sega">Sega</label>
-		<input type="checkbox" name="platform" id="arcade" value="arcade"/> 
-		<label for="arcade">Arcade</label>
+		<input type="checkbox" name="platforms" id="arcade" value="arcade"/> 
+		<label for="arcade">Arcade</label> -->
 		<br>
 		Is this game part of a series? 
-		<select id="gameSeries" name="gameSeries">
-			<option value="-1">No, it's not part of a series</option>
-			<option value="0">Its series isn't on the database, I need to create one</option>
+		<select id="sID" name="sID">
+			<option value="0">No, it's not part of a series</option>
 			<c:forEach var="s" items="${series}">
 				<option value="${s.id}">${s.name }</option>
 			</c:forEach>

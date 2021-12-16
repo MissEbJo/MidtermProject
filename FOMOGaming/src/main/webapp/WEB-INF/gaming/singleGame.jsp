@@ -47,10 +47,12 @@
 	</c:choose>
 
 		<P>
+		<c:if test="${loggedInUser != null && !loggedInUser.videoGames.contains(game)}">
 		<form action="addFavorite.do" method="post">
 		<input type="hidden" name="gameId" value="${game.id }"/>
 		<input type="submit"  name="favoriteButton" value="Add to favorites"/> 
 		</form>
+		</c:if>
 		</P>
 
 		<div class="container justify-content-center mt-5 border-left border-right">

@@ -17,7 +17,7 @@ Not only that, implementing our friend C.R.U.D, you'll be able to add and edit w
 Which brings us to our next point, A user login will be implemented to give proper permissions to proper users.
 For example, a user will only be able to add/remove from the database if they have already logged in.
 
-The way we will keep track of how what the users have done will be to create an account and have an transaction history
+The way we will keep track of how what the users have done will be to create an account, each data entry will be logged via the users profile's generated id.
 
 The project will have some other features as well, such as each entry having links to related games they might like, other related types of media(such as books or movies), and the functionality to create a list of favorites for each user.
 
@@ -44,9 +44,9 @@ Oh look at that, these line up with what you can do in the project. :D
 
 Personal goals
 
-Frederick -Writing test cases
-Ebony-Getting better at queries, Impls
-Ian-
-Chris -Writing test cases
+Frederick -Writing test cases, pathing,
+Ebony-Getting better at queries, Impls, Nav bar functions, pathing,
+Ian-Pathing and Login "access" to do functions,
+Chris -Writing JUnit test cases for CRUD, Pathing and Login "access" to do functions,
 
-Using and incorporating MySQL workbench to engineer a database.
+Using and incorporating MySQL workbench to engineer a database. Building out a webpage to convey the data and C.R.U.D functions. Also restricting a users ability to access functions expressed via a simple login feature.
