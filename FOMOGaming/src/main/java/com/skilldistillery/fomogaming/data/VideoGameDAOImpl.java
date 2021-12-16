@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.VideoGame;
+import com.skilldistillery.fomogaming.entities.Platform;
 
 @Repository
 @Transactional
@@ -124,19 +125,24 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	}
 
 	@Override
-	public VideoGame addVideoGame(VideoGame vg, int seriesId) {
+	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList) {
 		// TODO check series ID and add that to the videogame -- done?
-		VideoGame videogame = new VideoGame();
+//		v.setPlatforms(platDao.findPlatformByName(platform));
+		if (platformsList != null && platformsList.size() > 0) {
+			for (Platform platform : platformsList) {
+				//REMEMBER TO ADD 
+				platform.getVideoGames().add(vg);
+			}
+			vg.setPlatforms(platformsList);
+		}
 		if (seriesId > 0) {
 			GameSeries gs = em.find(GameSeries.class, seriesId);
-			videogame = vg;
-			videogame.setGameSeries(gs);
-			em.persist(videogame);
+			vg.setGameSeries(gs);
+			em.persist(vg);
 		} else {
-			videogame = vg;
-			em.persist(videogame);
+			em.persist(vg);
 		}
-		return videogame;
+		return vg;
 	}
 
 	@Override
