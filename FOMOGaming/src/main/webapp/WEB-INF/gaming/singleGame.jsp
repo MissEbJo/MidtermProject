@@ -47,7 +47,11 @@
 	</c:choose>
 
 		<P>
-		<button class="btn btn-secondary" type="submit" name="favoriteButton"> Add to Favorites</button>
+		<form action="addFavorite.do" method="post">
+		<input type="hidden" name="gameId" value="${game.id }"/>
+		<button class="btn btn-primary" type="submit"  name="favoriteButton"> Add to Favorites</button>
+		</form>
 		</P>
+		
 </body>
 </html>

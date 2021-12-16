@@ -92,4 +92,14 @@ public class UserDAOImpl implements UserDAO {
 		user.setEmail(u.getEmail());
 		return user;
 	}
+	
+	public VideoGame addFavoriteVideoGame(int Id, User user) {
+		VideoGame videogame = new VideoGame();
+		videogame = em.find(VideoGame.class, Id);
+		user.addVideoGame(videogame);
+		
+		
+		
+		return videogame;
+	}
 }

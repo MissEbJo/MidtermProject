@@ -1,5 +1,8 @@
 package com.skilldistillery.fomogaming.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.entities.User;
+import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Controller
 public class UserController {
@@ -90,6 +94,22 @@ public class UserController {
 		mv.addObject("user", user);
 		mv.setViewName("editProfile");
 		return mv;
+	}
+	
+	@RequestMapping(value = "addFavorite.do", method = RequestMethod.POST)
+	public String addToFavorites(HttpSession session, Integer gameId) { 
+		User user = new User();
+		user = (User) session.getAttribute("loggedInUser");
+		
+		List<VideoGame> favoriteGame = new ArrayList<>();
+		if(user != null) {
+			userDao.addFavoriteVideoGame(gameId, user);
+			
+		}
+		
+		user.setVideoGames(favoriteGame);
+		return "redirect: singleGame.do";
+	
 	}
 	
 }
