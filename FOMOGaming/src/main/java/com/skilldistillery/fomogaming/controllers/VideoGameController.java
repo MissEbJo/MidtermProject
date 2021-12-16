@@ -118,19 +118,6 @@ public class VideoGameController {
 
 	}
 	
-	@RequestMapping(value = "addFavorite.do", method = RequestMethod.POST, params = "favoriteButton")
-	public String addToFavorites(HttpSession session, VideoGame vg) { 
-		User user = new User();
-		user = (User) session.getAttribute("loggedInUser");
-		
-		List<VideoGame> favoriteGame = new ArrayList<>();
-		for (VideoGame videoGame : user.getVideoGames()) {
-			favoriteGame.add(videoGame);
-		}
-		favoriteGame.add(vg);
-		user.setVideoGames(favoriteGame);
-		return "redirect: singleGame.do";
 	
-	}
 
 }

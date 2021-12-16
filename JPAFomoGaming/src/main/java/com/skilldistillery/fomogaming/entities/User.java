@@ -1,5 +1,6 @@
 package com.skilldistillery.fomogaming.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -105,6 +106,20 @@ public class User {
 	public void setVideoGames(List<VideoGame> videoGames) {
 		this.videoGames = videoGames;
 	}
+	
+	public void addVideoGame(VideoGame videogame) {
+		if (videoGames == null) { videoGames = new ArrayList<>(); }
+		if ( ! videoGames.contains(videogame) ) {
+			videoGames.add(videogame);
+			videogame.addUser(this);
+		}
+	}
+	
+	public void removeVideoGame(VideoGame videogame) {
+		if ( videoGames != null && videoGames.contains(videogame)) {
+			videoGames.remove(videogame);
+			videogame.removeUser(this);
+		}	}
 
 	@Override
 	public int hashCode() {

@@ -1,6 +1,7 @@
 package com.skilldistillery.fomogaming.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -236,7 +237,22 @@ public class VideoGame {
 	public void setUserWhoAdded(User userWhoAdded) {
 		this.userWhoAdded = userWhoAdded;
 	}
+	
+	public void addUser(User user) {
+		if (users == null) { users = new ArrayList<>(); }
+		if ( ! users.contains(user) ) {
+			users.add(user);
+			user.addVideoGame(this);
+		}
 
+}
+	
+	public void removeUser(User user) {
+		if ( users != null && users.contains(user)) {
+			users.remove(user);
+			user.removeVideoGame(this);
+		}	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
