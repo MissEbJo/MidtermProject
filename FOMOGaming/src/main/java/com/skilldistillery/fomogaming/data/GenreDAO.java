@@ -10,5 +10,5 @@ public interface GenreDAO {
 	List<Genre> getAllGenres();
 
 	List<Genre> findGenreByName(String[] names);
-
+// hello :)
 }
