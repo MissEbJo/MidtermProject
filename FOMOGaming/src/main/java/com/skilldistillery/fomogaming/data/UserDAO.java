@@ -18,5 +18,8 @@ public interface UserDAO {
 	List<User> getAllUsers();
 
 	User removeUser(User user);
+
+	User updateUser(User u);
 	
+	public VideoGame addFavoriteVideoGame(int Id, int UserId);
 }

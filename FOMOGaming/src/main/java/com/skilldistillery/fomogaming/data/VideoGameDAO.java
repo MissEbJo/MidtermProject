@@ -36,4 +36,6 @@ public interface VideoGameDAO {
 
 	VideoGame addVideoGame(VideoGame vg, int seriesId);
 
+	List<VideoGame> randomGames(int n);
+
 }

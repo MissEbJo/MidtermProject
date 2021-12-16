@@ -8,27 +8,60 @@
 <title>Video Game</title>
 </head>
 <body>
-<jsp:include page="../bootstrapHead.jsp"/>
+	<jsp:include page="../bootstrapHead.jsp" />
 	<c:choose>
 		<c:when test="${ not empty game }">
-			<ul>
-			
-				<li>Game Name: ${game.name} </li>
-				<li>Description: ${game.description} </li>
-				<li>Release Year: ${game.releaseYear} </li>
-				<li>Single Player: ${game.singlePlayer} </li>
-				<li>Multi Player: ${game.multiPlayer}</li>
-				<li>Platform: ${game.crossPlatform} </li>
-				<li><img class="gameListImg" src="${game.imageUrl}" /></li>
-				<li>Genre(s): ${game.genres} </li>
-				<li><iframe src="${game.trailerUrl}"></iframe> </li> 
-				<li>Developer Name: ${game.developer.name} </li>
-				
-			</ul>
+			<img class="gameListImg" src="${game.imageUrl}" />
+			<div>
+					<h2>${game.name}</h2>
+				<ul>
+					<li><blockquote>Description: ${game.description}</blockquote></li>
+					<li>Release Year: ${game.releaseYear}</li>
+					<li>Platform(s): ${game.platforms }</li>
+					<li>Single Player: ${game.singlePlayer}</li>
+					<li>Multi-Player: ${game.multiPlayer}</li>
+					<li>Cross-Platform/Play: ${game.crossPlatform}</li>
+					<li>Genre(s): ${game.genres}</li>
+					<li>Developer Name: ${game.developer.name}</li>
+					<li>Game Series: ${game.gameSeries.name}</li>
 
+				</ul>
+			</div>
+			<iframe src="${game.trailerUrl}"></iframe>
+			<c:if test="${ ! empty game.tvShows }">
+			<br>
+			<h3>Related Media</h3>
+			<br>
+			TV Shows:<br>
+			${game.tvShows }<br>
+			</c:if>
+			<%-- ${game.tvShows.imbdUrl } --%>
+			<c:if test="${ ! empty game.boardGames }">
+			Board Games:<br>
+			${game.boardGames}<br>
+			</c:if>
+			Book(s):
+			${game.gameSeries.books }
+			
 		</c:when>
 	</c:choose>
 
+		<P>
+		<form action="addFavorite.do" method="post">
+		<input type="hidden" name="gameId" value="${game.id }"/>
+		<input type="submit"  name="favoriteButton" value="Add to favorites"/> 
+		</form>
+		</P>
+
+		<div class="container justify-content-center mt-5 border-left border-right">
+    <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a note" class="form-control addtxt"> </div>
+    <div class="d-flex justify-content-center py-2">
+        <div class="second py-2 px-2"> <span class="text1">Type your note, and hit enter to add it</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+            </div>
+        </div>
+    </div>
+    </div>
 
 </body>
 </html>
