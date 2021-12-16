@@ -93,9 +93,11 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 	
-	public VideoGame addFavoriteVideoGame(int Id, User user) {
+	public VideoGame addFavoriteVideoGame(int Id, int UserId) {
 		VideoGame videogame = new VideoGame();
 		videogame = em.find(VideoGame.class, Id);
+		User user = new User();
+		user = em.find(User.class, UserId);
 		user.addVideoGame(videogame);
 		
 		
