@@ -22,6 +22,17 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Override
+	public VideoGame searchForGameById(int id) {
+		VideoGame singleGame = new VideoGame();
+
+		String query = "SELECT v FROM VideoGame v WHERE id = :id";
+
+		singleGame = em.createQuery(query, VideoGame.class).setParameter("id", id).getSingleResult();
+
+		return singleGame;
+	}
 
 	@Override
 	public VideoGame searchForGame(String name) {

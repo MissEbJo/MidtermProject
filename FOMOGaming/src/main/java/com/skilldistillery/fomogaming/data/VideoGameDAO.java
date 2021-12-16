@@ -37,5 +37,6 @@ public interface VideoGameDAO {
 
 	List<VideoGame> randomGames(int n);
 
+	VideoGame searchForGameById(int id);
 
 }
