@@ -9,11 +9,12 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-
+	<br>
+<p>User Info:</p>
 	<br>${loggedInUser.username} 
 	<br>${loggedInUser.email}
 	<br>
-	
+	<p>Your favorite games:</p>
 	<c:if test="${! empty loggedInUser.videoGames}">
 			<c:forEach var="v" items="${loggedInUser.videoGames }">
 			<p>${v.name}</p>
