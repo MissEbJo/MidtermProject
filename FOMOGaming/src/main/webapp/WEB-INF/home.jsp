@@ -11,12 +11,9 @@
 <body>
 	<h1>Fear of Missing Out Gaming</h1>
 	<c:if test="${not empty loggedInUser }">
-	<h1>WE DID IT!!!</h1>
 	<h2>Welcome ${loggedInUser.username }</h2>
-		  <a href="profile.do">Profile</a>
-	<h4><a href="userLogout.do"><input type="button" value="Logout"></a></h4>
-	</c:if>
 	
+	</c:if>
 		<form action="GetGames.do" method="GET">
 		</form>
 		<c:if test="${not empty games }">
@@ -38,7 +35,7 @@
 				</tbody>
 			</table>
 		</c:if>
-		
+		<c:if test="${empty games }">Dang</c:if>
 		
 		<!-- <a href="AdvancedSearch.do">Advanced Search</a> <br>
 		<a href="AddNewGame.do">Add a new game</a> <br>

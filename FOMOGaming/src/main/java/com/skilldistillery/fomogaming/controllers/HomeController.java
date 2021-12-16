@@ -27,20 +27,10 @@ public class HomeController {
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
 		model.addAttribute("DEBUG", userDao.findByUsername("admin"));
-		List<VideoGame> genreList = gameDao.searchByGenre("action");
-		model.addAttribute("games", genreList);
+		List<VideoGame> randomList = gameDao.randomGames(5);
+		model.addAttribute("games", randomList);
 		return "home";
 	}
-
-//	@RequestMapping(path = "home.do")
-//	public ModelAndView someGamesByGenre() {
-//		ModelAndView mv = new ModelAndView();
-//		List<VideoGame> genreList = gameDao.searchByGenre("action");
-//		mv.addObject("games", genreList);
-//		mv.setViewName("gameList");
-//		return mv;
-//		
-//	}
 
 	@RequestMapping(path = "AddNewGame.do")
 	public ModelAndView addNewGame(HttpSession session) {
@@ -53,12 +43,6 @@ public class HomeController {
 		return mv;
 	}
 
-//	@RequestMapping(path = "AddNewUser.do")
-//	public String createAccount() {
-//		
-//		
-//		return "createAccount";
-//	}
 	@RequestMapping(path = "login.do")
 	public String login() {
 		return "login"; //TODO find if user created an acct... keep them logged in ;)
