@@ -49,7 +49,7 @@
 		<P>
 		<form action="addFavorite.do" method="post">
 		<input type="hidden" name="gameId" value="${game.id }"/>
-		<button class="btn btn-primary" type="submit"  name="favoriteButton"> Add to Favorites</button>
+		<input type="submit"  name="favoriteButton" value="Add to favorites"/> 
 		</form>
 		</P>
 

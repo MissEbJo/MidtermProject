@@ -100,10 +100,11 @@ public class UserController {
 	public String addToFavorites(HttpSession session, Integer gameId) { 
 		User user = new User();
 		user = (User) session.getAttribute("loggedInUser");
-		
+		int userId;
+		userId = user.getId();
 		List<VideoGame> favoriteGame = new ArrayList<>();
 		if(user != null) {
-			userDao.addFavoriteVideoGame(gameId, user);
+			userDao.addFavoriteVideoGame(gameId, userId);
 			
 		}
 		
