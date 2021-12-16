@@ -18,7 +18,7 @@
 	<p>Your favorite games:</p>
 	<c:if test="${! empty loggedInUser.videoGames}">
 			<c:forEach var="v" items="${loggedInUser.videoGames }">
-			<p>${v.name}</p>
+			<p>${v.name} <br> <img class="gameListImg" src="${v.imageUrl}" /></p>
 			</c:forEach></c:if>
 	<br><img class="profilePicture" src="${loggedInUser.profilePicture}" />
 	<br><a href="deleteProfile.do"><input type="button" value="Delete Profile" onclick="return confirm('Are you sure?')"></a>
