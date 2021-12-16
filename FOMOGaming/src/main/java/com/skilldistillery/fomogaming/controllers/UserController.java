@@ -1,8 +1,5 @@
 package com.skilldistillery.fomogaming.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.UserDAO;
+import com.skilldistillery.fomogaming.data.VideoGameDAO;
 import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
@@ -20,6 +18,9 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private VideoGameDAO videoGameDao;
 
 	@RequestMapping(path = "AddNewUser.do")
 	public String newUser() {
@@ -97,19 +98,23 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "addFavorite.do", method = RequestMethod.POST)
-	public String addToFavorites(HttpSession session, Integer gameId) { 
+	public ModelAndView addToFavorites(HttpSession session, Integer gameId) { 
+		ModelAndView mv = new ModelAndView();
 		User user = new User();
 		user = (User) session.getAttribute("loggedInUser");
 		int userId;
 		userId = user.getId();
-		List<VideoGame> favoriteGame = new ArrayList<>();
+		
 		if(user != null) {
 			userDao.addFavoriteVideoGame(gameId, userId);
 			
 		}
-		
-		user.setVideoGames(favoriteGame);
-		return "redirect: singleGame.do";
+		VideoGame videoGame = videoGameDao.searchForGameById(gameId);
+		mv.addObject("game", videoGame);
+		mv.setViewName("gaming/singleGame");
+		user.getVideoGames().add(videoGame);
+		session.setAttribute("loggedInUser", user);
+		return mv;
 	
 	}
 	
