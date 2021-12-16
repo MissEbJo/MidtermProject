@@ -3,6 +3,7 @@ package com.skilldistillery.fomogaming.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Genre {
 	@ManyToMany(mappedBy = "genres")
 	private List<GameSeries> seriesList;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "video_game_has_genre", joinColumns = @JoinColumn(name = "genre_id"), inverseJoinColumns = @JoinColumn(name = "video_game_id"))
 	private List<VideoGame> videoGames;
 

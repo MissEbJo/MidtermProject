@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -47,9 +47,17 @@
 		<input type="number" name="numberInSeries" step="1"/> 
 		<br>
 		What genre is this game:
-		<input type="checkbox" id="genre" name="action" value="action"/> 
-		<label for="action">Action</label>
-		<input type="checkbox" id="genre" name="rpg" value="rolePlayingGame"/> 
+		<c:forEach var="genre" items ="${genres }">
+		  <input type="checkbox" id="${genre.name }" name="genreNames" value="${genre.name }"/> 
+		  <label for="${genre.name }">${genre.name }</label>
+		</c:forEach>
+		
+		What Platform can you play your game on?
+		<c:forEach var="platform" items="${allPlatforms }">
+			<input name="platformNames" type="checkbox" id="${platform.systemName }"  value="${platform.systemName }"/> 
+			<label for="${platform.systemName }">${platform.systemName }</label>
+		</c:forEach>
+		<!-- <input type="checkbox" id="genre" name="rpg" value="rolePlayingGame"/> 
 		<label for="rpg">Role-Playing</label>
 		<input type="checkbox" id="genre" name="adv" value="adventure"/> 
 		<label for="adv">Adventure</label>
@@ -76,7 +84,7 @@
 		<input type="checkbox" id="genre" name="rts" value="realTimeStrategy"/> 
 		<label for="rts">Real-Time Strategy</label>
 		<input type="checkbox" id="genre" name="mmo" value="massivelyMultiplayerOnline"/> 
-		<label for="mmo">Massively Multiplayer Online</label>
+		<label for="mmo">Massively Multiplayer Online</label> -->
 		<br>
 	<%-- 	Is this game part of a series? (Select "No" if you need to add the series into the database)
 		<select id="gameSeries" name="gameSeries"> 
@@ -87,12 +95,6 @@
 		</select> 
 		<br> --%>
 		
-		What Platform can you play your game on?
-		<c:forEach var="platform" items="${allPlatforms }">
-			
-			<input name="platformNames" type="checkbox" id="${platform.systemName }"  value="${platform.systemName }"/> 
-			<label for="${platform.systemName }">${platform.systemName }</label>
-		</c:forEach>
 		<!-- <input type="checkbox" name="platforms" id="pc" value="pc"/> 
 		<label for="pc">PC</label>
 		<input type="checkbox" name="platforms" id="mac" value="mac"/> 
