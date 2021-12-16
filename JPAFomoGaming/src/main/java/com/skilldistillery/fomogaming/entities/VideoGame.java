@@ -56,7 +56,7 @@ public class VideoGame {
 	@ManyToMany(mappedBy = "videoGames")
 	private List<User> users;
 
-	@ManyToMany(mappedBy = "videoGames")
+	@ManyToMany(mappedBy = "videoGames", cascade=CascadeType.PERSIST)
 	private List<Genre> genres;
 
 	@ManyToOne

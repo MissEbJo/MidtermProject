@@ -1,6 +1,6 @@
 package com.skilldistillery.fomogaming.controllers;
 
-import java.util.ArrayList;
+import java.sql.Array;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.fomogaming.data.GenreDAO;
 import com.skilldistillery.fomogaming.data.PlatformDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
+import com.skilldistillery.fomogaming.entities.Genre;
 import com.skilldistillery.fomogaming.entities.Platform;
 import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
@@ -25,15 +27,23 @@ public class AddGameController {
 //	private GameSeriesDAO gsd;
 	@Autowired
 	private PlatformDAO platDao;
+	@Autowired
+	private GenreDAO genreDao;
 
 	@RequestMapping(path = "NewGameInfo.do", method = RequestMethod.GET)
-	public ModelAndView gameInfo(int sID, VideoGame vg, HttpSession session, String... platformNames) {
+	public ModelAndView gameInfo(int sID, VideoGame vg, String[] genreNames, HttpSession session, String... platformNames) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {
 			vg.setUserWhoAdded(user);
-			List<Platform> p = platDao.findPlatformByName(platformNames);
-			VideoGame v = gameDao.addVideoGame(vg, sID, p);
+			List<Platform> platforms = platDao.findPlatformByName(platformNames);
+			List<Genre> genres = genreDao.findGenreByName(genreNames);
+			VideoGame v = new VideoGame();
+			System.out.println("*****************************************");
+			System.out.println(genres.get(0).getName());
+			System.out.println("*****************************************");
+			v = gameDao.addVideoGame(vg, sID, platforms, genres);
+//			VideoGame v = gameDao.addVideoGame(vg, sID, p);
 			mv.addObject("game", v);
 			mv.setViewName("gaming/singleGame");
 		}return mv;
