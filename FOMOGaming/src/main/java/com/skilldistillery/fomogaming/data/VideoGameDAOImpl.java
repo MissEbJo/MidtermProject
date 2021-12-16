@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.skilldistillery.fomogaming.entities.GameSeries;
+import com.skilldistillery.fomogaming.entities.Genre;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 import com.skilldistillery.fomogaming.entities.Platform;
 
@@ -136,12 +137,16 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	}
 
 	@Override
-	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList) {
-		// TODO check series ID and add that to the videogame -- done?
-//		v.setPlatforms(platDao.findPlatformByName(platform));
+	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList, List<Genre> genres) {
+		
+		if (genres != null && genres.size() > 0) {
+			for (Genre genre : genres) {
+				genre.getVideoGames().add(vg);
+			}
+			vg.setGenres(genres);
+		}
 		if (platformsList != null && platformsList.size() > 0) {
 			for (Platform platform : platformsList) {
-				//REMEMBER TO ADD 
 				platform.getVideoGames().add(vg);
 			}
 			vg.setPlatforms(platformsList);

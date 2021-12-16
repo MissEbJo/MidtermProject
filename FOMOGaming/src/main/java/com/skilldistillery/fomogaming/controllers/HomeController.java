@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.fomogaming.data.GenreDAO;
 import com.skilldistillery.fomogaming.data.PlatformDAO;
 import com.skilldistillery.fomogaming.data.UserDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
@@ -21,11 +22,12 @@ public class HomeController {
 
 	@Autowired
 	private UserDAO userDao;
-
 	@Autowired
 	private VideoGameDAO gameDao;
 	@Autowired
 	private PlatformDAO platformDao;
+	@Autowired
+	private GenreDAO genreDao;
 
 	@RequestMapping(path = { "/", "home.do" })
 	public String home(Model model) {
@@ -41,6 +43,7 @@ public class HomeController {
 		User user = (User) session.getAttribute("loggedInUser");
 		mv.addObject("vg", new VideoGame());
 		if (user != null) {
+			mv.addObject("genres", genreDao.getAllGenres());
 			mv.addObject("series", gameDao.getAllSeries());
 			mv.addObject("allPlatforms", platformDao.getAllPlatforms());
 			mv.setViewName("addGame");

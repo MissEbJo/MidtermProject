@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.fomogaming.entities.GameSeries;
+import com.skilldistillery.fomogaming.entities.Genre;
 import com.skilldistillery.fomogaming.entities.Platform;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
@@ -33,7 +34,7 @@ public interface VideoGameDAO {
 
 	List<GameSeries> getAllSeries();
 
-	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList);
+	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList, List<Genre> genres);
 
 	List<VideoGame> randomGames(int n);
 
