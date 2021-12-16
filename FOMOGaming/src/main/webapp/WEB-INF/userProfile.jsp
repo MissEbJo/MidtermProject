@@ -11,8 +11,9 @@
 <body>
 	<br>
 <p>User Info:</p>
-	<br>${loggedInUser.username} 
-	<br>${loggedInUser.email}
+	${loggedInUser.username} 
+	${loggedInUser.email}
+	<br>
 	<br>
 	<p>Your favorite games:</p>
 	<c:if test="${! empty loggedInUser.videoGames}">
