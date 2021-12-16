@@ -1,5 +1,8 @@
 package com.skilldistillery.fomogaming.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,43 +11,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.fomogaming.data.PlatformDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
+import com.skilldistillery.fomogaming.entities.Platform;
+import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
-
-
 
 @Controller
 public class AddGameController {
-	
+
 	@Autowired
 	private VideoGameDAO gameDao;
-	
-	@RequestMapping(path="NewGameInfo.do", method=RequestMethod.GET)
-	public ModelAndView gameInfo(int gameSeries, VideoGame vg, HttpSession session) {
+//	private GameSeriesDAO gsd;
+	@Autowired
+	private PlatformDAO platDao;
+
+	@RequestMapping(path = "NewGameInfo.do", method = RequestMethod.GET)
+	public ModelAndView gameInfo(int sID, VideoGame vg, HttpSession session, String... platformNames) {
 		ModelAndView mv = new ModelAndView();
-//		User user = (User) session.getAttribute("loggedInUser");
-//		if (user != null) {
-//			vg.setUserWhoAdded(user);
-//			List<GameSeries> series = new ArrayList<>();
-//			series = gameDao.getAllSeries();
-//			mv.addObject("series", series);
-		gameDao.addVideoGame(vg, gameSeries);
-		mv.addObject("game", vg);
-		
-		if(gameSeries == 0) {
-			mv.setViewName("createGameSeries"); //CREATE game series
-		}
-		else {
-			
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
+			vg.setUserWhoAdded(user);
+			List<Platform> p = platDao.findPlatformByName(platformNames);
+			VideoGame v = gameDao.addVideoGame(vg, sID, p);
+			mv.addObject("game", v);
 			mv.setViewName("gaming/singleGame");
-		}
-//		} else {
-//			mv.setViewName("redirect:login.do");
-//		}
-		
-		return mv;
-	}
-	
+		}return mv;
+
 //	@RequestMapping(path="AddSeriesToGame.do")
 //	public ModelAndView commitSeriesToGame(int gameId, GameSeries gs, HttpSession session) {
 //		ModelAndView mv = new ModelAndView();
@@ -61,4 +54,4 @@ public class AddGameController {
 //		return mv;
 //	}
 
-}
+}}

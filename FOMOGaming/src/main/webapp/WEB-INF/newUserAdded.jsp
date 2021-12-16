@@ -8,6 +8,7 @@
 <title>New User Added</title>
 </head>
 <body>
+<jsp:include page="bootstrapHead.jsp" />
 
 <h3>User Profile successfully added!!!</h3>
 
