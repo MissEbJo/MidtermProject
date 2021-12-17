@@ -372,15 +372,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Comment`
+-- Table `comment`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Comment` ;
+DROP TABLE IF EXISTS `comment` ;
 
-CREATE TABLE IF NOT EXISTS `Comment` (
+CREATE TABLE IF NOT EXISTS `comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `comment` TEXT NULL,
   `video_game_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `timestamp` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Comment_video_game1_idx` (`video_game_id` ASC),
   INDEX `fk_Comment_user1_idx` (`user_id` ASC),
