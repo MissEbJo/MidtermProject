@@ -8,6 +8,7 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <form action="EditProfile.do" method="POST">
 		Edit Username
 	<input type="text" name="username" value="${user.username }" required/> 
@@ -28,5 +29,6 @@
 <input type="reset">
 
 </form>
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

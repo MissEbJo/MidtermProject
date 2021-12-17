@@ -7,9 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Media Tie Ins</title>
+	<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-	<jsp:include page="bootstrapHead.jsp" />
+<jsp:include page="navbar.jsp" />
 	<h1>Add Media to FOMOGaming</h1>
 
 	<h3>Add a Movie</h3>
@@ -140,6 +141,6 @@
 		<input type="submit" value="Submit TV Show"/>
 		</form>
 		
-		
+		<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

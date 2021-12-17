@@ -9,7 +9,7 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-	
+	<jsp:include page="navbar.jsp" />
 	<c:if test="${not empty loggedInUser }">
 	<h2>Welcome, ${loggedInUser.username }</h2>
 	

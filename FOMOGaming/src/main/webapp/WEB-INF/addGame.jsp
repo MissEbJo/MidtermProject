@@ -9,6 +9,7 @@
 <title>Add a Game</title>
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 	<h3>Add a game to FOMOGaming</h3>
 	<jsp:include page="bootstrapHead.jsp" />
 
@@ -96,6 +97,6 @@
 
 	</form>
 
-
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>
