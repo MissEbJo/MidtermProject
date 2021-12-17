@@ -176,7 +176,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	
 
 	@Override
-	public VideoGame updateVideoGame(VideoGame vg) {
+	public VideoGame updateVideoGame(VideoGame vg, GameSeries gs, List<Platform> platforms, List<Genre> genres) {
 		VideoGame videogame = em.find(VideoGame.class, vg.getId());
 //		videogame = vg; //call setters (not id)
 		videogame.setName(vg.getName());
@@ -187,7 +187,9 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		videogame.setMultiPlayer(vg.getMultiPlayer());
 		videogame.setImageUrl(vg.getImageUrl());
 		videogame.setNumberInSeries(vg.getNumberInSeries());
-		videogame.setGameSeries(vg.getGameSeries());
+		videogame.setGameSeries(gs);
+		vg.setPlatforms(platforms);
+		vg.setGenres(genres);
 		videogame.setDeveloper(vg.getDeveloper());
 
 		return videogame;

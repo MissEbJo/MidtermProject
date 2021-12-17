@@ -1,6 +1,5 @@
 package com.skilldistillery.fomogaming.data;
 
-import java.sql.Array;
 import java.util.List;
 
 import com.skilldistillery.fomogaming.entities.Genre;

@@ -20,55 +20,55 @@
 		<br>
 		<br>
 		Description:
-		<input type="text" name="description"/> 
+		<input type="text" name="description" /> 
 		<br>
 		<br>
 		Release Year:
-		<input type="number" name="releaseYear" min="1970" max="2021"/> 
+		<input type="number" name="releaseYear" min="1970" max="2021" /> 
 		<br>
 		<br>
 		Is this game:
 		<br> 
 		Single Player - 
 		<label for="sptrue">Yes</label>
-		<input type="radio" name="singlePlayer" id="sptrue" value="true"/> 
+		<input type="radio" name="singlePlayer" id="sptrue" value="true" /> 
 		<label for="spfalse">No</label>
-		<input type="radio" name="singlePlayer" id="spfalse" value="false"/> 
+		<input type="radio" name="singlePlayer" id="spfalse" value="false" /> 
 		<br>
 		Multiplayer - 
 		<label for="mptrue">Yes</label>
 		<input type="radio" name="multiPlayer" id="mptrue" value="true"/> 
 		<label for="mpfalse">No</label>
-		<input type="radio" name="multiPlayer" id="mpfalse" value="false"/> 
+		<input type="radio" name="multiPlayer" id="mpfalse" value="false" /> 
 		<br>
 		<br>
 		
 		Is this game cross-platform (can two players on two different systems play with each other)?: 
 		<br>
 		<label for="crpl1">Yes</label>
-		<input type="radio" name="crossPlatform" id="crpl1" value="true"/>
+		<input type="radio" name="crossPlatform" id="crpl1" value="true" />
 		<label for="crpl2">No</label>
 		<input type="radio" name="crossPlatform" id="crpl2" value="false"/>
 		<br>
 		<br>
 		
 		Cover Art URL: 
-		<input type="URL" name="imageUrl"/> 
+		<input type="URL" name="imageUrl" /> 
 		<br>
 		<br>
 		Game Trailer URL:
-		<input type="URL" name="trailerUrl"/> 
+		<input type="URL" name="trailerUrl" /> 
 		<br>
 		<br>
 		What number in the series is this game? 
 		(Leave blank if the game is not in a series): 
-		<input type="number" name="numberInSeries" step="1"/> 
+		<input type="number" name="numberInSeries" step="1" /> 
 		<br>
 		<br>
 		What genre is this game:
 		<br>
 		<c:forEach var="genre" items ="${genres }">
-		  <input type="checkbox" id="${genre.name }" name="genreNames" value="${genre.name }"/> 
+		  <input type="checkbox" id="${genre.name }" name="genreNames" value="${genre.name }" /> 
 		  <label for="${genre.name }">${genre.name }</label>
 		</c:forEach>
 		<br>
