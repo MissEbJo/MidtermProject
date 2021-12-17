@@ -43,8 +43,8 @@ public class AddMediaController {
 	}
 	
 	@RequestMapping(path = "AddBook.do", method = RequestMethod.GET)
-	public String addNewBook(Book book, int seriesId) {
-		bookDao.addBook(book, seriesId);
+	public String addNewBook(Book book, int SeriesId) {
+		bookDao.addBook(book, SeriesId);
 		
 		return "SuccessfulAdd";
 	}
