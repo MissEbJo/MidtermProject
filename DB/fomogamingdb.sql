@@ -110,11 +110,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `movie` ;
 
 CREATE TABLE IF NOT EXISTS `movie` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(100) NULL,
   `release_year` INT(4) NULL,
   `description` VARCHAR(500) NULL,
-  `series_id` INT NOT NULL,
+  `series_id` INT NULL,
   `imdb_url` VARCHAR(3000) NULL,
   `poster_image_url` VARCHAR(3000) NULL,
   `trailer_url` VARCHAR(3000) NULL,
@@ -482,7 +482,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `movie` (`id`, `title`, `release_year`, `description`, `series_id`, `imdb_url`, `poster_image_url`, `trailer_url`) VALUES (1, 'Warcraft', 2016, 'American action fantasy film based on the video game series of the same name.', 9, 'Warcraft - https://www.imdb.com/title/tt0803096/', NULL, NULL);
+INSERT INTO `movie` (`id`, `title`, `release_year`, `description`, `series_id`, `imdb_url`, `poster_image_url`, `trailer_url`) VALUES (1, 'Warcraft', 2016, 'American action fantasy film based on the video game series of the same name.', 9, 'https://www.imdb.com/title/tt0803096/', 'https://upload.wikimedia.org/wikipedia/en/5/56/Warcraft_Teaser_Poster.jpg', 'https://www.youtube.com/watch?v=2Rxoz13Bthc&ab_channel=Legendary');
 
 COMMIT;
 
