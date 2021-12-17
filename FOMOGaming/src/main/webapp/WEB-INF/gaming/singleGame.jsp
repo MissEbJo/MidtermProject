@@ -28,7 +28,6 @@
 
 				</ul>
 			</div>
-
 			<div>
 			<h4>Related Board Games:</h4>
 					<c:forEach var="b" items="${game.boardGames }">
