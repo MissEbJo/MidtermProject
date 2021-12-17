@@ -23,11 +23,23 @@
 					<li>Cross-Platform/Play: ${game.crossPlatform}</li>
 					<li>Genre(s): ${game.genres}</li>
 					<li>Developer Name: ${game.developer.name}</li>
-					<li>Game Series: ${game.gameSeries.name}</li>
+					
+					<li><form action="gameSeries.do"><input type="hidden" name="gameId" id="gameId" value="${game.id }">Game Series: ${game.gameSeries.name}<input type="submit" value="Go To Game Series"></form></li>
 
 				</ul>
 			</div>
+			<div>
+			<h4>Related Board Games:</h4>
+					<c:forEach var="b" items="${game.boardGames }">
+					<h5>${b.name }</h5>
+					Released: ${b.releaseYear }
+					<br>${b.description}
+					<br><a href="${b.websiteUrl }">Website</a>
+					<br><img src="${b.imageUrl }">
+					</c:forEach>
+			</div>
 			<iframe src="${game.trailerUrl}"></iframe>
+
 			<c:if test="${ ! empty game.tvShows }">
 			<br>
 			<h3>Related Media</h3>
@@ -36,15 +48,13 @@
 			${game.tvShows }<br>
 			</c:if>
 			<%-- ${game.tvShows.imbdUrl } --%>
-			<c:if test="${ ! empty game.boardGames }">
-			Board Games:<br>
-			${game.boardGames}<br>
-			</c:if>
 			Book(s):
 			${game.gameSeries.books }
 			
 		</c:when>
 	</c:choose>
+			<br>
+			<iframe src="${game.trailerUrl}"></iframe>
 
 		<P>
 		<c:if test="${loggedInUser != null && !loggedInUser.videoGames.contains(game)}">
@@ -55,15 +65,39 @@
 		</c:if>
 		</P>
 
-		<div class="container justify-content-center mt-5 border-left border-right">
-    <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a note" class="form-control addtxt"> </div>
-    <div class="d-flex justify-content-center py-2">
-        <div class="second py-2 px-2"> <span class="text1">Type your note, and hit enter to add it</span>
-            <div class="d-flex justify-content-between py-1 pt-2">
-            </div>
-        </div>
-    </div>
-    </div>
+		<p>
+		<c:forEach var="comment" items="${game.comments }">
+					<h5>${comment.text }</h5>
+					</c:forEach>
+					</p>
 
+		<section id="app">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="comment">
+        <p v-for="items in item" v-text="items"></p>
+          </div>
+          </div>
+          </div>
+      <div class="row">
+        <div class="col-6">
+      <form action="addComment.do" method="POST">
+      <input type="hidden" name="gameId" value="${game.id}">
+      <textarea type="text" class="input" name="comment" placeholder="Write a comment"></textarea>
+          <button class='primaryContained float-right' type="submit">Add Comment</button>
+       </form>
+        </div>
+      </div>
+    </div>
+  </section>
+	<c:if test="${not empty loggedInUser}">
+		<c:if test="${game.userWhoAdded == loggedInUser}">
+			<form action="editGame.do" method="post">
+				<input type="hidden" name="gameId" value="${game.id }" /> <input
+					type="submit" name="editGame" value="EditGame" />
+			</form>
+		</c:if>
+	</c:if>
 </body>
 </html>

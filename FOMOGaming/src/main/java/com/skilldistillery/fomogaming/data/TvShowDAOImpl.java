@@ -6,7 +6,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.TvShow;
+import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Repository
 @Transactional
@@ -16,14 +18,17 @@ public class TvShowDAOImpl implements TvShowDAO {
 	private EntityManager em;
 
 	@Override
-	public TvShow addTvShow(TvShow tvs) {
-		TvShow tvShow = new TvShow();
-		tvShow = tvs;
-		em.getTransaction().begin();
-		em.persist(tvShow);
-		em.flush();
-		em.getTransaction().commit();
-		return tvShow;
+	public TvShow addTvShow(TvShow tvs, int gameId, int seriesId) {
+		if (seriesId > 0) {
+			GameSeries gs = em.find(GameSeries.class, seriesId);
+			tvs.setGameSeries(gs);
+		}
+		if (gameId > 0) {
+			VideoGame vg = em.find(VideoGame.class, gameId);
+			tvs.setVideoGame(vg);
+		}
+		em.persist(tvs);
+		return tvs;
 	}
 
 	@Override

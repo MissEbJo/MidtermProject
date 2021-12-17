@@ -10,11 +10,12 @@ import com.skilldistillery.fomogaming.entities.GameSeries;
 
 @Repository
 @Transactional
-public class GameSeriesDAOImpl  {
+public class GameSeriesDAOImpl implements GameSeriesDAO {
 
 	@PersistenceContext
 	private EntityManager em;
 
+	@Override
 	public GameSeries findSeriesById(int Id) {
 		
 		GameSeries gs = new GameSeries();

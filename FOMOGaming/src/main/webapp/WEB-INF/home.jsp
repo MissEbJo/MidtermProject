@@ -9,7 +9,7 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-	<h1>Fear of Missing Out Gaming</h1>
+	
 	<c:if test="${not empty loggedInUser }">
 	<h2>Welcome, ${loggedInUser.username }</h2>
 	
@@ -20,17 +20,17 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Game Name</th>
+						<th><h4>Game Name</h4></th>
 						<th>Game Description</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="g" items="${games}">
 						<tr>
-							<td>${g.name}</td>
-							<td>${g.description}</td>
+							<td><h5>${g.name}</h5></td>
+							<td><p><br><br>${g.description}</p></td>
 							<%-- <td><form action="GetByName.do"><input type="image" src="${g.imageUrl}" id="${g.name }" name="${g.name }" value="${g.name }"></form></td> --%>
-							<td><img class="gameListImg" src="${g.imageUrl}"/></td>
+							<td><img class="gameListImg" src="${g.imageUrl}"/><br><br></td>
 						</tr>
 					</c:forEach>
 				</tbody>

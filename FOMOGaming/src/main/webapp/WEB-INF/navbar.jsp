@@ -12,24 +12,25 @@
       <a class="nav-item nav-link active" href="home.do">Home <span class="sr-only"></span></a>
 
       
-      <a class="nav-item nav-link"></a><form action="GetByName.do" method="GET">
-		<input type="text" name="name" placeholder="Game Name"/> 
-		<input type="submit" value="Search" />
-		</form> <!--change functionality to have text input search bar -->
       
       <a class="nav-item nav-link" href="AdvancedSearch.do">Advanced Search</a>
-      <a class="nav-item nav-link" href="about.do">About this website</a>
 
      <!--  <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
      <c:if test="${not empty loggedInUser }">
      <a class="nav-item nav-link" href="userLogout.do">Logout</a>
      <a class="nav-item nav-link" href="profile.do">Profile</a>
      <a class="nav-item nav-link" href="AddNewGame.do">Add a new game</a> <br>
+     <a class="nav-item nav-link" href="AddNewMedia.do">Add a new media tie-in</a> <br>
      </c:if>
      <c:if test="${empty loggedInUser }">
      <a class="nav-item nav-link" href="login.do">Login</a>
      <a class="nav-item nav-link" href="AddNewUser.do">Create Account</a><br>
      </c:if>
+      <a class="nav-item nav-link"></a><form action="GetByName.do" method="GET">
+		<input type="text" name="name" placeholder="Game Name"/> 
+		<input type="submit" value="Search" />
+		</form> <!--change functionality to have text input search bar -->
+      <a class="nav-item nav-link" href="about.do">About Cryptic Slime</a>
      
     </div>
   </div>

@@ -1,19 +1,17 @@
 package com.skilldistillery.fomogaming.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
+import com.skilldistillery.fomogaming.entities.Comment;
 import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
@@ -41,6 +39,18 @@ public class VideoGameController {
 		mv.setViewName("gaming/singleGame");
 		return mv;
 	}
+	
+	@RequestMapping(path = "GetById.do", method = RequestMethod.GET)
+	public ModelAndView getById(Integer gameId) {
+		ModelAndView mv = new ModelAndView();
+
+		// if one game, redirect to singleGame jsp
+		VideoGame vg = gameDao.searchForGameById(gameId);
+
+		mv.addObject("game", vg);
+		mv.setViewName("gaming/singleGame");
+		return mv;
+	}
 
 	@RequestMapping(path = "GetByName.do", method = RequestMethod.GET)
 	public ModelAndView getByName(String name) {
@@ -51,9 +61,11 @@ public class VideoGameController {
 		if (list.size() > 1) {
 			mv.addObject("games", list);
 			mv.setViewName("gameList");
-		} else {
+		} else  if (list.size() == 1){
 			mv.addObject("game", list.get(0));
 			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
 		}
 		return mv;
 	}
@@ -62,8 +74,15 @@ public class VideoGameController {
 	public ModelAndView getByDescription(String description) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByKeyword(description);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -72,8 +91,15 @@ public class VideoGameController {
 	public ModelAndView getByReleaseYear(Integer releaseYear) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByReleaseYear(releaseYear);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -82,8 +108,15 @@ public class VideoGameController {
 	public ModelAndView getByPlatform(String platform) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByPlatform(platform);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -92,8 +125,15 @@ public class VideoGameController {
 	public ModelAndView getByDeveloper(String developer) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByDeveloper(developer);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -102,8 +142,15 @@ public class VideoGameController {
 	public ModelAndView getBySeries(String series) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByGameSeries(series);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -111,13 +158,33 @@ public class VideoGameController {
 	@RequestMapping(path = "GetGames.do", method = RequestMethod.GET)
 	public ModelAndView getGames(String genre) {
 		ModelAndView mv = new ModelAndView();
-		List<VideoGame> genreList = gameDao.searchByGenre(genre);
-		mv.addObject("games", genreList);
-		mv.setViewName("gameList");
+		List<VideoGame> list = gameDao.searchByGenre(genre);
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
 	
+	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
+	public ModelAndView addComment(String comment, Integer gameId, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		Comment newComment = new Comment();
+		newComment.setText(comment);
+		newComment.setUser(user);
+		ModelAndView mv = new ModelAndView(); 
+		gameDao.addComment(newComment, gameId);
+		mv.setViewName("redirect:GetById.do?gameId=" + gameId);
+		
+		
+		return mv;
+	}
 	
 
 }

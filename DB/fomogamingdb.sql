@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `game_series` ;
 
 CREATE TABLE IF NOT EXISTS `game_series` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `image_url` VARCHAR(3000) NULL,
   `description` TEXT NULL,
@@ -88,7 +88,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `book` ;
 
 CREATE TABLE IF NOT EXISTS `book` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(100) NOT NULL,
   `description` VARCHAR(500) NULL,
   `release_year` INT(4) NULL,
@@ -110,11 +110,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `movie` ;
 
 CREATE TABLE IF NOT EXISTS `movie` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(100) NULL,
   `release_year` INT(4) NULL,
   `description` VARCHAR(500) NULL,
-  `series_id` INT NOT NULL,
+  `series_id` INT NULL,
   `imdb_url` VARCHAR(3000) NULL,
   `poster_image_url` VARCHAR(3000) NULL,
   `trailer_url` VARCHAR(3000) NULL,
@@ -180,12 +180,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `tv_show` ;
 
 CREATE TABLE IF NOT EXISTS `tv_show` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(100) NULL,
   `number_seasons` INT NULL,
   `release_year` INT(4) NULL,
   `description` VARCHAR(500) NULL,
-  `video_game_id` INT NOT NULL,
+  `video_game_id` INT NULL,
   `series_id` INT NULL,
   `imdb_url` VARCHAR(3000) NULL,
   `trailer_url` VARCHAR(3000) NULL,
@@ -212,7 +212,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `board_game` ;
 
 CREATE TABLE IF NOT EXISTS `board_game` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `release_year` INT(4) NULL,
   `description` VARCHAR(2000) NULL,
@@ -315,7 +315,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `streaming_service` ;
 
 CREATE TABLE IF NOT EXISTS `streaming_service` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NULL,
   `image_url` VARCHAR(3000) NULL,
   `website_url` VARCHAR(3000) NULL,
@@ -366,6 +366,33 @@ CREATE TABLE IF NOT EXISTS `movie_has_streaming_service` (
   CONSTRAINT `fk_movie_has_streaming_service_streaming_service1`
     FOREIGN KEY (`streaming_service_id`)
     REFERENCES `streaming_service` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `comment` ;
+
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `comment` TEXT NULL,
+  `video_game_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `timestamp` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Comment_video_game1_idx` (`video_game_id` ASC),
+  INDEX `fk_Comment_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_Comment_video_game1`
+    FOREIGN KEY (`video_game_id`)
+    REFERENCES `video_game` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -482,7 +509,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `movie` (`id`, `title`, `release_year`, `description`, `series_id`, `imdb_url`, `poster_image_url`, `trailer_url`) VALUES (1, 'Warcraft', 2016, 'American action fantasy film based on the video game series of the same name.', 9, 'Warcraft - https://www.imdb.com/title/tt0803096/', NULL, NULL);
+INSERT INTO `movie` (`id`, `title`, `release_year`, `description`, `series_id`, `imdb_url`, `poster_image_url`, `trailer_url`) VALUES (1, 'Warcraft', 2016, 'American action fantasy film based on the video game series of the same name.', 9, 'https://www.imdb.com/title/tt0803096/', 'https://upload.wikimedia.org/wikipedia/en/5/56/Warcraft_Teaser_Poster.jpg', 'https://www.youtube.com/watch?v=2Rxoz13Bthc&ab_channel=Legendary');
 
 COMMIT;
 
@@ -543,7 +570,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, 8, 'https://www.imdb.com/title/tt5180504/?ref_=nv_sr_srsg_0', NULL, NULL);
+INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, 8, 'https://www.imdb.com/title/tt5180504/?ref_=nv_sr_srsg_0', 'https://www.youtube.com/watch?v=ndl1W4ltcmg&ab_channel=TheWitcherNetflix', 'https://upload.wikimedia.org/wikipedia/en/2/23/The_Witcher_Title_Card.png');
 
 COMMIT;
 
@@ -553,7 +580,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `board_game` (`id`, `name`, `release_year`, `description`, `gameplay`, `video_game_id`, `developer_id`, `image_url`, `website_url`) VALUES (1, 'Dark Souls: The Board Game', 2017, 'Players assume the game role of characters based on classes from the Dark Souls video game series and fight monsters and seek treasure.', NULL, 22, 20, NULL, NULL);
+INSERT INTO `board_game` (`id`, `name`, `release_year`, `description`, `gameplay`, `video_game_id`, `developer_id`, `image_url`, `website_url`) VALUES (1, 'Dark Souls: The Board Game', 2017, 'Players assume the game role of characters based on classes from the Dark Souls video game series and fight monsters and seek treasure.', NULL, 22, 20, 'https://cdn.shopify.com/s/files/1/0602/0156/6449/products/dark-souls-the-board-game-boxpng_800x.png?v=1633471958', 'https://steamforged.com/products/dark-souls-the-board-game');
 
 COMMIT;
 
@@ -644,6 +671,10 @@ INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (2
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (21, 2);
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (21, 4);
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (21, 5);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 1);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 2);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 4);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 5);
 
 COMMIT;
 

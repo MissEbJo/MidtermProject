@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.skilldistillery.fomogaming.entities.Book;
+import com.skilldistillery.fomogaming.entities.GameSeries;
 
 @Repository
 @Transactional
@@ -16,14 +17,13 @@ public class BookDAOImpl implements BookDAO{
 	private EntityManager em;
 
 	@Override
-	public Book addBook(Book bk) {
-		Book book = new Book();
-		book = bk;
-		em.getTransaction().begin();
-		em.persist(book);
-		em.flush();
-		em.getTransaction().commit();
-		return book;
+	public Book addBook(Book bk, int seriesId) {
+		if (seriesId > 0) {
+			GameSeries gs = em.find(GameSeries.class, seriesId);
+			bk.setGameSeriesId(gs);
+		}
+		em.persist(bk);
+		return bk;
 	}
 	
 	@Override

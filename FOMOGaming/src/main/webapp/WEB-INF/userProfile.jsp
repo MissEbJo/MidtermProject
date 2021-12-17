@@ -11,6 +11,7 @@
 <body>
 	<br>
 <p>User Info:</p>
+	<br><img class="profilePicture" src="${loggedInUser.profilePicture}" />
 	${loggedInUser.username} 
 	${loggedInUser.email}
 	<br>
@@ -18,9 +19,8 @@
 	<p>Your favorite games:</p>
 	<c:if test="${! empty loggedInUser.videoGames}">
 			<c:forEach var="v" items="${loggedInUser.videoGames }">
-			<p>${v.name}</p>
+			<p>${v.name} <br> <img class="gameListImg" src="${v.imageUrl}" /></p>
 			</c:forEach></c:if>
-	<br><img class="profilePicture" src="${loggedInUser.profilePicture}" />
 	<br><a href="deleteProfile.do"><input type="button" value="Delete Profile" onclick="return confirm('Are you sure?')"></a>
 	<br><a href="beginEditProfile.do"><input type="button" value="Edit Profile"></a>
 	<br><a href="home.do"><input type="button" value="Home"></a>

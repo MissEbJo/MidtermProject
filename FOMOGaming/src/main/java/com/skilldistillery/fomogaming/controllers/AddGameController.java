@@ -1,6 +1,5 @@
 package com.skilldistillery.fomogaming.controllers;
 
-import java.sql.Array;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.fomogaming.data.GameSeriesDAO;
 import com.skilldistillery.fomogaming.data.GenreDAO;
 import com.skilldistillery.fomogaming.data.PlatformDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
+import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.Genre;
 import com.skilldistillery.fomogaming.entities.Platform;
 import com.skilldistillery.fomogaming.entities.User;
@@ -24,14 +25,16 @@ public class AddGameController {
 
 	@Autowired
 	private VideoGameDAO gameDao;
-//	private GameSeriesDAO gsd;
 	@Autowired
 	private PlatformDAO platDao;
 	@Autowired
 	private GenreDAO genreDao;
+	@Autowired
+	private GameSeriesDAO seriesDao;
 
 	@RequestMapping(path = "NewGameInfo.do", method = RequestMethod.GET)
-	public ModelAndView gameInfo(int sID, VideoGame vg, String[] genreNames, HttpSession session, String... platformNames) {
+	public ModelAndView gameInfo(int sID, VideoGame vg, String[] genreNames, HttpSession session,
+			String... platformNames) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {
@@ -39,29 +42,47 @@ public class AddGameController {
 			List<Platform> platforms = platDao.findPlatformByName(platformNames);
 			List<Genre> genres = genreDao.findGenreByName(genreNames);
 			VideoGame v = new VideoGame();
-			System.out.println("*****************************************");
-			System.out.println(genres.get(0).getName());
-			System.out.println("*****************************************");
 			v = gameDao.addVideoGame(vg, sID, platforms, genres);
-//			VideoGame v = gameDao.addVideoGame(vg, sID, p);
-			mv.addObject("game", v);
-			mv.setViewName("gaming/singleGame");
-		}return mv;
+			if (v == null) {
+				mv.setViewName("error");
+			} else {
+				mv.addObject("game", v);
+				mv.setViewName("gaming/singleGame");
+			}
+		}
+		return mv;
+	}
 
-//	@RequestMapping(path="AddSeriesToGame.do")
-//	public ModelAndView commitSeriesToGame(int gameId, GameSeries gs, HttpSession session) {
-//		ModelAndView mv = new ModelAndView();
-////		create new game series in DAO and assign it to game attached to gameId
-//		if (s != null && GameSeries.class == s.getClass()) {
-//			vg.setGameSeries(s);
-//			gameDao.updateVideoGame(vg);
-//			mv.setViewName;
-//		}
-//		else if (s == "newSeries") {
-//		mv.setViewName("addNewSeries");
-//		}
-//		
-//		return mv;
-//	}
+	@RequestMapping(path = "editGameInfo.do", method = RequestMethod.GET)
+	public ModelAndView editGameInfo(int sID, VideoGame vg, String[] genreNames, HttpSession session,
+			String... platformNames) {
+		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
+			List<Platform> platforms = platDao.findPlatformByName(platformNames);
+			List<Genre> genres = genreDao.findGenreByName(genreNames);
+			GameSeries gs = seriesDao.findSeriesById(sID);
+			VideoGame v = gameDao.updateVideoGame(vg, gs, platforms, genres);
+			if (v == null) {
+				mv.setViewName("error");
+			} else {
+				mv.addObject("game", v);
+				mv.setViewName("gaming/singleGame");
+			}
+		}
+		return mv;
+	}
 
-}}
+	@RequestMapping(path = "editGame.do", method = RequestMethod.POST)
+	public ModelAndView editGame(int gameId) {
+		ModelAndView mv = new ModelAndView();
+		VideoGame videoGame = gameDao.searchForGameById(gameId);
+		mv.addObject("series", gameDao.getAllSeries());
+		mv.addObject("allPlatforms", platDao.getAllPlatforms());
+		mv.addObject("genres", genreDao.getAllGenres());
+		mv.addObject("game", videoGame);
+		mv.setViewName("editGame");
+		return mv;
+	}
+
+}

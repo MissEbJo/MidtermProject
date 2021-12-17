@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.fomogaming.entities.BoardGame;
+import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Transactional
 @Service
@@ -16,14 +17,15 @@ public class BoardGameDAOImpl implements BoardGameDAO {
 	private EntityManager em;
 
 	@Override
-	public BoardGame addBoardGame(BoardGame bg) {
-		BoardGame boardGame = new BoardGame();
-		boardGame = bg;
-		em.getTransaction().begin();
-		em.persist(boardGame);
-		em.flush();
-		em.getTransaction().commit();
-		return boardGame;
+	public BoardGame addBoardGame(BoardGame bg, int gameId) {
+//		BoardGame boardGame = new BoardGame();
+//		boardGame = bg;
+		if (gameId > 0) {
+			VideoGame gs = em.find(VideoGame.class, gameId);
+			bg.setVideoGame(gs);;
+		}
+		em.persist(bg);
+		return bg;
 	}
 
 	@Override
