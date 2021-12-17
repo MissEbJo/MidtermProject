@@ -51,9 +51,11 @@ public class VideoGameController {
 		if (list.size() > 1) {
 			mv.addObject("games", list);
 			mv.setViewName("gameList");
-		} else {
+		} else  if (list.size() == 1){
 			mv.addObject("game", list.get(0));
 			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
 		}
 		return mv;
 	}
@@ -62,8 +64,15 @@ public class VideoGameController {
 	public ModelAndView getByDescription(String description) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByKeyword(description);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -72,8 +81,15 @@ public class VideoGameController {
 	public ModelAndView getByReleaseYear(Integer releaseYear) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByReleaseYear(releaseYear);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -82,8 +98,15 @@ public class VideoGameController {
 	public ModelAndView getByPlatform(String platform) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByPlatform(platform);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -92,8 +115,15 @@ public class VideoGameController {
 	public ModelAndView getByDeveloper(String developer) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByDeveloper(developer);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -102,8 +132,15 @@ public class VideoGameController {
 	public ModelAndView getBySeries(String series) {
 		ModelAndView mv = new ModelAndView();
 		List<VideoGame> list = gameDao.searchByGameSeries(series);
-		mv.addObject("games", list);
-		mv.setViewName("gameList");
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
@@ -111,9 +148,16 @@ public class VideoGameController {
 	@RequestMapping(path = "GetGames.do", method = RequestMethod.GET)
 	public ModelAndView getGames(String genre) {
 		ModelAndView mv = new ModelAndView();
-		List<VideoGame> genreList = gameDao.searchByGenre(genre);
-		mv.addObject("games", genreList);
-		mv.setViewName("gameList");
+		List<VideoGame> list = gameDao.searchByGenre(genre);
+		if (list.size() > 1) {
+			mv.addObject("games", list);
+			mv.setViewName("gameList");
+		} else  if (list.size() == 1){
+			mv.addObject("game", list.get(0));
+			mv.setViewName("gaming/singleGame");
+		} else {
+			mv.setViewName("error");
+		}
 		return mv;
 
 	}
