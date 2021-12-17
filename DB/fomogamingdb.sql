@@ -570,7 +570,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, 8, 'https://www.imdb.com/title/tt5180504/?ref_=nv_sr_srsg_0', 'https://www.youtube.com/embed/ndl1W4ltcmg', 'https://upload.wikimedia.org/wikipedia/en/2/23/The_Witcher_Title_Card.png');
+INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 2, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, 8, 'https://www.imdb.com/title/tt5180504/?ref_=nv_sr_srsg_0', 'https://www.youtube.com/embed/ndl1W4ltcmg', 'https://upload.wikimedia.org/wikipedia/en/2/23/The_Witcher_Title_Card.png');
 
 COMMIT;
 
