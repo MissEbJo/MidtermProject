@@ -65,32 +65,6 @@
 		</c:if>
 		</P>
 
-		<p>
-		<c:forEach var="comment" items="${game.comments }">
-					<h5>${comment.text }</h5>
-					</c:forEach>
-					</p>
-
-		<section id="app">
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <div class="comment">
-        <p v-for="items in item" v-text="items"></p>
-          </div>
-          </div>
-          </div>
-      <div class="row">
-        <div class="col-6">
-      <form action="addComment.do" method="POST">
-      <input type="hidden" name="gameId" value="${game.id}">
-      <textarea type="text" class="input" name="comment" placeholder="Write a comment"></textarea>
-          <button class='primaryContained float-right' type="submit">Add Comment</button>
-       </form>
-        </div>
-      </div>
-    </div>
-  </section>
 	<c:if test="${not empty loggedInUser}">
 		<c:if test="${game.userWhoAdded == loggedInUser}">
 			<form action="editGame.do" method="post">
@@ -100,5 +74,34 @@
 		</c:if>
 	</c:if>
 
+		<p>
+		<c:forEach var="comment" items="${game.comments }">
+					<h5>${comment.text }</h5>
+					</c:forEach>
+					</p>
+
+		<section id="app">
+    <div class="container">
+      <div class="row">
+    <!--   <div class="col-6"> --> 
+          <div class="comment">
+        <p v-for="items in item" v-text="items"></p>
+          </div>
+          </div>
+          </div>
+      <div class="row">
+  <!--      <div class="col-6">   --> 
+      <form action="addComment.do" method="POST">
+      <input type="hidden" name="gameId" value="${game.id}">
+      <textarea type="text" class="input" name="comment" placeholder="Write a comment"></textarea>
+          <button class='primaryContained float-right' type="submit">Add Comment</button>
+          <br>
+          <br>
+          <br>
+       </form>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
