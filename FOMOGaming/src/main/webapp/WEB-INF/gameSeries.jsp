@@ -20,6 +20,18 @@
 				</section>
 
 				<c:choose>
+					<c:when test="${not empty gameSeries.videoGames}">
+						<br><br>
+						<h3>Games</h3>
+						<c:forEach var="g" items="${gameSeries.videoGames }">
+						<br>
+						<h4>Title: ${g.name }</h4> Released: ${g.releaseYear }<br>
+								${g.description }<br>
+								<img src="${g.imageUrl }">
+								<br>
+								
+						</c:forEach>
+					</c:when>
 					<c:when test="${not empty gameSeries.movies }">
 						<br>
 						<br>
