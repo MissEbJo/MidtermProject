@@ -378,7 +378,7 @@ DROP TABLE IF EXISTS `Comment` ;
 
 CREATE TABLE IF NOT EXISTS `Comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `comment` VARCHAR(45) NULL,
+  `comment` TEXT NULL,
   `video_game_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
