@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.BoardGameDAO;
+import com.skilldistillery.fomogaming.data.BookDAO;
 import com.skilldistillery.fomogaming.data.GenreDAO;
 import com.skilldistillery.fomogaming.data.MovieDAO;
 import com.skilldistillery.fomogaming.data.PlatformDAO;
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
 import com.skilldistillery.fomogaming.entities.BoardGame;
+import com.skilldistillery.fomogaming.entities.Book;
 import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.Movie;
 import com.skilldistillery.fomogaming.entities.VideoGame;
@@ -29,6 +31,8 @@ public class AddMediaController {
 	private GenreDAO genreDao;
 	@Autowired
 	private BoardGameDAO bgDao;
+	@Autowired
+	private BookDAO bookDao;
 
 	
 	@RequestMapping(path = "AddMovie.do", method = RequestMethod.GET)
@@ -37,6 +41,14 @@ public class AddMediaController {
 		
 		return "SuccessfulAdd";
 	}
+	
+	@RequestMapping(path = "AddBook.do", method = RequestMethod.GET)
+	public String addNewBook(Book book, int seriesId) {
+		bookDao.addBook(book, seriesId);
+		
+		return "SuccessfulAdd";
+	}
+	
 	@RequestMapping(path = "AddBoardGame.do", method = RequestMethod.GET)
 	public String addNewBoardGame(BoardGame boardgame, int gameId) {
 		bgDao.addBoardGame(boardgame, gameId);
