@@ -54,7 +54,7 @@
 		</c:when>
 	</c:choose>
 			<br>
-			<iframe src="${game.trailerUrl}"></iframe>
+			<iframe src="${game.trailerUrl}"   allowfullscreen></iframe>
 
 		<P>
 		<c:if test="${loggedInUser != null && !loggedInUser.videoGames.contains(game)}">
