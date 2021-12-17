@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Login Page</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <h3>If you have an account, please login below:</h3>
-<jsp:include page="bootstrapHead.jsp" />
 
 <form action="userLogin.do" method="GET">
  User Name: <input type="text" name="username" required /> <br>
@@ -18,6 +19,6 @@
  <a href="home.do"><input type="button" value="Home"> </a>
  
  </form>
-
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

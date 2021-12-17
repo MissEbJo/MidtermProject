@@ -7,9 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Game Series</title>
+	<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-	<jsp:include page="bootstrapHead.jsp" />
+<jsp:include page="navbar.jsp" />
 	<c:choose>
 		<c:when test="${not empty gameSeries }">
 			<div class="gameSeriesLayout">
@@ -93,5 +94,6 @@
 			</div>
 		</c:when>
 	</c:choose>
+	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>
