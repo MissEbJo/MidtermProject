@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.skilldistillery.fomogaming.entities.Comment;
 import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.Genre;
 import com.skilldistillery.fomogaming.entities.Platform;
@@ -135,7 +136,6 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 
 	@Override
 	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList, List<Genre> genres) {
-		// check to make sure there is no other game with the same name
 		String query = "SELECT g FROM VideoGame g";
 		List<VideoGame> allGames = em.createQuery(query, VideoGame.class).getResultList();
 		for (VideoGame videoGame : allGames) {
@@ -144,7 +144,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 				return vg;
 			}
 		}
-		
+
 		if (genres != null && genres.size() > 0) {
 			for (Genre genre : genres) {
 				genre.getVideoGames().add(vg);
@@ -160,25 +160,16 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		if (seriesId > 0) {
 			GameSeries gs = em.find(GameSeries.class, seriesId);
 			vg.setGameSeries(gs);
-//			String query = "SELECT g FROM VideoGame g";
-//			List<VideoGame> allGames = em.createQuery(query, VideoGame.class).getResultList();
-//			for (VideoGame videoGame : allGames) {
-//				if (vg.getName().equals(videoGame.getName())) {
-//					vg = null;
-//				}
-//			}
 			em.persist(vg);
 		} else {
-				em.persist(vg);
-			}
-		return vg;
+			em.persist(vg);
 		}
-	
+		return vg;
+	}
 
 	@Override
-	public VideoGame updateVideoGame(VideoGame vg) {
+	public VideoGame updateVideoGame(VideoGame vg, GameSeries gs, List<Platform> platforms, List<Genre> genres) {
 		VideoGame videogame = em.find(VideoGame.class, vg.getId());
-//		videogame = vg; //call setters (not id)
 		videogame.setName(vg.getName());
 		videogame.setDescription(vg.getDescription());
 		videogame.setCrossPlatform(vg.isCrossPlatform());
@@ -187,7 +178,9 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		videogame.setMultiPlayer(vg.getMultiPlayer());
 		videogame.setImageUrl(vg.getImageUrl());
 		videogame.setNumberInSeries(vg.getNumberInSeries());
-		videogame.setGameSeries(vg.getGameSeries());
+		videogame.setGameSeries(gs);
+		vg.setPlatforms(platforms);
+		vg.setGenres(genres);
 		videogame.setDeveloper(vg.getDeveloper());
 
 		return videogame;
@@ -225,7 +218,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		}
 		return r;
 	}
-	
+
 	@Override
 	public List<VideoGame> getAllGames() {
 		String query = "SELECT g FROM VideoGame g";
@@ -233,4 +226,17 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		return allGames;
 	}
 
+	@Override
+	public Comment addComment(Comment comment, int gameId) {
+		VideoGame g = em.find(VideoGame.class, gameId);
+		if (g != null) {
+			comment.setVideoGame(g);
+			em.persist(comment);
+
+			return comment;
+		} else {
+			return null;
+		}
+
+	}
 }

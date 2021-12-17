@@ -122,7 +122,7 @@ public class GameSeries {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Description, Id, imageUrl, name);
+		return Objects.hash(Id);
 	}
 
 	@Override
@@ -134,8 +134,7 @@ public class GameSeries {
 		if (getClass() != obj.getClass())
 			return false;
 		GameSeries other = (GameSeries) obj;
-		return Objects.equals(Description, other.Description) && Id == other.Id
-				&& Objects.equals(imageUrl, other.imageUrl) && Objects.equals(name, other.name);
+		return Id == other.Id;
 	}
 
 	@Override
