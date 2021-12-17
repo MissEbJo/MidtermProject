@@ -1,10 +1,7 @@
 package com.skilldistillery.fomogaming.data;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,8 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.Genre;
-import com.skilldistillery.fomogaming.entities.VideoGame;
 import com.skilldistillery.fomogaming.entities.Platform;
+import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Repository
 @Transactional
@@ -23,7 +20,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public VideoGame searchForGameById(int id) {
 		VideoGame singleGame = new VideoGame();
@@ -138,6 +135,15 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 
 	@Override
 	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList, List<Genre> genres) {
+		// check to make sure there is no other game with the same name
+		String query = "SELECT g FROM VideoGame g";
+		List<VideoGame> allGames = em.createQuery(query, VideoGame.class).getResultList();
+		for (VideoGame videoGame : allGames) {
+			if (vg.getName().equals(videoGame.getName())) {
+				vg = null;
+				return vg;
+			}
+		}
 		
 		if (genres != null && genres.size() > 0) {
 			for (Genre genre : genres) {
@@ -154,12 +160,20 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		if (seriesId > 0) {
 			GameSeries gs = em.find(GameSeries.class, seriesId);
 			vg.setGameSeries(gs);
+//			String query = "SELECT g FROM VideoGame g";
+//			List<VideoGame> allGames = em.createQuery(query, VideoGame.class).getResultList();
+//			for (VideoGame videoGame : allGames) {
+//				if (vg.getName().equals(videoGame.getName())) {
+//					vg = null;
+//				}
+//			}
 			em.persist(vg);
 		} else {
-			em.persist(vg);
-		}
+				em.persist(vg);
+			}
 		return vg;
-	}
+		}
+	
 
 	@Override
 	public VideoGame updateVideoGame(VideoGame vg) {
@@ -210,6 +224,13 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 			}
 		}
 		return r;
+	}
+	
+	@Override
+	public List<VideoGame> getAllGames() {
+		String query = "SELECT g FROM VideoGame g";
+		List<VideoGame> allGames = em.createQuery(query, VideoGame.class).getResultList();
+		return allGames;
 	}
 
 }

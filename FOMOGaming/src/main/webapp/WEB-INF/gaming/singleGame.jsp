@@ -23,10 +23,23 @@
 					<li>Cross-Platform/Play: ${game.crossPlatform}</li>
 					<li>Genre(s): ${game.genres}</li>
 					<li>Developer Name: ${game.developer.name}</li>
-					<li>Game Series: ${game.gameSeries.name}</li>
+					
+					<li><form action="gameSeries.do"><input type="hidden" name="gameId" id="gameId" value="${game.id }">Game Series: ${game.gameSeries.name}<input type="submit" value="Go To Game Series"></form></li>
 
 				</ul>
 			</div>
+
+			<div>
+			<h4>Related Board Games:</h4>
+					<c:forEach var="b" items="${game.boardGames }">
+					<h5>${b.name }</h5>
+					Released: ${b.releaseYear }
+					<br>${b.description}
+					<br><a href="${b.websiteUrl }">Website</a>
+					<br><img src="${b.imageUrl }">
+					</c:forEach>
+			</div>
+			<iframe src="${game.trailerUrl}"></iframe>
 			<c:if test="${ ! empty game.tvShows }">
 			<br>
 			<h3>Related Media</h3>
@@ -35,10 +48,6 @@
 			${game.tvShows }<br>
 			</c:if>
 			<%-- ${game.tvShows.imbdUrl } --%>
-			<c:if test="${ ! empty game.boardGames }">
-			Board Games:<br>
-			${game.boardGames}<br>
-			</c:if>
 			Book(s):
 			${game.gameSeries.books }
 			

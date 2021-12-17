@@ -20,6 +20,7 @@
      <a class="nav-item nav-link" href="userLogout.do">Logout</a>
      <a class="nav-item nav-link" href="profile.do">Profile</a>
      <a class="nav-item nav-link" href="AddNewGame.do">Add a new game</a> <br>
+     <a class="nav-item nav-link" href="AddNewMedia.do">Add a new media tie-in</a> <br>
      </c:if>
      <c:if test="${empty loggedInUser }">
      <a class="nav-item nav-link" href="login.do">Login</a>

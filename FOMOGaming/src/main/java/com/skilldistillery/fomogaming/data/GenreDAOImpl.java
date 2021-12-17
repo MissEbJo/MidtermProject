@@ -29,10 +29,12 @@ public class GenreDAOImpl implements GenreDAO{
 	@Override
 	public List<Genre> findGenreByName(String [] names) {
 		List<Genre> genres = new ArrayList<>();
+		if (names != null && names.length > 0) {
 		for (String name: names) {
 			String query = "SELECT g FROM Genre g WHERE name = :name";
 			Genre g = em.createQuery(query, Genre.class).setParameter("name", name).getSingleResult();
 			genres.add(g);
+		}
 		}
 		return genres;
 	}
