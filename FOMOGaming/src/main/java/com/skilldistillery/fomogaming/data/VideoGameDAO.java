@@ -3,6 +3,7 @@ package com.skilldistillery.fomogaming.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.skilldistillery.fomogaming.entities.Comment;
 import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.Genre;
 import com.skilldistillery.fomogaming.entities.Platform;
@@ -41,5 +42,7 @@ public interface VideoGameDAO {
 	VideoGame searchForGameById(int id);
 
 	List<VideoGame> getAllGames();
+	
+	public Comment addComment(Comment comment, int gameId);
 
 }

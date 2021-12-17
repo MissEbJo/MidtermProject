@@ -84,6 +84,9 @@ public class VideoGame {
 	@Column(name = "when_added")
 	@CreationTimestamp
 	private LocalDateTime whenAdded;
+	
+	@OneToMany(mappedBy="videoGame")
+	private List<Comment> comments;
 
 	public VideoGame() {
 		super();
@@ -241,6 +244,14 @@ public class VideoGame {
 		this.userWhoAdded = userWhoAdded;
 	}
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public void addUser(User user) {
 		if (users == null) { users = new ArrayList<>(); }
 		if ( ! users.contains(user) ) {
@@ -255,6 +266,18 @@ public class VideoGame {
 			users.remove(user);
 			user.removeVideoGame(this);
 		}	}
+	
+	public void addComment(Comment comment) {
+		if (comments == null) {
+			comments = new ArrayList<>();
+		
+		}
+		if(! comments.contains(comment)) {
+			comments.add(comment);
+		
+		}
+		comment.setVideoGame(this);
+	}
 	
 	@Override
 	public int hashCode() {
