@@ -11,6 +11,7 @@
 <jsp:include page="bootstrapHead.jsp" />
 
 <h3>Uh oh, something went wrong :(</h3>
+<img src="https://i.kym-cdn.com/photos/images/original/001/514/850/206.jpg">
 <a href="home.do"><input type="button" value="Home"></a>
 </body>
 </html>

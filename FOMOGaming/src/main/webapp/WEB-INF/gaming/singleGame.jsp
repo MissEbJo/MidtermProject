@@ -39,6 +39,7 @@
 					</c:forEach>
 			</div>
 			<iframe src="${game.trailerUrl}"></iframe>
+
 			<c:if test="${ ! empty game.tvShows }">
 			<br>
 			<h3>Related Media</h3>
@@ -75,8 +76,11 @@
           </div>
       <div class="row">
         <div class="col-6">
-      <textarea type="text" class="input" placeholder="Write a comment" v-model="newItem" @keyup.enter="addItem()"></textarea>
-          <button v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
+      <form action="addComment.do" method="POST">
+      <input type="hidden" name="gameId" value="game.id">
+      <textarea type="text" class="input" name="comment" placeholder="Write a comment"></textarea>
+          <button class='primaryContained float-right' type="submit">Add Comment</button>
+       </form>
         </div>
       </div>
     </div>

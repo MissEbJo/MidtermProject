@@ -9,9 +9,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.skilldistillery.fomogaming.entities.Comment;
 import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.Genre;
 import com.skilldistillery.fomogaming.entities.Platform;
+import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Repository
@@ -144,7 +146,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 				return vg;
 			}
 		}
-		
+
 		if (genres != null && genres.size() > 0) {
 			for (Genre genre : genres) {
 				genre.getVideoGames().add(vg);
@@ -169,11 +171,10 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 //			}
 			em.persist(vg);
 		} else {
-				em.persist(vg);
-			}
-		return vg;
+			em.persist(vg);
 		}
-	
+		return vg;
+	}
 
 	@Override
 	public VideoGame updateVideoGame(VideoGame vg, GameSeries gs, List<Platform> platforms, List<Genre> genres) {
@@ -227,7 +228,7 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		}
 		return r;
 	}
-	
+
 	@Override
 	public List<VideoGame> getAllGames() {
 		String query = "SELECT g FROM VideoGame g";
@@ -235,4 +236,17 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		return allGames;
 	}
 
+	@Override
+	public Comment addComment(Comment comment, int gameId) {
+		VideoGame g = em.find(VideoGame.class, gameId);
+		if (g != null) {
+			comment.setVideoGame(g);
+			em.persist(comment);
+
+			return comment;
+		} else {
+			return null;
+		}
+
+	}
 }
