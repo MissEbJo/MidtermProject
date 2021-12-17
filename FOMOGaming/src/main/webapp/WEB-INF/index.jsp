@@ -8,8 +8,9 @@
 <jsp:include page="bootstrapHead.jsp"/>
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <h1>FOMO Gaming</h1>
 
-
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

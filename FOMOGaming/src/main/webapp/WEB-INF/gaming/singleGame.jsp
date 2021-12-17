@@ -94,13 +94,9 @@
       <textarea type="text" class="input" name="comment" placeholder="Write a comment"></textarea>
           <button class='primaryContained float-right' type="submit">Add Comment</button>
        </form>
->>>>>>> 640a27e206da503e8ffb748a5e0c6f0f2913c7de
-        </div>
+       	</div>
+       </div>
     </div>
-<<<<<<< HEAD
-    </div>
-
-=======
   </section>
 	<c:if test="${not empty loggedInUser}">
 		<c:if test="${game.userWhoAdded == loggedInUser}">
@@ -110,6 +106,5 @@
 			</form>
 		</c:if>
 	</c:if>
->>>>>>> 640a27e206da503e8ffb748a5e0c6f0f2913c7de
 </body>
 </html>

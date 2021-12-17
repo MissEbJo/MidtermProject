@@ -18,6 +18,6 @@
 		<input type="submit"/>
 	</form>
 
-
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

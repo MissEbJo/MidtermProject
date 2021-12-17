@@ -9,6 +9,7 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 	<br>
 <p>User Info:</p>
 	<br><img class="profilePicture" src="${loggedInUser.profilePicture}" />
@@ -24,5 +25,6 @@
 	<br><a href="deleteProfile.do"><input type="button" value="Delete Profile" onclick="return confirm('Are you sure?')"></a>
 	<br><a href="beginEditProfile.do"><input type="button" value="Edit Profile"></a>
 	<br><a href="home.do"><input type="button" value="Home"></a>
+	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>FOMO Gaming</title>
+	<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 	<h3>Games Listing</h3>
-	<jsp:include page="bootstrapHead.jsp" />
 
 	<c:if test="${! empty games }">
 		<table>
@@ -33,5 +34,6 @@
 	<a href="home.do"><input type="button" value="Home"></a>
 	<!-- <a href="AdvancedSearch.do"><input type="button" value="Search"></a> -->
 	<br>
+	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>
