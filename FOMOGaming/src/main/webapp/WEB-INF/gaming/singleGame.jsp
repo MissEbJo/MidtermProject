@@ -39,6 +39,7 @@
 					</c:forEach>
 			</div>
 			<iframe src="${game.trailerUrl}"></iframe>
+
 			<c:if test="${ ! empty game.tvShows }">
 			<br>
 			<h3>Related Media</h3>
