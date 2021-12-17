@@ -52,6 +52,15 @@ public class HomeController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(path="AddNewMedia.do")
+	public ModelAndView addNewMedia(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("series", gameDao.getAllSeries());
+		mv.addObject("allGames", gameDao.getAllGames());
+		mv.setViewName("addOtherMedia");
+		return mv;
+	}
 
 	@RequestMapping(path = "login.do")
 	public String login() {

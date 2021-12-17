@@ -40,4 +40,6 @@ public interface VideoGameDAO {
 
 	VideoGame searchForGameById(int id);
 
+	List<VideoGame> getAllGames();
+
 }

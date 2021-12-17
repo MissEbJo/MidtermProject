@@ -225,5 +225,12 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		}
 		return r;
 	}
+	
+	@Override
+	public List<VideoGame> getAllGames() {
+		String query = "SELECT g FROM VideoGame g";
+		List<VideoGame> allGames = em.createQuery(query, VideoGame.class).getResultList();
+		return allGames;
+	}
 
 }
