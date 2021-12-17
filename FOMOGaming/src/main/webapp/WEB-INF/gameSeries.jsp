@@ -24,7 +24,15 @@
 				<a href="${m.imdbUrl }">IMDB</a><br>
 				<a href="${m.trailerUrl }">Link to Trailer</a><br>
 				</c:forEach></p>
-			</div>
+			</div><div>
+				<br><br><h3>Related Books</h3>
+				<p><c:forEach var="b" items="${gameSeries.books}">
+				<br><h4>Title: ${b.title }</h4>
+				Written by: ${b.author}
+				Released: ${b.releaseYear }<br>
+				${b.description }<br>
+				
+				</c:forEach></p></div>
 		</c:when>
 	</c:choose>
 </body>
