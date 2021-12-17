@@ -40,8 +40,8 @@
 				<option value="${s.id}">${s.name }</option>
 			</c:forEach>
 		</select> <br> 
-		<input type="submit" value="Submit Movie"/>
 		<input type="reset">
+		<input type="submit" value="Submit Movie"/>
 		</form>
 		
 	<h3>Add a BoardGame</h3>
@@ -59,8 +59,18 @@
 		Website URL:
 		<input type="URL" name="websiteUrl"/> 
 		<br>
-		<input type="submit" value="Submit BoardGame"/>
+		Image URL:
+		<input type="URL" name="imageUrl"/>
+		<br>
+		What VideoGame is this BoardGame a part of? 
+		<select id="gameId" name="gameId">
+			<option value="0">No, it's not part of a game</option>
+			<c:forEach var="g" items="${allGames}">
+				<option value="${g.id}">${g.name }</option>
+			</c:forEach>
+		</select> <br> 
 		<input type="reset">
+		<input type="submit" value="Submit BoardGame"/>
 		</form>
 		
 	<h3>Add a Book</h3>
@@ -78,8 +88,8 @@
 		Author:
 		<input type="text" name="author"/> 
 		<br>
-		<input type="submit" value="Submit Book"/>
 		<input type="reset">
+		<input type="submit" value="Submit Book"/>
 		</form>
 		
 	<h3>Add a TV Show</h3>
@@ -106,8 +116,8 @@
 		Poster Image URL:
 		<input type="URL" name="posterImageUrl"/> 
 		<br>
-		<input type="submit" value="Submit TV Show"/>
 		<input type="reset">
+		<input type="submit" value="Submit TV Show"/>
 		</form>
 		
 		
