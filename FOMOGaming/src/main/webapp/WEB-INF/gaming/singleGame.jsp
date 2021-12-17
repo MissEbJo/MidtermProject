@@ -77,6 +77,7 @@
       <div class="row">
         <div class="col-6">
       <form action="addComment.do" method="POST">
+      <input type="hidden" name="gameId" value="game.id">
       <textarea type="text" class="input" name="comment" placeholder="Write a comment"></textarea>
           <button class='primaryContained float-right' type="submit">Add Comment</button>
        </form>

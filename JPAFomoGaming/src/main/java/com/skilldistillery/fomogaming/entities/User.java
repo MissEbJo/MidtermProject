@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -34,11 +35,17 @@ public class User {
 	
 	private String role;
 	
+	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="favorite_games",
 					joinColumns=@JoinColumn(name="user_id"),
 					inverseJoinColumns=@JoinColumn(name="video_game_id"))
+	
 	private List<VideoGame> videoGames;
+	
+	@OneToMany(mappedBy="user")
+	private List<Comment> comments;
+	
 
 	public User() {
 		super();
@@ -108,6 +115,14 @@ public class User {
 		this.videoGames = videoGames;
 	}
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public void addVideoGame(VideoGame videogame) {
 		if (videoGames == null) { videoGames = new ArrayList<>(); }
 		if ( ! videoGames.contains(videogame) ) {

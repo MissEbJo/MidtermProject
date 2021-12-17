@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.fomogaming.data.VideoGameDAO;
+import com.skilldistillery.fomogaming.entities.Comment;
 import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
@@ -36,6 +37,18 @@ public class VideoGameController {
 
 		// if one game, redirect to singleGame jsp
 		VideoGame vg = gameDao.searchForGame(name);
+
+		mv.addObject("game", vg);
+		mv.setViewName("gaming/singleGame");
+		return mv;
+	}
+	
+	@RequestMapping(path = "GetById.do", method = RequestMethod.GET)
+	public ModelAndView getById(Integer gameId) {
+		ModelAndView mv = new ModelAndView();
+
+		// if one game, redirect to singleGame jsp
+		VideoGame vg = gameDao.searchForGameById(gameId);
 
 		mv.addObject("game", vg);
 		mv.setViewName("gaming/singleGame");
@@ -162,6 +175,15 @@ public class VideoGameController {
 
 	}
 	
+	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
+	public ModelAndView addComment(Comment comment, Integer gameId) {
+		ModelAndView mv = new ModelAndView(); 
+		gameDao.addComment(comment, gameId);
+		mv.setViewName("redirect:GetById.do");
+		
+		
+		return mv;
+	}
 	
 
 }
