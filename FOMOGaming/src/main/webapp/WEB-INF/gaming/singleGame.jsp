@@ -23,10 +23,11 @@
 					<li>Cross-Platform/Play: ${game.crossPlatform}</li>
 					<li>Genre(s): ${game.genres}</li>
 					<li>Developer Name: ${game.developer.name}</li>
-					<li><form action="gameSeries.do"><input type="hidden" name="gameId" id="gameId" value="${game.id }">Game Series: ${game.gameSeries.name}<input type="submit" value="Go To Game Series"></form></li>
+					<li>Game Series: ${game.gameSeries.name}</li>
 
 				</ul>
 			</div>
+			<iframe src="${game.trailerUrl}"></iframe>
 			<c:if test="${ ! empty game.tvShows }">
 			<br>
 			<h3>Related Media</h3>
@@ -44,8 +45,6 @@
 			
 		</c:when>
 	</c:choose>
-			<br>
-			<iframe src="${game.trailerUrl}"></iframe>
 
 		<P>
 		<c:if test="${loggedInUser != null && !loggedInUser.videoGames.contains(game)}">
@@ -56,23 +55,15 @@
 		</c:if>
 		</P>
 
-		<section id="app">
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <div class="comment">
-        <p v-for="items in item" v-text="items"></p>
-          </div>
-          </div>
-          </div>
-      <div class="row">
-        <div class="col-6">
-      <textarea type="text" class="input" placeholder="Write a comment" v-model="newItem" @keyup.enter="addItem()"></textarea>
-          <button v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
+		<div class="container justify-content-center mt-5 border-left border-right">
+    <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a note" class="form-control addtxt"> </div>
+    <div class="d-flex justify-content-center py-2">
+        <div class="second py-2 px-2"> <span class="text1">Type your note, and hit enter to add it</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+    </div>
 
 </body>
 </html>

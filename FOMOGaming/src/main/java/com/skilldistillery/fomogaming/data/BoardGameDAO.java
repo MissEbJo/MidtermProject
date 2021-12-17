@@ -8,6 +8,6 @@ public interface BoardGameDAO {
 	
 	public void removeBoardGame(BoardGame bg);
 
-	public BoardGame addBoardGame(BoardGame bg);
+	BoardGame addBoardGame(BoardGame bg, int seriesId);
 	
 }

@@ -57,6 +57,7 @@ public class HomeController {
 	public ModelAndView addNewMedia(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("series", gameDao.getAllSeries());
+		mv.addObject("allGames", gameDao.getAllGames());
 		mv.setViewName("addOtherMedia");
 		return mv;
 	}

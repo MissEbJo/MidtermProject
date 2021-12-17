@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `game_series` ;
 
 CREATE TABLE IF NOT EXISTS `game_series` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `image_url` VARCHAR(3000) NULL,
   `description` TEXT NULL,
@@ -88,7 +88,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `book` ;
 
 CREATE TABLE IF NOT EXISTS `book` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(100) NOT NULL,
   `description` VARCHAR(500) NULL,
   `release_year` INT(4) NULL,
@@ -212,7 +212,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `board_game` ;
 
 CREATE TABLE IF NOT EXISTS `board_game` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `release_year` INT(4) NULL,
   `description` VARCHAR(2000) NULL,
@@ -315,7 +315,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `streaming_service` ;
 
 CREATE TABLE IF NOT EXISTS `streaming_service` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NULL,
   `image_url` VARCHAR(3000) NULL,
   `website_url` VARCHAR(3000) NULL,
@@ -543,7 +543,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, 8, 'https://www.imdb.com/title/tt5180504/?ref_=nv_sr_srsg_0', NULL, NULL);
+INSERT INTO `tv_show` (`id`, `title`, `number_seasons`, `release_year`, `description`, `video_game_id`, `series_id`, `imdb_url`, `trailer_url`, `poster_image_url`) VALUES (1, 'THE WITCHER', 1, 2019, 'The witcher Geralt, a mutated monster hunter, struggles to find his place in a world in which people often prove more wicked than beasts.', 21, 8, 'https://www.imdb.com/title/tt5180504/?ref_=nv_sr_srsg_0', 'https://www.youtube.com/watch?v=ndl1W4ltcmg&ab_channel=TheWitcherNetflix', 'https://en.wikipedia.org/wiki/The_Witcher_(TV_series)#/media/File:The_Witcher_Title_Card.png');
 
 COMMIT;
 
@@ -553,7 +553,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `board_game` (`id`, `name`, `release_year`, `description`, `gameplay`, `video_game_id`, `developer_id`, `image_url`, `website_url`) VALUES (1, 'Dark Souls: The Board Game', 2017, 'Players assume the game role of characters based on classes from the Dark Souls video game series and fight monsters and seek treasure.', NULL, 22, 20, NULL, NULL);
+INSERT INTO `board_game` (`id`, `name`, `release_year`, `description`, `gameplay`, `video_game_id`, `developer_id`, `image_url`, `website_url`) VALUES (1, 'Dark Souls: The Board Game', 2017, 'Players assume the game role of characters based on classes from the Dark Souls video game series and fight monsters and seek treasure.', NULL, 22, 20, 'https://cdn.shopify.com/s/files/1/0602/0156/6449/products/dark-souls-the-board-game-boxpng_800x.png?v=1633471958', 'https://steamforged.com/products/dark-souls-the-board-game');
 
 COMMIT;
 
@@ -644,6 +644,10 @@ INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (2
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (21, 2);
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (21, 4);
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (21, 5);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 1);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 2);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 4);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 5);
 
 COMMIT;
 
