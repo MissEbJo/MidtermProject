@@ -30,7 +30,7 @@
 		<input type="text" name="name" placeholder="Game Name"/> 
 		<input type="submit" value="Search" />
 		</form> <!--change functionality to have text input search bar -->
-      <a class="nav-item nav-link" href="about.do">About this website</a>
+      <a class="nav-item nav-link" href="about.do">About Cryptic Slime</a>
      
     </div>
   </div>
