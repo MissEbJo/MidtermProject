@@ -11,13 +11,19 @@
 <body>
 	<jsp:include page="bootstrapHead.jsp" />
 	<c:choose>
-		<c:when test="${not empty game }">
+		<c:when test="${not empty gameSeries }">
 			<div class="gameSeriesLayout">
-				<h2>${game.gameSeries.name}</h2>
+				<h2>${gameSeries.name}</h2>
 
-				<section><img src="${game.gameSeries.imageUrl}"/></section>
-
-				<p>${game.gameSeries.description }</p>
+				<section><img src="${gameSeries.imageUrl}"/></section>
+				<br><br><h3>Related Movies</h3>
+				<p><c:forEach var="m" items="${gameSeries.movies}">
+				<br><h4>Title: ${m.title }</h4> Released: ${m.releaseYear }<br>
+				${m.description }<br>
+				<img src="${m.posterImageUrl }"><br>
+				<a href="${m.imdbUrl }">IMDB</a><br>
+				<a href="${m.trailerUrl }">Link to Trailer</a><br>
+				</c:forEach></p>
 			</div>
 		</c:when>
 	</c:choose>
