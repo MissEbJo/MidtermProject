@@ -13,7 +13,6 @@ import com.skilldistillery.fomogaming.entities.Comment;
 import com.skilldistillery.fomogaming.entities.GameSeries;
 import com.skilldistillery.fomogaming.entities.Genre;
 import com.skilldistillery.fomogaming.entities.Platform;
-import com.skilldistillery.fomogaming.entities.User;
 import com.skilldistillery.fomogaming.entities.VideoGame;
 
 @Repository
@@ -137,7 +136,6 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 
 	@Override
 	public VideoGame addVideoGame(VideoGame vg, int seriesId, List<Platform> platformsList, List<Genre> genres) {
-		// check to make sure there is no other game with the same name
 		String query = "SELECT g FROM VideoGame g";
 		List<VideoGame> allGames = em.createQuery(query, VideoGame.class).getResultList();
 		for (VideoGame videoGame : allGames) {
@@ -162,13 +160,6 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		if (seriesId > 0) {
 			GameSeries gs = em.find(GameSeries.class, seriesId);
 			vg.setGameSeries(gs);
-//			String query = "SELECT g FROM VideoGame g";
-//			List<VideoGame> allGames = em.createQuery(query, VideoGame.class).getResultList();
-//			for (VideoGame videoGame : allGames) {
-//				if (vg.getName().equals(videoGame.getName())) {
-//					vg = null;
-//				}
-//			}
 			em.persist(vg);
 		} else {
 			em.persist(vg);
@@ -179,7 +170,6 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 	@Override
 	public VideoGame updateVideoGame(VideoGame vg, GameSeries gs, List<Platform> platforms, List<Genre> genres) {
 		VideoGame videogame = em.find(VideoGame.class, vg.getId());
-//		videogame = vg; //call setters (not id)
 		videogame.setName(vg.getName());
 		videogame.setDescription(vg.getDescription());
 		videogame.setCrossPlatform(vg.isCrossPlatform());

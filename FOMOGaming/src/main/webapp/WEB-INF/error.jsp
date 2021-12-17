@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>New User Added</title>
+<title>Whoopsie</title>
 </head>
 <body>
 <jsp:include page="bootstrapHead.jsp" />

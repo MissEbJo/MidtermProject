@@ -33,7 +33,8 @@ public class AddGameController {
 	private GameSeriesDAO seriesDao;
 
 	@RequestMapping(path = "NewGameInfo.do", method = RequestMethod.GET)
-	public ModelAndView gameInfo(int sID, VideoGame vg, String[] genreNames, HttpSession session, String... platformNames) {
+	public ModelAndView gameInfo(int sID, VideoGame vg, String[] genreNames, HttpSession session,
+			String... platformNames) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {
@@ -45,14 +46,16 @@ public class AddGameController {
 			if (v == null) {
 				mv.setViewName("error");
 			} else {
-			mv.addObject("game", v);
-			mv.setViewName("gaming/singleGame");
+				mv.addObject("game", v);
+				mv.setViewName("gaming/singleGame");
 			}
-		}return mv;
+		}
+		return mv;
 	}
 
 	@RequestMapping(path = "editGameInfo.do", method = RequestMethod.GET)
-	public ModelAndView editGameInfo(int sID, VideoGame vg, String[] genreNames, HttpSession session, String... platformNames) {
+	public ModelAndView editGameInfo(int sID, VideoGame vg, String[] genreNames, HttpSession session,
+			String... platformNames) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {
@@ -66,19 +69,20 @@ public class AddGameController {
 				mv.addObject("game", v);
 				mv.setViewName("gaming/singleGame");
 			}
-		}return mv;
-	}
-	
-		@RequestMapping(path="editGame.do", method = RequestMethod.POST)
-		public ModelAndView editGame(int gameId) {
-			ModelAndView mv = new ModelAndView();
-			VideoGame videoGame = gameDao.searchForGameById(gameId);
-			mv.addObject("series", gameDao.getAllSeries());
-			mv.addObject("allPlatforms", platDao.getAllPlatforms());
-			mv.addObject("genres", genreDao.getAllGenres());
-			mv.addObject("game", videoGame);
-			mv.setViewName("editGame");
-			return mv;
 		}
-		
+		return mv;
 	}
+
+	@RequestMapping(path = "editGame.do", method = RequestMethod.POST)
+	public ModelAndView editGame(int gameId) {
+		ModelAndView mv = new ModelAndView();
+		VideoGame videoGame = gameDao.searchForGameById(gameId);
+		mv.addObject("series", gameDao.getAllSeries());
+		mv.addObject("allPlatforms", platDao.getAllPlatforms());
+		mv.addObject("genres", genreDao.getAllGenres());
+		mv.addObject("game", videoGame);
+		mv.setViewName("editGame");
+		return mv;
+	}
+
+}
