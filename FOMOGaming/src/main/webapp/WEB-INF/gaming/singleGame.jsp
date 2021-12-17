@@ -9,6 +9,7 @@
 </head>
 <body>
 	<jsp:include page="../bootstrapHead.jsp" />
+	<jsp:include page="../navbar.jsp" />
 	<c:choose>
 		<c:when test="${ not empty game }">
 			<img class="gameListImg" src="${game.imageUrl}" />
@@ -124,5 +125,6 @@
 		</div>
 		</div>
 	</section>
+	<jsp:include page="../bootstrapFoot.jsp"/>
 </body>
 </html>
