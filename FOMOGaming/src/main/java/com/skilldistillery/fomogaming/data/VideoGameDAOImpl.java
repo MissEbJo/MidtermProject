@@ -154,9 +154,25 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		if (seriesId > 0) {
 			GameSeries gs = em.find(GameSeries.class, seriesId);
 			vg.setGameSeries(gs);
+			List<VideoGame> allGames = new ArrayList<>();
+			String query = "SELECT g FROM VideoGame g";
+			allGames = em.createQuery(query, VideoGame.class).getResultList();
+			for (VideoGame videoGame : allGames) {
+				if (vg.getName().equals(videoGame.getName())) {
+					vg = null;
+				}
+			}
 			em.persist(vg);
 		} else {
+			List<VideoGame> allGames = new ArrayList<>();
+			String query = "SELECT g FROM VideoGame g";
+			allGames = em.createQuery(query, VideoGame.class).getResultList();
+			for (VideoGame videoGame : allGames) {
+				if (vg.getName().equals(videoGame.getName())) {
+					vg = null;
+				}
 			em.persist(vg);
+		}
 		}
 		return vg;
 	}

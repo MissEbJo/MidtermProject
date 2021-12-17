@@ -51,11 +51,12 @@ public class PlatformDAOImpl implements PlatformDAO {
 	@Override
 	public List<Platform> findPlatformByName(String [] names) {
 		List<Platform> platforms = new ArrayList<>();
+		if (names != null && names.length > 0) {
 		for (String name: names) {
 			String query = "SELECT p FROM Platform p WHERE systemName = :name";
 			Platform p = em.createQuery(query, Platform.class).setParameter("name", name).getSingleResult();
 			platforms.add(p);
-			
+		}
 		}
 		return platforms;
 	}
