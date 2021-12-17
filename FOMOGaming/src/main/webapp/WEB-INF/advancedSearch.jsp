@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Searching...</title>
+<jsp:include page="bootstrapHead.jsp"/>
 </head>
 <body>
-<jsp:include page="bootstrapHead.jsp"/>
-		
+<jsp:include page="navbar.jsp" />		
 		<form action="GetByName.do" method="GET">
 		Game Name:
 		<input type="text" name="name" /> 
@@ -61,6 +61,6 @@
 		<input type="text" name="genre" /> 
 		<input type="submit" value="Get Games" />
 		</form>
-
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

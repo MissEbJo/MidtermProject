@@ -8,10 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Edit a Game</title>
+	<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-	<jsp:include page="bootstrapHead.jsp" />
-
+<jsp:include page="navbar.jsp" />
 	<h3>Edit a Game in FOMOGaming</h3>
 
 	<form action="editGameInfo.do" method="GET">
@@ -108,5 +108,6 @@
 
 
 	</form>
+	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

@@ -5,14 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Home (Logged In)</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <h3>FOMO Gaming</h3>
-<jsp:include page="bootstrapHead.jsp" />
 
 <a href="userProfile.do">Profile Page</a>
 <a href="logout.do">Log Out</a>
 
-
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>
