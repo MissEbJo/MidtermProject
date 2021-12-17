@@ -2,6 +2,8 @@ package com.skilldistillery.fomogaming.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -171,10 +173,14 @@ public class VideoGameController {
 	}
 	
 	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
-	public ModelAndView addComment(Comment comment, Integer gameId) {
+	public ModelAndView addComment(String comment, Integer gameId, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		Comment newComment = new Comment();
+		newComment.setText(comment);
+		newComment.setUser(user);
 		ModelAndView mv = new ModelAndView(); 
-		gameDao.addComment(comment, gameId);
-		mv.setViewName("redirect:GetById.do");
+		gameDao.addComment(newComment, gameId);
+		mv.setViewName("redirect:GetById.do?gameId=" + gameId);
 		
 		
 		return mv;
