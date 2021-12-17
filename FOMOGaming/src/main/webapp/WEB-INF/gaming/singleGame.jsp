@@ -66,14 +66,18 @@
 		</c:if>
 		</P>
 
-<<<<<<< HEAD
 		<div class="container justify-content-center mt-5 border-left border-right">
     <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a note" class="form-control addtxt"> </div>
     <div class="d-flex justify-content-center py-2">
         <div class="second py-2 px-2"> <span class="text1">Type your note, and hit enter to add it</span>
             <div class="d-flex justify-content-between py-1 pt-2">
             </div>
-=======
+		<p>
+		<c:forEach var="comment" items="${game.comments }">
+					<h5>${comment.text }</h5>
+					</c:forEach>
+					</p>
+
 		<section id="app">
     <div class="container">
       <div class="row">
@@ -86,7 +90,7 @@
       <div class="row">
         <div class="col-6">
       <form action="addComment.do" method="POST">
-      <input type="hidden" name="gameId" value="game.id">
+      <input type="hidden" name="gameId" value="${game.id}">
       <textarea type="text" class="input" name="comment" placeholder="Write a comment"></textarea>
           <button class='primaryContained float-right' type="submit">Add Comment</button>
        </form>
