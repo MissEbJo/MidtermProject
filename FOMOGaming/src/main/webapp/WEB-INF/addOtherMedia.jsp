@@ -74,7 +74,7 @@
 		</form>
 		
 	<h3>Add a Book</h3>
-	<form action="AddBoardGame.do" method="GET">
+	<form action="AddBook.do" method="GET">
 		
 		Title:
 		<input type="text" name="title" required/> 
@@ -88,8 +88,8 @@
 		Author:
 		<input type="text" name="author"/> 
 		<br>
-		What series is this movie a part of? 
-		<select id="seriesId" name="seriesId">
+		What series is this book a part of? 
+		<select id="SeriesId" name="SeriesId">
 			<option value="0">No, it's not part of a series</option>
 			<c:forEach var="s" items="${series}">
 				<option value="${s.id}">${s.name }</option>
@@ -123,6 +123,19 @@
 		Poster Image URL:
 		<input type="URL" name="posterImageUrl"/> 
 		<br>
+		What series is this book a part of? 
+		<select id="SeriesId" name="SeriesId">
+			<option value="0">No, it's not part of a series</option>
+			<c:forEach var="s" items="${series}">
+				<option value="${s.id}">${s.name }</option>
+			</c:forEach>
+		</select> <br> 
+		<select id="gameId" name="gameId">
+			<option value="0">No, it's not part of a game</option>
+			<c:forEach var="g" items="${allGames}">
+				<option value="${g.id}">${g.name }</option>
+			</c:forEach>
+		</select> <br> 
 		<input type="reset">
 		<input type="submit" value="Submit TV Show"/>
 		</form>
