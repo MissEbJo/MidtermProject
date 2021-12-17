@@ -39,13 +39,13 @@ public class AddGameController {
 			List<Platform> platforms = platDao.findPlatformByName(platformNames);
 			List<Genre> genres = genreDao.findGenreByName(genreNames);
 			VideoGame v = new VideoGame();
-			System.out.println("*****************************************");
-			System.out.println(genres.get(0).getName());
-			System.out.println("*****************************************");
 			v = gameDao.addVideoGame(vg, sID, platforms, genres);
-//			VideoGame v = gameDao.addVideoGame(vg, sID, p);
+			if (v == null) {
+				mv.setViewName("error");
+			} else {
 			mv.addObject("game", v);
 			mv.setViewName("gaming/singleGame");
+			}
 		}return mv;
 
 //	@RequestMapping(path="AddSeriesToGame.do")
