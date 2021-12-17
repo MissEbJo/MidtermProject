@@ -370,6 +370,32 @@ CREATE TABLE IF NOT EXISTS `movie_has_streaming_service` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `Comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `Comment` ;
+
+CREATE TABLE IF NOT EXISTS `Comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `comment` VARCHAR(45) NULL,
+  `video_game_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Comment_video_game1_idx` (`video_game_id` ASC),
+  INDEX `fk_Comment_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_Comment_video_game1`
+    FOREIGN KEY (`video_game_id`)
+    REFERENCES `video_game` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS fomouser@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
