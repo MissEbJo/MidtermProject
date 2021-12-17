@@ -96,14 +96,17 @@
 			name="sID">
 			<option value="0">No, it's not part of a series</option>
 			<c:forEach var="s" items="${series}">
+				<c:choose><c:when test="${game.gameSeries.equals(s)}">		
+				<option value="${s.id}" selected>${s.name }</option>
+				</c:when>
+				<c:otherwise>
 				<option value="${s.id}">${s.name }</option>
+				</c:otherwise></c:choose>
 			</c:forEach>
 		</select> <br> <a href="home.do"><input type="button" value="Home"></a>
 		<input type="reset"> <input type="submit" value="Edit Game" />
 
 
 	</form>
-
-
 </body>
 </html>
