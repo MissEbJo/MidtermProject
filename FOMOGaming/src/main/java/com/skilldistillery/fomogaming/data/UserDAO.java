@@ -22,4 +22,6 @@ public interface UserDAO {
 	User updateUser(User u);
 	
 	public VideoGame addFavoriteVideoGame(int Id, int UserId);
+
+	List<VideoGame> getAllGamesByUserId(int userId);
 }

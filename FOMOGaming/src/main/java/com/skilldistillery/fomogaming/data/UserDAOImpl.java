@@ -99,9 +99,14 @@ public class UserDAOImpl implements UserDAO {
 		User user = new User();
 		user = em.find(User.class, UserId);
 		user.addVideoGame(videogame);
-		
-		
-		
 		return videogame;
 	}
+	
+	@Override
+	public List<VideoGame> getAllGamesByUserId(int userId) {
+		String query = "SELECT vg FROM VideoGame vg JOIN User u ON vg.userWhoAdded = u.id WHERE u.id = :userId";
+		List<VideoGame> allGames = em.createQuery(query, VideoGame.class).setParameter("userId", userId).getResultList();
+		return allGames;
+	}
+	
 }

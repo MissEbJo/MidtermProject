@@ -103,11 +103,15 @@
 				<option value="${s.id}">${s.name }</option>
 				</c:otherwise></c:choose>
 			</c:forEach>
-		</select> <br> <a href="home.do"><input type="button" value="Home"></a>
+		</select> <br>
 		<input type="reset"> <input type="submit" value="Edit Game" />
-
-
 	</form>
+		<form action="deleteGame.do" method="POST">
+		<input type="hidden" name="deleteId" value="${game.id }">
+		<input type="submit" value="Delete Game" onclick="Are you sure you want to do this?">
+		</form>
+
+
 	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>
