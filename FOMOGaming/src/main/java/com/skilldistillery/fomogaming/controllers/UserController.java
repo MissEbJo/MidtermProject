@@ -1,5 +1,7 @@
 package com.skilldistillery.fomogaming.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +118,30 @@ public class UserController {
 		session.setAttribute("loggedInUser", user);
 		return mv;
 	
+	}
+	
+	@RequestMapping(value = "getGamesAdded.do", method = RequestMethod.GET)
+	public ModelAndView getGamesAdded(HttpSession session, Integer gameId) { 
+		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("loggedInUser");
+		int userId = user.getId();
+		
+		if(user != null) {
+			List<VideoGame> videoGames = userDao.getAllGamesByUserId(userId);
+			mv.addObject("videoGamesAdded", videoGames);
+		}
+		mv.setViewName("gamesAddedByUser");
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="seeAllGames.do", method=RequestMethod.GET)
+	public ModelAndView seeAllGames() {
+		ModelAndView mv = new ModelAndView();
+		List<VideoGame> allGames = videoGameDao.getAllGames();
+		mv.addObject("games" ,allGames);
+		mv.setViewName("adminGamesList");
+		return mv;
 	}
 	
 }

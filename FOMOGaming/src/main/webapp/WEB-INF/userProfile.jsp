@@ -22,8 +22,15 @@
 			<c:forEach var="v" items="${loggedInUser.videoGames }">
 			<p>${v.name} <br> <img class="gameListImg" src="${v.imageUrl}" /></p>
 			</c:forEach></c:if>
+	<br><a href="getGamesAdded.do"><input type="button" value="Show games you added"></a>
+	<br><c:if test="${loggedInUser.role == 'admin' }">
+	<a href="seeAllGames.do"><input type="button" value="See All Games"></a>
+	</c:if>
+	
+	
 	<br><a href="deleteProfile.do"><input type="button" value="Delete Profile" onclick="return confirm('Are you sure?')"></a>
 	<br><a href="beginEditProfile.do"><input type="button" value="Edit Profile"></a>
+	
 	<br><a href="home.do"><input type="button" value="Home"></a>
 	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
