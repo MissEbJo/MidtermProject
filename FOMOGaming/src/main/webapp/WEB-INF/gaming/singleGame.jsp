@@ -99,12 +99,12 @@
             <div class="d-flex justify-content-between py-1 pt-2">
             </div>
 	<c:if test="${not empty loggedInUser}">
-		<c:if test="${game.userWhoAdded == loggedInUser}">
+		<%-- <c:if test="${game.userWhoAdded == loggedInUser}">
 			<form action="editGame.do" method="post">
 				<input type="hidden" name="gameId" value="${game.id }" /> <input
 					type="submit" name="editGame" value="EditGame" />
 			</form>
-		</c:if>
+		</c:if> --%>
 	</c:if>
 		<c:forEach var="comment" items="${game.comments }">
 			<h5>${comment.text }</h5>
