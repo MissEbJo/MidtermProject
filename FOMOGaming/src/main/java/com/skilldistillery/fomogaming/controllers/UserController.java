@@ -135,4 +135,13 @@ public class UserController {
 		
 	}
 	
+	@RequestMapping(value="seeAllGames.do", method=RequestMethod.GET)
+	public ModelAndView seeAllGames() {
+		ModelAndView mv = new ModelAndView();
+		List<VideoGame> allGames = videoGameDao.getAllGames();
+		mv.addObject("games" ,allGames);
+		mv.setViewName("adminGamesList");
+		return mv;
+	}
+	
 }

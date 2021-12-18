@@ -44,4 +44,8 @@ public interface VideoGameDAO {
 
 	VideoGame updateVideoGame(VideoGame vg, GameSeries gs, List<Platform> platforms, List<Genre> genres);
 
+	void deleteGame(VideoGame vg);
+
+	VideoGame reEnableGame(VideoGame vg);
+
 }

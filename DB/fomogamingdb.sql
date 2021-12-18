@@ -520,7 +520,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `profile_picture`, `enabled`, `role`) VALUES (1, 'admin', 'admin', 'email@email.com', 'https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.redd.it%2Fit7s9pybd1m51.png', 1, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `profile_picture`, `enabled`, `role`) VALUES (1, 'admin', 'admin', 'email@email.com', 'https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.redd.it%2Fit7s9pybd1m51.png', 1, 'admin');
 
 COMMIT;
 
