@@ -66,14 +66,12 @@
 		</c:if>
 		</P>
 
-<<<<<<< HEAD
 		<div class="container justify-content-center mt-5 border-left border-right">
     <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a note" class="form-control addtxt"> </div>
     <div class="d-flex justify-content-center py-2">
         <div class="second py-2 px-2"> <span class="text1">Type your note, and hit enter to add it</span>
             <div class="d-flex justify-content-between py-1 pt-2">
             </div>
-=======
 	<c:if test="${not empty loggedInUser}">
 		<c:if test="${game.userWhoAdded == loggedInUser}">
 			<form action="editGame.do" method="post">
@@ -82,8 +80,6 @@
 			</form>
 		</c:if>
 	</c:if>
-
->>>>>>> aa9d6d662e28002ce1c210b65bc799e549856469
 		<p>
 		<c:forEach var="comment" items="${game.comments }">
 					<h5>${comment.text }</h5>
