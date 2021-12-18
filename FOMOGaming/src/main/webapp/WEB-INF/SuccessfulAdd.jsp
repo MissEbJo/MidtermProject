@@ -6,12 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>New Media Added</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-<jsp:include page="bootstrapHead.jsp" />
-
+<jsp:include page="navbar.jsp" />
 <h3>Successfully added!!!</h3>
 
 <a href="home.do"><input type="button" value="Home"></a>
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

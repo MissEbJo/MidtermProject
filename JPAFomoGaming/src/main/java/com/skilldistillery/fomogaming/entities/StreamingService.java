@@ -14,10 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table(name= "streaming_service")
+@Table(name = "streaming_service")
 public class StreamingService {
 
 	@Id
@@ -25,21 +23,19 @@ public class StreamingService {
 	private int id;
 
 	private String name;
-	
-	@Column(name= "image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
-	@Column(name= "website_url")
+
+	@Column(name = "website_url")
 	private String websiteUrl;
-	
+
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "movie_has_streaming_service",
-	joinColumns = @JoinColumn(name = "streaming_service_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
+	@JoinTable(name = "movie_has_streaming_service", joinColumns = @JoinColumn(name = "streaming_service_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
 	private List<Movie> movies;
-	
+
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "tv_show_has_streaming_service",
-	joinColumns = @JoinColumn(name = "streaming_service_id"), inverseJoinColumns = @JoinColumn(name = "tv_show_id"))
+	@JoinTable(name = "tv_show_has_streaming_service", joinColumns = @JoinColumn(name = "streaming_service_id"), inverseJoinColumns = @JoinColumn(name = "tv_show_id"))
 	private List<TvShow> tvShows;
 
 	public StreamingService() {
@@ -47,91 +43,53 @@ public class StreamingService {
 
 	}
 
-	
-	
-	
 	public List<TvShow> getTvShows() {
 		return tvShows;
 	}
-
-
-
 
 	public void setTvShows(List<TvShow> tvShows) {
 		this.tvShows = tvShows;
 	}
 
-
-
-
 	public int getId() {
 		return id;
 	}
-
-
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
-
 	public String getName() {
 		return name;
 	}
-
-
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
-
-
-
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
 
-
-
-
 	public String getWebsiteUrl() {
 		return websiteUrl;
 	}
-
-
-
 
 	public void setWebsiteUrl(String websiteUrl) {
 		this.websiteUrl = websiteUrl;
 	}
 
-
-
-
 	public List<Movie> getMovies() {
 		return movies;
 	}
 
-
-
-
 	public void setMovies(List<Movie> movies) {
 		this.movies = movies;
 	}
-
-
 
 	@Override
 	public int hashCode() {

@@ -6,9 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Create Account</title>
+	<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-	<jsp:include page="bootstrapHead.jsp" />
+<jsp:include page="navbar.jsp" />
 	<h4>Please enter required information to create an account</h4>
 
 	<form action="addUserInfo.do" method="GET">
@@ -28,6 +29,6 @@
 			<input type="submit" value="Submit >" />
 
 	</form>
-
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

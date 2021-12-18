@@ -9,7 +9,7 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-
+<jsp:include page="navbar.jsp" />
 <div class="about-section">
 <h3>About Cyptic Slime's video game website</h3>
 
@@ -33,5 +33,6 @@ Once you create an account, you will have access to other functionalities of the
 <p>Team Members : Fredrick Kaucher, Ebony Johnson, Ian Verderame, Christopher Lee
 
 <!-- <a href="home.do"><input type="button" value="Home"></a> -->
+<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>
