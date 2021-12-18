@@ -144,7 +144,8 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 				return vg;
 			}
 		}
-
+		vg.setEnabled(true);
+		
 		if (genres != null && genres.size() > 0) {
 			for (Genre genre : genres) {
 				genre.getVideoGames().add(vg);
