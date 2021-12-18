@@ -73,7 +73,6 @@
 				</c:forEach>
 			</c:if>
 			<%-- ${game.tvShows.imbdUrl } --%>
-<<<<<<< HEAD
 			<c:if test="${ ! empty game.boardGames }">
 			Board Games:<br>
 			${game.boardGames}<br>
@@ -90,18 +89,6 @@
 		<input type="hidden" name="gameId" value="${game.id }"/>
 		<input type="submit"  name="favoriteButton" value="Add to favorites"/> 
 		</form>
-=======
-		</c:when>
-	</c:choose>
-	<br>
-	<P>
-		<c:if
-			test="${loggedInUser != null && !loggedInUser.videoGames.contains(game)}">
-			<form action="addFavorite.do" method="post">
-				<input type="hidden" name="gameId" value="${game.id }" /> <input
-					type="submit" name="favoriteButton" value="Add to favorites" />
-			</form>
->>>>>>> 0695433ef5e2ab2220f6d0105f8841b0e8cd5cd3
 		</c:if>
 	</P>
 
@@ -119,18 +106,10 @@
 			</form>
 		</c:if>
 	</c:if>
-<<<<<<< HEAD
-		<p>
-=======
-
-	<p>
->>>>>>> 0695433ef5e2ab2220f6d0105f8841b0e8cd5cd3
 		<c:forEach var="comment" items="${game.comments }">
 			<h5>${comment.text }</h5>
 		</c:forEach>
 	</p>
-
-<<<<<<< HEAD
 		<section id="app">
     <div class="container">
       <div class="row">
@@ -162,31 +141,5 @@
 			</form>
 		</c:if>
 	</c:if>
-=======
-	<section id="app">
-		<div class="container">
-			<div class="row">
-				<!--   <div class="col-6"> -->
-				<div class="comment">
-					<p v-for="items in item" v-text="items"></p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<!--      <div class="col-6">   -->
-			<form action="addComment.do" method="POST">
-				<input type="hidden" name="gameId" value="${game.id}">
-				<textarea type="text" class="input" name="comment"
-					placeholder="Write a comment"></textarea>
-				<button class='primaryContained float-right' type="submit">Add
-					Comment</button>
-				<br> <br> <br>
-			</form>
-		</div>
-		</div>
-		</div>
-	</section>
-	<jsp:include page="../bootstrapFoot.jsp"/>
->>>>>>> 0695433ef5e2ab2220f6d0105f8841b0e8cd5cd3
 </body>
 </html>

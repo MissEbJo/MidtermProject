@@ -20,10 +20,11 @@
 	<p>Your games:</p>
 	<c:if test="${! empty videoGamesAdded}">
 		<c:forEach var="v" items="${videoGamesAdded }">
+			<c:if test=${v.enabled == true }>
 			<p>${v.name}
 				<br> <img class="gameListImg" src="${v.imageUrl}" />
 			</p>
-		</c:forEach>
+		</c:if></c:forEach>
 	</c:if>
 	<br>
 
