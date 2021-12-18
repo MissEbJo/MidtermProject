@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `video_game` (
   `when_added` DATETIME NULL,
   `singleplayer` TINYINT NULL,
   `multiplayer` TINYINT NULL,
-  `enabled` TINYINT NULL,
+  `enabled` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_video_game_developer1_idx` (`developer_id` ASC),
   INDEX `fk_video_game_series1_idx` (`series_id` ASC),
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NULL,
   `profile_picture` VARCHAR(1000) NULL,
-  `enabled` TINYINT NULL,
+  `enabled` TINYINT NULL DEFAULT 1,
   `role` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`username` ASC))
