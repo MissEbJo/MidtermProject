@@ -17,7 +17,7 @@
 				<h2>${gameSeries.name}</h2>
 
 				<section>
-					<img src="${gameSeries.imageUrl}" />
+					<img class=" gameListImg" src="${gameSeries.imageUrl}" />
 				</section>
 
 				<c:choose>
@@ -26,7 +26,7 @@
 						<h3>Games</h3>
 						<c:forEach var="g" items="${gameSeries.videoGames }">
 						<br>
-						<h4>Title: ${g.name }</h4> Released: ${g.releaseYear }<br>
+						<h4> ${g.name }</h4> Released: ${g.releaseYear }<br>
 								${g.description }<br>
 								<img src="${g.imageUrl }">
 								<br>
@@ -40,7 +40,7 @@
 						<p>
 							<c:forEach var="m" items="${gameSeries.movies}">
 								<br>
-								<h4>Title: ${m.title }</h4> Released: ${m.releaseYear }<br>
+								<h4> ${m.title }</h4> Released: ${m.releaseYear }<br>
 								${m.description }<br>
 								<img src="${m.posterImageUrl }">
 								<br>
@@ -63,9 +63,9 @@
 						<p>
 							<c:forEach var="t" items="${gameSeries.tvShows}">
 								<br>
-								<h4>Title: ${t.title }</h4> Released: ${t.releaseYear }<br>
+								<h4> ${t.title }</h4> Released: ${t.releaseYear }<br>
 								${t.description }<br>
-								<img src="${t.posterImageUrl }">
+								<img class= "gameListImg" src="${t.posterImageUrl }">
 								<br>
 								<a href="${t.imdbUrl }">IMDB</a>
 								<br>
@@ -83,8 +83,8 @@
 						<h3>Related Books</h3>
 						<c:forEach var="b" items="${gameSeries.books}">
 							<br>
-							<h4>Title: ${b.title }</h4>
-				Written by: ${b.author}
+							<h4> ${b.title }</h4><br>
+				Written by: ${b.author}<br>
 				Released: ${b.releaseYear }<br>
 				${b.description }<br>
 
