@@ -90,7 +90,7 @@ public class AddGameController {
 		ModelAndView mv = new ModelAndView();
 		VideoGame videoGame = gameDao.searchForGameById(deleteId);
 		gameDao.deleteGame(videoGame);
-		mv.setViewName("redirect:home.do");
+		mv.setViewName("successfulDelete");
 		return mv;
 	}
 

@@ -12,11 +12,11 @@
 	<jsp:include page="../navbar.jsp" />
 	<c:choose>
 		<c:when test="${ not empty game }">
+				<h2>${game.name}</h2><br>
 			<img class="gameListImg" src="${game.imageUrl}" />
-			<div>
-				<h2>${game.name}</h2>
+			<div class="singleGame">
 				<ul>
-					<li><blockquote>Description: ${game.description}</blockquote></li>
+					<li><blockquote>Description: <br>${game.description}</blockquote></li>
 					<li>Release Year: ${game.releaseYear}</li>
 					<li>Platform(s): ${game.platforms }</li>
 					<li>Single Player: ${game.singlePlayer}</li>
@@ -24,13 +24,13 @@
 					<li>Cross-Platform/Play: ${game.crossPlatform}</li>
 					<li>Genre(s): ${game.genres}</li>
 					<li>Developer Name: ${game.developer.name}</li>
-
-
-					<li><form action="gameSeries.do">
+					</ul>
+					<form action="gameSeries.do">
 							<input type="hidden" name="gameId" id="gameId"
-								value="${game.id }">Game Series: ${game.gameSeries.name}<input
-								type="submit" value="Go To Game Series">
-						</form></li>
+								value="${game.id }">Game Series: ${game.gameSeries.name}<br>
+								<input type="submit" value="Go To Game Series">
+						</form>
+						<br>
 			</div>
 			<div>
 				<c:choose>
@@ -56,30 +56,32 @@
 			</c:choose>
 			<c:if test="${ ! empty game.tvShows }">
 				<br>
-			TV Shows:
+			<h4>TV Shows:</h4>
 			<br>
 				<%-- ${game.tvShows }<br> --%>
 				<c:forEach var="show" items="${game.tvShows }">
-			${show.title } <img src="${show.posterImageUrl}">
-			Number of Seasons: ${shownumberOfSeasons }
-			Released: ${show.releaseYear }
-			${show.description }
+			${show.title }<br> <img src="${show.posterImageUrl}"><br>
+			Number of Seasons: ${shownumberOfSeasons }<br>
+			Released: ${show.releaseYear }<br>
+			<p>${show.description }</p><br>
 			<iframe src="${show.trailerUrl}"></iframe>
 					<c:forEach var="s" items="${show.streamingService }">
 						<h5>Watch On</h5>
-						<a href="${s.websiteUrl}">${s.name }</a>
-						<a href="${s.websiteUrl}"><img src="${s.imageUrl }"></a>
+						<a href="${s.websiteUrl}">${s.name }</a><br>
+						<a href="${s.websiteUrl}"><br>
+						<img class="gameListImg" src="${s.imageUrl }"></a>
 					</c:forEach>
 				</c:forEach>
 			</c:if>
 			<%-- ${game.tvShows.imbdUrl } --%>
 			<c:if test="${ ! empty game.boardGames }">
-			Board Games:<br>
+			<br>Board Games:<br>
 			${game.boardGames}<br>
 			</c:if>
-			Book(s):
+			<c:if test="${ ! empty game.gameSeries.books }">
+			<br>Book(s):<br>
 			${game.gameSeries.books }
-			
+			</c:if>
 		</c:when>
 	</c:choose>
 
