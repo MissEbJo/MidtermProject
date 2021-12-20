@@ -96,14 +96,9 @@
 								</c:forEach>
 							</c:forEach>
 						</c:if>
-						<%-- ${game.tvShows.imbdUrl } --%>
-						<c:if test="${ ! empty game.boardGames }">
-							<br>Board Games:<br>
-			${game.boardGames}<br>
-						</c:if>
 						<c:if test="${ ! empty game.gameSeries.books }">
 							<br>Book(s):<br>
-			${game.gameSeries.books }
+							${game.gameSeries.books }
 			</c:if>
 		</c:when>
 	</c:choose>
@@ -152,7 +147,6 @@
        	</div>
 		</div>
 		</div>
-	<!-- 	</div> -->
   
 	
 </body>
