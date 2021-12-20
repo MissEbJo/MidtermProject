@@ -654,13 +654,14 @@ progress {
 }
  .comments{
 	
-	background:aqua;
+	background:rgb(0, 161, 161);
 	border: medium;
 	border-color: black;
 	color: black;
 	font-family: monospace;
-	position: absolute;
+	/* position: relative; */
 	bottom: 25px;
+	overflow-y: scroll;
 	
 } 
 
