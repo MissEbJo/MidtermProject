@@ -652,11 +652,14 @@ progress {
 	height: 200px;
 	width: 300px;
 }
-.comments:nth-of-type(1){
+.comments{
 	position: absolute;
 	background:aqua;
-	top: 10px;
-	right: 30px;
+	top: 50px;
+	right: 80px;
+	border: medium;
+	font-family: monospace;
+	
 }
 
 .figure {
