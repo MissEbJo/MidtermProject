@@ -652,12 +652,17 @@ progress {
 	height: 200px;
 	width: 300px;
 }
-.comments:nth-of-type(1){
-	position: absolute;
+ .comments{
+	
 	background:aqua;
-	top: 10px;
-	right: 30px;
-}
+	border: medium;
+	border-color: black;
+	color: black;
+	font-family: monospace;
+	position: absolute;
+	bottom: 25px;
+	
+} 
 
 .figure {
   display: inline-block;
@@ -681,8 +686,8 @@ progress {
 .container-xl,
 .container-xxl {
   width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
+  /* padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem); */
   margin-right: auto;
   margin-left: auto;
 }
@@ -740,8 +745,8 @@ a:visited {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * .5);
-  padding-left: calc(var(--bs-gutter-x) * .5);
+  /* padding-right: calc(var(--bs-gutter-x) * .5);
+  padding-left: calc(var(--bs-gutter-x) * .5); */
   margin-top: var(--bs-gutter-y);
 }
 
