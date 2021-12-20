@@ -110,11 +110,14 @@
 		</c:if> --%>
 	</c:if>
 		<div class="comments">
+		<h4>User Comments about ${game.name }</h4>
 		<c:forEach var="comment" items="${game.comments }">
-			<h5>${comment.timestamp} ${comment.text } ${comment.user.username }</h5>
+			<div>-----------------------------------------------------------</div>
+			<h5>${comment.text }</h5>
+			<div>Posted by ${comment.user.username } on ${comment.timestamp} </div> 
 		</c:forEach>
 		</div>
-
+	<c:choose><c:when test="${not empty loggedInUser}">
 		<section id="app">
     <div class="container">
       <div class="row">
@@ -135,7 +138,7 @@
           <br>
        </form>
        	</div>
-  </section>
+  </section></c:when></c:choose>
   
 	<c:if test="${not empty loggedInUser}">
 		<c:if test="${game.userWhoAdded == loggedInUser}">
