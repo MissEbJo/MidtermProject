@@ -25,11 +25,11 @@
 						<br><br>
 						<h3>Games</h3>
 						<c:forEach var="g" items="${gameSeries.videoGames }">
-						<c:if test="${not g.enabled }">
+						<c:if test="${g.enabled }">
 						<br>
-						<h4> ${g.name }</h4> Released: ${g.releaseYear }<br>
+						<h4> ${g.name }</h4><h5>#${g.numberInSeries } in series</h5> Released: ${g.releaseYear }<br>
 								${g.description }<br>
-								<img src="${g.imageUrl }">
+								<a href="GetById.do?gameId=${g.id }"><img class="gameListImg" src="${g.imageUrl}"/></a>
 								<br>
 								
 						</c:if>
