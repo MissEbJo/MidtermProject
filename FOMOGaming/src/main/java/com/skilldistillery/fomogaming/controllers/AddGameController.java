@@ -84,5 +84,23 @@ public class AddGameController {
 		mv.setViewName("editGame");
 		return mv;
 	}
+	
+	@RequestMapping(path="deleteGame.do", method = RequestMethod.POST)
+	public ModelAndView deleteGame(int deleteId) {
+		ModelAndView mv = new ModelAndView();
+		VideoGame videoGame = gameDao.searchForGameById(deleteId);
+		gameDao.deleteGame(videoGame);
+		mv.setViewName("successfulDelete");
+		return mv;
+	}
 
+	@RequestMapping(path="enableGame.do", method = RequestMethod.POST)
+	public ModelAndView enableGame(int enableId) {
+		ModelAndView mv = new ModelAndView();
+		VideoGame videoGame = gameDao.searchForGameById(enableId);
+		gameDao.reEnableGame(videoGame);
+		mv.setViewName("/gaming/singleGame");
+		mv.addObject("game", videoGame);
+		return mv;
+	}
 }

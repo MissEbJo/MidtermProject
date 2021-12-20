@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -87,6 +86,8 @@ public class VideoGame {
 	
 	@OneToMany(mappedBy="videoGame")
 	private List<Comment> comments;
+	
+	private boolean enabled;
 
 	public VideoGame() {
 		super();
@@ -250,6 +251,14 @@ public class VideoGame {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public void addUser(User user) {

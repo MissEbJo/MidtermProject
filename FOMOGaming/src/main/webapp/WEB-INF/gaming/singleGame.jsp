@@ -9,13 +9,14 @@
 </head>
 <body>
 	<jsp:include page="../bootstrapHead.jsp" />
+	<jsp:include page="../navbar.jsp" />
 	<c:choose>
 		<c:when test="${ not empty game }">
+				<h2>${game.name}</h2><br>
 			<img class="gameListImg" src="${game.imageUrl}" />
-			<div>
-					<h2>${game.name}</h2>
+			<div class="singleGame">
 				<ul>
-					<li><blockquote>Description: ${game.description}</blockquote></li>
+					<li><blockquote>Description: <br>${game.description}</blockquote></li>
 					<li>Release Year: ${game.releaseYear}</li>
 					<li>Platform(s): ${game.platforms }</li>
 					<li>Single Player: ${game.singlePlayer}</li>
@@ -23,38 +24,66 @@
 					<li>Cross-Platform/Play: ${game.crossPlatform}</li>
 					<li>Genre(s): ${game.genres}</li>
 					<li>Developer Name: ${game.developer.name}</li>
-					
-					<li><form action="gameSeries.do"><input type="hidden" name="gameId" id="gameId" value="${game.id }">Game Series: ${game.gameSeries.name}<input type="submit" value="Go To Game Series"></form></li>
-
-				</ul>
+					</ul>
+					<form action="gameSeries.do">
+							<input type="hidden" name="gameId" id="gameId"
+								value="${game.id }">Game Series: ${game.gameSeries.name}<br>
+								<input type="submit" value="Go To Game Series">
+						</form>
+						<br>
 			</div>
 			<div>
-			<h4>Related Board Games:</h4>
-					<c:forEach var="b" items="${game.boardGames }">
-					<h5>${b.name }</h5>
+				<c:choose>
+					<c:when test="${ not empty game.boardGames }">
+						<h4>Related Board Games:</h4>
+						<c:forEach var="b" items="${game.boardGames }">
+							<h5>${b.name }</h5>
 					Released: ${b.releaseYear }
 					<br>${b.description}
-					<br><a href="${b.websiteUrl }">Website</a>
-					<br><img src="${b.imageUrl }">
-					</c:forEach>
+					<br>
+							<a href="${b.websiteUrl }">Website</a>
+							<br>
+							<img src="${b.imageUrl }">
+						</c:forEach>
+					</c:when>
+				</c:choose>
 			</div>
-			<iframe src="${game.trailerUrl}"></iframe>
-
+			<c:choose>
+				<c:when test="${ not empty game.trailerUrl }">
+					<h4>Game Trailer</h4>
+					<iframe src="${game.trailerUrl}"></iframe>
+				</c:when>
+			</c:choose>
 			<c:if test="${ ! empty game.tvShows }">
+				<br>
+			<h4>TV Shows:</h4>
 			<br>
-			<h3>Related Media</h3>
-			<br>
-			TV Shows:<br>
-			${game.tvShows }<br>
+				<%-- ${game.tvShows }<br> --%>
+				<c:forEach var="show" items="${game.tvShows }">
+			${show.title }<br> <img src="${show.posterImageUrl}"><br>
+			Number of Seasons: ${shownumberOfSeasons }<br>
+			Released: ${show.releaseYear }<br>
+			<p>${show.description }</p><br>
+			<iframe src="${show.trailerUrl}"></iframe>
+					<c:forEach var="s" items="${show.streamingService }">
+						<h5>Watch On</h5>
+						<a href="${s.websiteUrl}">${s.name }</a><br>
+						<a href="${s.websiteUrl}"><br>
+						<img class="gameListImg" src="${s.imageUrl }"></a>
+					</c:forEach>
+				</c:forEach>
 			</c:if>
 			<%-- ${game.tvShows.imbdUrl } --%>
-			Book(s):
+			<c:if test="${ ! empty game.boardGames }">
+			<br>Board Games:<br>
+			${game.boardGames}<br>
+			</c:if>
+			<c:if test="${ ! empty game.gameSeries.books }">
+			<br>Book(s):<br>
 			${game.gameSeries.books }
-			
+			</c:if>
 		</c:when>
 	</c:choose>
-			<br>
-			<iframe src="${game.trailerUrl}"></iframe>
 
 		<P>
 		<c:if test="${loggedInUser != null && !loggedInUser.videoGames.contains(game)}">
@@ -63,23 +92,29 @@
 		<input type="submit"  name="favoriteButton" value="Add to favorites"/> 
 		</form>
 		</c:if>
-		</P>
+	</P>
 
+		<div class="container justify-content-center mt-5 border-left border-right">
+    <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a note" class="form-control addtxt"> </div>
+    <div class="d-flex justify-content-center py-2">
+        <div class="second py-2 px-2"> <span class="text1">Type your note, and hit enter to add it</span>
+            <div class="d-flex justify-content-between py-1 pt-2">
+            </div>
 	<c:if test="${not empty loggedInUser}">
-		<c:if test="${game.userWhoAdded == loggedInUser}">
+		<%-- <c:if test="${game.userWhoAdded == loggedInUser}">
 			<form action="editGame.do" method="post">
 				<input type="hidden" name="gameId" value="${game.id }" /> <input
 					type="submit" name="editGame" value="EditGame" />
 			</form>
-		</c:if>
+		</c:if> --%>
 	</c:if>
-
-		<p>
 		<c:forEach var="comment" items="${game.comments }">
+
 					<h5>${comment.text }</h5>
 					<h5>${comment.timestamp }</h5>
 					</c:forEach>
 					</p>
+
 
 		<section id="app">
     <div class="container">
@@ -100,9 +135,17 @@
           <br>
           <br>
        </form>
-        </div>
-      </div>
+       	</div>
+       </div>
     </div>
   </section>
+	<c:if test="${not empty loggedInUser}">
+		<c:if test="${game.userWhoAdded == loggedInUser}">
+			<form action="editGame.do" method="post">
+				<input type="hidden" name="gameId" value="${game.id }" /> <input
+					type="submit" name="editGame" value="EditGame" />
+			</form>
+		</c:if>
+	</c:if>
 </body>
 </html>

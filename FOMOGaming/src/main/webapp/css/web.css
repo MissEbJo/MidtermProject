@@ -709,6 +709,12 @@ progress {
     max-width: 1320px;
   }
 }
+a:hover{
+	background-color: aqua;
+}
+a:visited {
+  color: red;
+}
 
 .row {
   --bs-gutter-x: 1.5rem;

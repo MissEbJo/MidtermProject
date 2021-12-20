@@ -144,7 +144,8 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 				return vg;
 			}
 		}
-
+		vg.setEnabled(true);
+		
 		if (genres != null && genres.size() > 0) {
 			for (Genre genre : genres) {
 				genre.getVideoGames().add(vg);
@@ -239,4 +240,59 @@ public class VideoGameDAOImpl implements VideoGameDAO {
 		}
 
 	}
+	
+	@Override
+	public void deleteGame(VideoGame vg) {
+		// "delete" ;)
+		VideoGame videogame = em.find(VideoGame.class, vg.getId());
+		videogame.setId(vg.getId());
+		videogame.setName(vg.getName());
+		videogame.setDescription(vg.getDescription());
+		videogame.setCrossPlatform(vg.isCrossPlatform());
+		videogame.setReleaseYear(vg.getReleaseYear());
+		videogame.setSinglePlayer(vg.getSinglePlayer());
+		videogame.setMultiPlayer(vg.getMultiPlayer());
+		videogame.setImageUrl(vg.getImageUrl());
+		videogame.setTrailerUrl(vg.getTrailerUrl());
+		videogame.setNumberInSeries(vg.getNumberInSeries());
+		videogame.setUsers(vg.getUsers());
+		videogame.setGenres(vg.getGenres());
+		videogame.setGameSeries(vg.getGameSeries());
+		videogame.setTvShows(vg.getTvShows());
+		videogame.setBoardGames(vg.getBoardGames());
+		videogame.setDeveloper(vg.getDeveloper());
+		videogame.setPlatforms(vg.getPlatforms());
+		videogame.setUserWhoAdded(vg.getUserWhoAdded());
+		videogame.setWhenAdded(vg.getWhenAdded());
+		videogame.setComments(vg.getComments());
+		videogame.setEnabled(false);
+	}
+	
+	@Override
+	public VideoGame reEnableGame(VideoGame vg) {
+		VideoGame videogame = em.find(VideoGame.class, vg.getId());
+		videogame.setName(vg.getName());
+		videogame.setId(vg.getId());
+		videogame.setDescription(vg.getDescription());
+		videogame.setCrossPlatform(vg.isCrossPlatform());
+		videogame.setReleaseYear(vg.getReleaseYear());
+		videogame.setSinglePlayer(vg.getSinglePlayer());
+		videogame.setMultiPlayer(vg.getMultiPlayer());
+		videogame.setImageUrl(vg.getImageUrl());
+		videogame.setTrailerUrl(vg.getTrailerUrl());
+		videogame.setNumberInSeries(vg.getNumberInSeries());
+		videogame.setUsers(vg.getUsers());
+		videogame.setGenres(vg.getGenres());
+		videogame.setGameSeries(vg.getGameSeries());
+		videogame.setTvShows(vg.getTvShows());
+		videogame.setBoardGames(vg.getBoardGames());
+		videogame.setDeveloper(vg.getDeveloper());
+		videogame.setPlatforms(vg.getPlatforms());
+		videogame.setUserWhoAdded(vg.getUserWhoAdded());
+		videogame.setWhenAdded(vg.getWhenAdded());
+		videogame.setComments(vg.getComments());
+		videogame.setEnabled(true);
+		return videogame;
+	}
+	
 }

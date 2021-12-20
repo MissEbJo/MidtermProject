@@ -21,15 +21,16 @@
 				<thead>
 					<tr>
 						<th><h4>Game Name</h4></th>
-						<th>Game Description</th>
+						<th></th>
+						<th><h4>Game Description</h4></th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="g" items="${games}">
 						<tr>
-							<td><h5>${g.name}</h5></td>
-							<td><p><br><br>${g.description}</p></td>
-							<%-- <td><form action="GetByName.do"><input type="image" src="${g.imageUrl}" id="${g.name }" name="${g.name }" value="${g.name }"></form></td> --%>
+							<td><h5><a href="GetByNameDetails.do?name=${g.name}">${g.name}</a></h5></td>
+							<td></td>
+							<td><p><br><br>${g.description}</p><br></td>
 							<td><img class="gameListImg" src="${g.imageUrl}"/><br><br></td>
 						</tr>
 					</c:forEach>
