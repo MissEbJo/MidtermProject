@@ -129,7 +129,6 @@
 			<h5>${comment.text }</h5>
 			<div>Posted by ${comment.user.username } on ${comment.timestamp} </div> 
 		</c:forEach>
-		</div>
 	<c:choose><c:when test="${not empty loggedInUser}">
 		<section id="app">
       <form action="addComment.do" method="POST">
@@ -141,6 +140,7 @@
           <br>
        </form>
   </section></c:when></c:choose>
+		</div>
        	</div>
 		</div>
 		</div>
