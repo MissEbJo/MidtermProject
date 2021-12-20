@@ -25,11 +25,12 @@
 					<li>Genre(s): ${game.genres}</li>
 					<li>Developer Name: ${game.developer.name}</li>
 					</ul>
+					<c:choose><c:when test="${not empty game.gameSeries }">
 					<form action="gameSeries.do">
 							<input type="hidden" name="gameId" id="gameId"
 								value="${game.id }">Game Series: ${game.gameSeries.name}<br>
 								<input type="submit" value="Go To Game Series">
-						</form>
+						</form></c:when></c:choose>
 						<br>
 			</div>
 			<div>
