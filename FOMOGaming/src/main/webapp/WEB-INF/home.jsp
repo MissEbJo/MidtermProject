@@ -31,7 +31,7 @@
 							<td><h5><a href="GetByNameDetails.do?name=${g.name}">${g.name}</a></h5></td>
 							<td></td>
 							<td><p><br><br>${g.description}</p><br></td>
-							<td><img class="gameListImg" src="${g.imageUrl}"/><br><br></td>
+							<td><a href="GetById.do?gameId=${g.id }"><img class="gameListImg" src="${g.imageUrl}"/></a><br><br></td>
 						</tr>
 					</c:forEach>
 				</tbody>
