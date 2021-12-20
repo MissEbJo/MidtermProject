@@ -77,6 +77,7 @@
 		<p>
 		<c:forEach var="comment" items="${game.comments }">
 					<h5>${comment.text }</h5>
+					<h5>${comment.timestamp }</h5>
 					</c:forEach>
 					</p>
 
