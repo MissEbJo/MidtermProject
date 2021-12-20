@@ -29,7 +29,7 @@
 						<br>
 						<h4> ${g.name }</h4><h5>#${g.numberInSeries } in series</h5> Released: ${g.releaseYear }<br>
 								${g.description }<br>
-								<img src="${g.imageUrl }">
+								<a href="GetById.do?gameId=${g.id }"><img class="gameListImg" src="${g.imageUrl}"/></a>
 								<br>
 								
 						</c:if>

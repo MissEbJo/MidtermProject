@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `video_game` (
   `when_added` DATETIME NULL,
   `singleplayer` TINYINT NULL,
   `multiplayer` TINYINT NULL,
-  `enabled` TINYINT NULL DEFAULT 1,
+  `enabled` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_video_game_developer1_idx` (`developer_id` ASC),
   INDEX `fk_video_game_series1_idx` (`series_id` ASC),
@@ -414,26 +414,26 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `fomogaming`;
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (1, 'Capcom', 'Japan', 1979, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (2, 'Guerrilla Games', 'Netherlands', 2000, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (3, 'Nintendo Entertainment', 'Japan', 1889, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (4, 'Supergiant Games', 'United States', 2009, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (5, 'Square Enix', 'Japan', 2003, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (6, 'EA Sports', 'United States', 1991, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (7, 'Respawn Entertainment', 'United States', 2010, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (8, 'Concerned Ape', 'United States', 2012, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (9, 'Ubisoft', 'France', 1986, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (10, 'Atari', 'United States', 1976, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (11, 'Bungie', 'United States', 1991, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (12, 'ND Cube', 'Japan', 2000, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (13, 'PUBG Corp', 'South Korea', 2009, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (14, 'Blizzard Entertainment', 'United States', 1991, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (15, 'EA', 'United States', 1982, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (16, 'Sora Ltd', 'Japan', 2005, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (17, 'CD Projekt Red', 'Poland', 2002, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (18, 'Pathea', 'China', 2010, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (19, 'FromSoftware', 'Japan', 1986, NULL, NULL, NULL);
-INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (20, 'Steamforged Games', 'England', 2014, NULL, NULL, NULL);
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (1, 'Capcom', 'Japan', 1979, 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Capcom_logo.svg', NULL, 'https://www.capcom.com');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (2, 'Guerrilla Games', 'Netherlands', 2000, 'https://upload.wikimedia.org/wikipedia/en/1/17/Guerrilla_logo.svg', NULL, 'https://www.guerrilla-games.com/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (3, 'Nintendo Entertainment', 'Japan', 1889, 'https://upload.wikimedia.org/wikipedia/en/5/59/Supergiant_Games_New_Logo.png', NULL, 'https://www.nintendo.com/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (4, 'Supergiant Games', 'United States', 2009, 'https://upload.wikimedia.org/wikipedia/en/5/59/Supergiant_Games_New_Logo.png', NULL, 'https://www.supergiantgames.com/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (5, 'Square Enix', 'Japan', 2003, 'https://upload.wikimedia.org/wikipedia/commons/a/af/Square_Enix_logo.svg', NULL, 'https://www.square-enix.com/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (6, 'EA Sports', 'United States', 1991, 'https://upload.wikimedia.org/wikipedia/commons/6/6f/EA_Sports_monochrome_logo.svg', NULL, 'https://www.ea.com/sports');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (7, 'Respawn Entertainment', 'United States', 2010, 'https://upload.wikimedia.org/wikipedia/commons/b/be/Respawn_Logo.png', NULL, 'https://www.respawn.com/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (8, 'Concerned Ape', 'United States', 2012, 'https://upload.wikimedia.org/wikipedia/en/a/a9/Chucklefish.svg', NULL, 'https://en.wikipedia.org/wiki/Eric_Barone_(developer)');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (9, 'Ubisoft', 'France', 1986, 'https://upload.wikimedia.org/wikipedia/en/a/a0/Ubisoft_2017.svg', NULL, 'https://www.ubisoft.com/en-us/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (10, 'Atari', 'United States', 1976, 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Atari_Official_2012_Logo_horizontal.svg', NULL, 'https://www.atari.com/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (11, 'Bungie', 'United States', 1991, 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Bungie_Logo_-_Official.svg', NULL, 'https://www.bungie.net/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (12, 'ND Cube', 'Japan', 2000, 'https://upload.wikimedia.org/wikipedia/commons/d/da/Nd_Cube_Logo.svg', NULL, 'https://www.ndcube.co.jp/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (13, 'PUBG Corp', 'South Korea', 2009, 'https://upload.wikimedia.org/wikipedia/commons/8/81/PUBG_Studios_Logo.svg', NULL, 'https://www.krafton.com/en/studios/pubg/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (14, 'Blizzard Entertainment', 'United States', 1991, 'https://upload.wikimedia.org/wikipedia/commons/2/23/Blizzard_Entertainment_Logo_2015.svg', NULL, 'https://www.blizzard.com/en-us/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (15, 'Electronic Arts', 'United States', 1982, 'https://upload.wikimedia.org/wikipedia/commons/8/81/Electronic_Arts_2020.svg', NULL, 'https://www.ea.com/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (16, 'Sora Ltd', 'Japan', 2005, 'https://upload.wikimedia.org/wikipedia/en/9/9a/Sora_Ltd._Logo.svg', NULL, 'https://en.wikipedia.org/wiki/Sora_Ltd.');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (17, 'CD Projekt Red', 'Poland', 2002, 'https://upload.wikimedia.org/wikipedia/en/6/68/CD_Projekt_logo.svg', NULL, 'https://www.cdprojekt.com/en/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (18, 'Pathea', 'China', 2010, 'https://pbs.twimg.com/profile_images/1272404098441084929/AkrhlU1A_400x400.jpg', NULL, 'https://pathea.net/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (19, 'FromSoftware', 'Japan', 1986, 'https://upload.wikimedia.org/wikipedia/commons/0/00/Fromsoftware_logo.svg', NULL, 'https://www.fromsoftware.jp/jp/');
+INSERT INTO `developer` (`id`, `name`, `country`, `founding_year`, `logo_image_url`, `description`, `website_url`) VALUES (20, 'Steamforged Games', 'England', 2014, 'https://pbs.twimg.com/profile_images/1145722487344381954/VQsOetE__400x400.png', NULL, 'https://steamforged.com/');
 
 COMMIT;
 
@@ -489,7 +489,10 @@ INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_pl
 INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`, `added_by_user`, `when_added`, `singleplayer`, `multiplayer`, `enabled`) VALUES (19, 'Need for Speed Underground', 'Need for Speed: Underground is a 2003 racing video game and the seventh installment in the Need for Speed series. It was developed by EA Black Box and published by Electronic Arts. Three different games were produced, one for consoles and Windows, and the other for the Game Boy Advance along with a version deveolped by Global VR for Arcades that was published by Konami.', 2003, 0, 15, 13, 'https://upload.wikimedia.org/wikipedia/en/a/a0/Nfsu-win-cover.jpg', 'https://www.youtube.com/embed/Ahl_QwuABEU', 7, 1, NULL, 1, NULL, 1);
 INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`, `added_by_user`, `when_added`, `singleplayer`, `multiplayer`, `enabled`) VALUES (20, 'World of Warcraft', 'World of Warcraft (WoW) is a massively multiplayer online role-playing game (MMORPG) released in 2004 by Blizzard Entertainment. Similar to other MMORPGs, the game allows players to create a character avatar and explore an open game world in third- or first-person view, exploring the landscape, fighting various monsters, completing quests, and interacting with non-player characters (NPCs) or other players. The game encourages players to work together to complete quests, enter dungeons and engage in player versus player (PvP) combat, however the game can also be played solo without interacting with others.', 2004, 0, 14, 9, 'https://upload.wikimedia.org/wikipedia/en/9/91/WoW_Box_Art1.jpg', 'https://www.youtube.com/embed/wvYXoyxLv64', 7, 1, NULL, 1, 1, 1);
 INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`, `added_by_user`, `when_added`, `singleplayer`, `multiplayer`, `enabled`) VALUES (21, 'The Witcher', 'Become The Witcher, Geralt of Rivia, a legendary monster slayer caught in a web of intrigue woven by forces vying for control of the world. Make difficult decisions and live with the consequences in a game that will immerse you in an extraordinary tale like no other.', 2007, 0, 17, 8, 'https://upload.wikimedia.org/wikipedia/en/b/b0/The_Witcher_EU_box.jpg', 'https://www.youtube.com/embed/B00E5f7-yz4', 1, 1, NULL, 1, NULL, 1);
-INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`, `added_by_user`, `when_added`, `singleplayer`, `multiplayer`, `enabled`) VALUES (22, 'Dark Souls', 'Dark Souls takes place in the fictional kingdom of Lordran, where players assume the role of a cursed undead character who begins a pilgrimage to discover the fate of their kind.', 2011, 0, 19, 14, 'https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg', 'https://www.youtube.com/embed/o1780AqAa20', 1, 1, NULL, 1, 1, 1);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`, `added_by_user`, `when_added`, `singleplayer`, `multiplayer`, `enabled`) VALUES (22, 'Dark Souls', 'Dark Souls takes place in the fictional kingdom of Lordran, where players assume the role of a cursed undead character who begins a pilgrimage to discover the fate of their kind.', 2011, 0, 19, 14, 'https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg', 'https://www.youtube.com/embed/o1780AqAa20', 2, 1, NULL, 1, 1, 1);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`, `added_by_user`, `when_added`, `singleplayer`, `multiplayer`, `enabled`) VALUES (23, 'Demon\'s Souls', 'In his quest for power, the 12th King of Boletaria, King Allant channeled the ancient Soul Arts, awakening a demon from the dawn of time itself, The Old One. With the summoning of The Old One, a colorless fog swept across the land, unleashing nightmarish creatures that hungered for human souls. Those whose souls were stripped from them, lost their minds – left only with the desire to attack the sane that remained.\n\nNow, Boletaria is cut off from the outside world, and the knights who dare penetrate the deep fog to free the land from its plight, are never seen again. As a lone warrior who has braved the baneful fog, you must face the hardest of challenges to earn the title “Slayer of Demons” and send The Old One back to its slumber.', 2009, 0, 19, 14, 'https://upload.wikimedia.org/wikipedia/en/9/91/Demon%27s_Souls_Cover.jpg', 'https://www.youtube.com/embed/FRnIyXvonAU', 1, 1, NULL, 1, NULL, 1);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`, `added_by_user`, `when_added`, `singleplayer`, `multiplayer`, `enabled`) VALUES (24, 'Dark Souls II', 'The story of Dark Souls II begins with a human who has become Undead, cursed to never die and doomed to eventually become a Hollow, a zombie-like being with no memories or purpose. The protagonist is also known as the Bearer of the Curse. To break the curse, the undead travels to the fallen kingdom of Drangleic and is tasked by the Emerald Herald with obtaining four Great Souls from powerful Old Ones whose names are long forgotten and forbidden. ', 2014, 0, 19, 14, 'https://upload.wikimedia.org/wikipedia/en/e/ed/Dark_Souls_II_cover.jpg', 'https://www.youtube.com/embed/U6uyuIQYlfY', 3, 1, NULL, 1, 1, 1);
+INSERT INTO `video_game` (`id`, `name`, `description`, `release_year`, `cross_platform`, `developer_id`, `series_id`, `image_url`, `trailer_url`, `number_in_series`, `added_by_user`, `when_added`, `singleplayer`, `multiplayer`, `enabled`) VALUES (25, 'Dark Souls III', 'Dark Souls 3 takes place in a transitory place, revolving around the first flame and the cycle of fire and dark. You play as a protagonist whose goal is to find and return the five Lords of Cinder to their thrones at Firelink Shrine in order to link the flame again.', 2016, 0, 19, 14, 'https://upload.wikimedia.org/wikipedia/en/b/bb/Dark_souls_3_cover_art.jpg', 'https://www.youtube.com/embed/cWBwFhUv1-8', 4, 1, NULL, 1, 1, 1);
 
 COMMIT;
 
@@ -676,6 +679,13 @@ INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (2
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 2);
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 4);
 INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (22, 5);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (24, 2);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (24, 5);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (24, 4);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (23, 5);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (25, 2);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (25, 4);
+INSERT INTO `platform_has_video_game` (`video_game_id`, `platform_id`) VALUES (25, 5);
 
 COMMIT;
 
@@ -720,6 +730,12 @@ INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (21, 1);
 INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (21, 2);
 INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (22, 1);
 INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (22, 2);
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (23, 1);
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (23, 2);
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (24, 1);
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (24, 2);
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (25, 2);
+INSERT INTO `video_game_has_genre` (`video_game_id`, `genre_id`) VALUES (25, 1);
 
 COMMIT;
 
