@@ -29,13 +29,21 @@
 								<li>Multi-Player: ${game.multiPlayer}</li>
 								<li>Cross-Platform/Play: ${game.crossPlatform}</li>
 								<li>Genre(s): ${game.genres}</li>
-								<li>Developer Name: ${game.developer.name}</li>
+								<li><a href="${game.developer.websiteUrl }" >Developer Name: ${game.developer.name}</a>
+									<ul>
+										<li>Founded in ${game.developer.foundingYear }</li>
+										<li>From: ${game.developer.country }</li>
+										<li><br><img class="gameListImg" src="${game.developer.logoImageUrl }"></li>
+									</ul>
+									</li>
 							</ul>
+							
+							
 							<c:choose>
 								<c:when test="${not empty game.gameSeries }">
 									<form action="gameSeries.do">
 										<input type="hidden" name="gameId" id="gameId"
-											value="${game.id }">Game Series:
+											value="${game.id }"><h4>Game Series:</h4>
 										${game.gameSeries.name}<br> <input type="submit"
 											value="Go To Game Series">
 									</form>
@@ -88,14 +96,9 @@
 								</c:forEach>
 							</c:forEach>
 						</c:if>
-						<%-- ${game.tvShows.imbdUrl } --%>
-						<c:if test="${ ! empty game.boardGames }">
-							<br>Board Games:<br>
-			${game.boardGames}<br>
-						</c:if>
 						<c:if test="${ ! empty game.gameSeries.books }">
 							<br>Book(s):<br>
-			${game.gameSeries.books }
+							${game.gameSeries.books }
 			</c:if>
 		</c:when>
 	</c:choose>
@@ -129,6 +132,7 @@
 			<h5>${comment.text }</h5>
 			<div>Posted by ${comment.user.username } on ${comment.timestamp} </div> 
 		</c:forEach>
+		</div>
 	<c:choose><c:when test="${not empty loggedInUser}">
 		<section id="app">
       <form action="addComment.do" method="POST">
@@ -140,11 +144,9 @@
           <br>
        </form>
   </section></c:when></c:choose>
-		</div>
        	</div>
 		</div>
 		</div>
-	<!-- 	</div> -->
   
 	
 </body>
